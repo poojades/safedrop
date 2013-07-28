@@ -5,6 +5,8 @@ The project structure is followed which has the following meaning
 2. iOS - Contains code for the iOS development
 3. Server - Contains code for the Server's Rest Services
 	3.1 Build - WAR Releases for latest automatic build event
+	3.2 Database - Scripts for the database
+	3.3 SafeDropServices - Services Code
 
 
 -> Instructions
