@@ -18,28 +18,64 @@ USE `safedrop`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `mqueue`
+-- Table structure for table `messages`
 --
 
-DROP TABLE IF EXISTS `mqueue`;
+DROP TABLE IF EXISTS `messages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mqueue` (
+CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
-  `type` varchar(45) NOT NULL,
   `text` varchar(45) NOT NULL,
-  `from` varchar(45) NOT NULL,
-  `to` varchar(45) NOT NULL,
-  `requestid` int(11) NOT NULL,
+  `sender` varchar(45) NOT NULL,
+  `receiver` varchar(45) NOT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `ff1_idx` (`from`),
-  KEY `ff2_idx` (`to`),
-  KEY `ff3_idx` (`requestid`),
-  CONSTRAINT `ff1` FOREIGN KEY (`from`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ff2` FOREIGN KEY (`to`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ff3` FOREIGN KEY (`requestid`) REFERENCES `request` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `ff1_idx` (`sender`),
+  KEY `ff2_idx` (`receiver`),
+  CONSTRAINT `FF_from` FOREIGN KEY (`sender`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FF_to` FOREIGN KEY (`receiver`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `messages`
+--
+
+LOCK TABLES `messages` WRITE;
+/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `text` varchar(45) NOT NULL,
+  `recevier` varchar(45) NOT NULL,
+  `requestid` int(11) NOT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `ff2_idx` (`recevier`),
+  KEY `ff3_idx` (`requestid`),
+  CONSTRAINT `ff_requestid` FOREIGN KEY (`id`) REFERENCES `request` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `ff_to_no` FOREIGN KEY (`recevier`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notifications`
+--
+
+LOCK TABLES `notifications` WRITE;
+/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `ratings`
@@ -51,19 +87,29 @@ DROP TABLE IF EXISTS `ratings`;
 CREATE TABLE `ratings` (
   `id` int(11) NOT NULL,
   `requestid` int(11) NOT NULL,
-  `by` varchar(45) NOT NULL,
-  `for` varchar(45) NOT NULL,
+  `requester` varchar(45) NOT NULL,
+  `volunteer` varchar(45) NOT NULL,
   `value` float NOT NULL,
   `text` varchar(45) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `ff5_idx` (`requestid`),
-  KEY `ff6_idx` (`by`),
-  KEY `ff7_idx` (`for`),
+  KEY `ff6_idx` (`requester`),
+  KEY `ff7_idx` (`volunteer`),
   CONSTRAINT `ff5` FOREIGN KEY (`requestid`) REFERENCES `request` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ff6` FOREIGN KEY (`by`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ff7` FOREIGN KEY (`for`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `ff6` FOREIGN KEY (`requester`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `ff7` FOREIGN KEY (`volunteer`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ratings`
+--
+
+LOCK TABLES `ratings` WRITE;
+/*!40000 ALTER TABLE `ratings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ratings` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `request`
@@ -74,14 +120,23 @@ DROP TABLE IF EXISTS `request`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `by` varchar(45) NOT NULL,
-  `created` datetime NOT NULL,
-  `status` char(1) NOT NULL DEFAULT 'A',
+  `requester` varchar(45) NOT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` char(1) DEFAULT 'N',
   PRIMARY KEY (`id`),
-  KEY `ff1_idx` (`by`),
-  CONSTRAINT `ff10` FOREIGN KEY (`by`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `ff1_idx` (`requester`),
+  CONSTRAINT `ff10` FOREIGN KEY (`requester`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request`
+--
+
+LOCK TABLES `request` WRITE;
+/*!40000 ALTER TABLE `request` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -92,19 +147,29 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `email` varchar(45) NOT NULL,
-  `firstname` varchar(45) DEFAULT NULL,
-  `lastname` varchar(45) DEFAULT NULL,
+  `firstname` varchar(45) NOT NULL,
+  `lastname` varchar(45) NOT NULL,
   `mobile` varchar(45) NOT NULL,
   `econtact` varchar(45) DEFAULT NULL,
   `ename` varchar(45) DEFAULT NULL,
-  `status` char(1) NOT NULL DEFAULT 'A',
+  `status` char(1) DEFAULT 'A',
   `username` varchar(45) NOT NULL,
-  `lastactive` datetime DEFAULT NULL,
+  `lastactive` timestamp NULL DEFAULT NULL,
   `lastlat` varchar(45) DEFAULT NULL,
   `lastlong` varchar(45) DEFAULT NULL,
+  `zip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -115,4 +180,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-28 10:36:28
+-- Dump completed on 2013-07-29 17:42:43

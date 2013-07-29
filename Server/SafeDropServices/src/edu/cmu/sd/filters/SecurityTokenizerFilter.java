@@ -13,9 +13,6 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 
 public class SecurityTokenizerFilter implements ContainerRequestFilter {
-	/**
-	 * Apply the filter : check input request, validate or not with user auth
-	 */
 
 	Logger logger = Logger.getLogger(SecurityTokenizerFilter.class);
 
