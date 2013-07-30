@@ -1,5 +1,11 @@
+/*
+ * Author : Sankha S Pathak
+ * License : Carnegie Mellon University (R) 2013
+ * SafeDrop Inc 
+ */
 package edu.cmu.sd.utils;
 
+// TODO: Auto-generated Javadoc
 /*
  * A Java implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
@@ -41,10 +47,20 @@ package edu.cmu.sd.utils;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * The Class SHA1.
+ */
 public class SHA1 {
 
     /*
      * Bitwise rotate a 32-bit number to the left
+     */
+    /**
+     * Rol.
+     *
+     * @param num the num
+     * @param cnt the cnt
+     * @return the int
      */
     private static int rol(int num, int cnt) {
         return (num << cnt) | (num >>> (32 - cnt));
@@ -52,6 +68,12 @@ public class SHA1 {
 
     /*
      * Take a string and return the base64 representation of its SHA-1.
+     */
+    /**
+     * Encode base64.
+     *
+     * @param str the str
+     * @return the string
      */
     public static String encodeBase64(String str) {
 
@@ -136,6 +158,12 @@ public class SHA1 {
     
     /*
      * Take a string and return the base64 representation of its SHA-1.
+     */
+    /**
+     * Encode hex.
+     *
+     * @param str the str
+     * @return the string
      */
     public static String encodeHex(String str) {
 

@@ -1,8 +1,14 @@
+/*
+ * Author : Sankha S Pathak
+ * License : Carnegie Mellon University (R) 2013
+ * SafeDrop Inc 
+ */
 package edu.cmu.sd.jdbc;
 
 import java.io.*;
 import java.sql.*;
 
+// TODO: Auto-generated Javadoc
 /**
  * Generic Base class for DAO classes.
  *
@@ -11,6 +17,14 @@ import java.sql.*;
 public class AbstractDAO
 {
 
+    /**
+     * Gets the blob column.
+     *
+     * @param rs the rs
+     * @param columnIndex the column index
+     * @return the blob column
+     * @throws SQLException the sQL exception
+     */
     public byte[] getBlobColumn(ResultSet rs, int columnIndex)
             throws SQLException
     {
@@ -41,6 +55,14 @@ public class AbstractDAO
         }
     }
 
+    /**
+     * Sets the blob column.
+     *
+     * @param stmt the stmt
+     * @param parameterIndex the parameter index
+     * @param value the value
+     * @throws SQLException the sQL exception
+     */
     public void setBlobColumn(PreparedStatement stmt, int parameterIndex, byte[] value)
             throws SQLException
     {
@@ -52,6 +74,14 @@ public class AbstractDAO
         }
     }
 
+    /**
+     * Gets the clob column.
+     *
+     * @param rs the rs
+     * @param columnIndex the column index
+     * @return the clob column
+     * @throws SQLException the sQL exception
+     */
     public String getClobColumn(ResultSet rs, int columnIndex)
         throws SQLException
     {
@@ -82,6 +112,14 @@ public class AbstractDAO
         }
     }
 
+    /**
+     * Sets the clob column.
+     *
+     * @param stmt the stmt
+     * @param parameterIndex the parameter index
+     * @param value the value
+     * @throws SQLException the sQL exception
+     */
     public void setClobColumn(PreparedStatement stmt, int parameterIndex, String value)
         throws SQLException
     {

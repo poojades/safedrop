@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `messages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `messages` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(45) NOT NULL,
   `sender` varchar(45) NOT NULL,
   `receiver` varchar(45) NOT NULL,
@@ -35,17 +35,8 @@ CREATE TABLE `messages` (
   KEY `ff2_idx` (`receiver`),
   CONSTRAINT `FF_from` FOREIGN KEY (`sender`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FF_to` FOREIGN KEY (`receiver`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `messages`
---
-
-LOCK TABLES `messages` WRITE;
-/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `notifications`
@@ -55,27 +46,18 @@ DROP TABLE IF EXISTS `notifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `notifications` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(45) NOT NULL,
-  `recevier` varchar(45) NOT NULL,
+  `receiver` varchar(45) NOT NULL,
   `requestid` int(11) NOT NULL,
   `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `ff2_idx` (`recevier`),
+  KEY `ff2_idx` (`receiver`),
   KEY `ff3_idx` (`requestid`),
-  CONSTRAINT `ff_requestid` FOREIGN KEY (`id`) REFERENCES `request` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ff_to_no` FOREIGN KEY (`recevier`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `ff_requestid` FOREIGN KEY (`requestid`) REFERENCES `request` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `ff_to_no` FOREIGN KEY (`receiver`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `notifications`
---
-
-LOCK TABLES `notifications` WRITE;
-/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
-/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ratings`
@@ -103,15 +85,6 @@ CREATE TABLE `ratings` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ratings`
---
-
-LOCK TABLES `ratings` WRITE;
-/*!40000 ALTER TABLE `ratings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ratings` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `request`
 --
 
@@ -126,17 +99,8 @@ CREATE TABLE `request` (
   PRIMARY KEY (`id`),
   KEY `ff1_idx` (`requester`),
   CONSTRAINT `ff10` FOREIGN KEY (`requester`) REFERENCES `users` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `request`
---
-
-LOCK TABLES `request` WRITE;
-/*!40000 ALTER TABLE `request` DISABLE KEYS */;
-/*!40000 ALTER TABLE `request` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -153,7 +117,6 @@ CREATE TABLE `users` (
   `econtact` varchar(45) DEFAULT NULL,
   `ename` varchar(45) DEFAULT NULL,
   `status` char(1) DEFAULT 'A',
-  `username` varchar(45) NOT NULL,
   `lastactive` timestamp NULL DEFAULT NULL,
   `lastlat` varchar(45) DEFAULT NULL,
   `lastlong` varchar(45) DEFAULT NULL,
@@ -161,15 +124,6 @@ CREATE TABLE `users` (
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -180,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-29 17:42:43
+-- Dump completed on 2013-07-30  0:53:20

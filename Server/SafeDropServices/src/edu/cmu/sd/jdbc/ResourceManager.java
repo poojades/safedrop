@@ -1,17 +1,40 @@
+/*
+ * Author : Sankha S Pathak
+ * License : Carnegie Mellon University (R) 2013
+ * SafeDrop Inc 
+ */
 package edu.cmu.sd.jdbc;
 
 import java.sql.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ResourceManager.
+ */
 public class ResourceManager
 {
+    
+    /** The jdbc driver. */
     private static String JDBC_DRIVER   = "com.mysql.jdbc.Driver";
+    
+    /** The jdbc url. */
     private static String JDBC_URL      = "jdbc:mysql://localhost:4406/mysql";
 
+    /** The jdbc user. */
     private static String JDBC_USER     = "root";
+    
+    /** The jdbc password. */
     private static String JDBC_PASSWORD = "root";
 
+    /** The driver. */
     private static Driver driver = null;
 
+    /**
+     * Gets the connection.
+     *
+     * @return the connection
+     * @throws SQLException the sQL exception
+     */
     public static synchronized Connection getConnection()
 	throws SQLException
     {
@@ -38,6 +61,11 @@ public class ResourceManager
     }
 
 
+	/**
+	 * Close.
+	 *
+	 * @param conn the conn
+	 */
 	public static void close(Connection conn)
 	{
 		try {
@@ -49,6 +77,11 @@ public class ResourceManager
 		}
 	}
 
+	/**
+	 * Close.
+	 *
+	 * @param stmt the stmt
+	 */
 	public static void close(PreparedStatement stmt)
 	{
 		try {
@@ -60,6 +93,11 @@ public class ResourceManager
 		}
 	}
 
+	/**
+	 * Close.
+	 *
+	 * @param rs the rs
+	 */
 	public static void close(ResultSet rs)
 	{
 		try {

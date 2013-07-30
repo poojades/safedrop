@@ -1,10 +1,21 @@
+/*
+ * Author : Sankha S Pathak
+ * License : Carnegie Mellon University (R) 2013
+ * SafeDrop Inc 
+ */
 package edu.cmu.sd.utils;
 
 import javax.xml.bind.DatatypeConverter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BasicAuth.
+ */
 public class BasicAuth {
+    
     /**
-     * Decode the basic auth and convert it to array login/password
+     * Decode the basic auth and convert it to array login/password.
+     *
      * @param auth The string encoded authentification
      * @return The login (case 0), the password (case 1)
      */

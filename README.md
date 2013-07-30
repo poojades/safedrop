@@ -7,18 +7,22 @@ The project structure is followed which has the following meaning
 	3.1 Build - WAR Releases for latest automatic build event
 	3.2 Database - Scripts for the database
 	3.3 SafeDropServices - Services Code
-
+		3.3.1 doc - JavaDoc
 
 -> Instructions
 You are requested to always create a local branch before doing any modification to the code, do not perform merge until initimated to everyone. To perform all changes locally perform a pull request.
 
+Java doc has been generated and can be used to refer the service listings.
+
 
 -> Next Steps
-The code would be deployed onto a remote server so that rest services can be accessed automatically.
+The code has been deployed to a remote server, initimated by internal emails.
 
 To Start on the development, please go through sample codes on how to access REST services from iOS and Android.
 
 
 -> Issue Tracking
 The issue tracking module has been also initiated, when someone finds an issue please report.
+
+
 
