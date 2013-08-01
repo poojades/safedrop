@@ -10,14 +10,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 // TODO: Auto-generated Javadoc
 /** 
  * This class represents the primary key of the request table.
  */
-
-@XmlRootElement
 public class RequestPk implements Serializable
 {
 	

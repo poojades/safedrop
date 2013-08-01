@@ -11,6 +11,10 @@ package edu.cmu.sd.utils;
  */
 public class SDConstants {
 	
+	
+	/** The Constant TimerDelay. */
+	public static final long TimerDelay = 60000;
+	
 	/** The Constant SUCCESS. */
 	public static final String SUCCESS = "SUCCESS";
 	
@@ -40,4 +44,10 @@ public class SDConstants {
 	
 	/** The Constant REQ_ACCEPTED_STATUS. */
 	public static final String REQ_ACCEPTED_STATUS = "A";
+
+	/** The Constant TYPE_MESSAGE. */
+	public static final String TYPE_MESSAGE = "M";
+	
+	/** The Constant TYPE_NOTIFICATION. */
+	public static final String TYPE_NOTIFICATION = "N";
 }

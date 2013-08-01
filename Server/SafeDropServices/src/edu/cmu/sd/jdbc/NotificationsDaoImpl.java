@@ -41,16 +41,16 @@ calls to this DAO, otherwise a new Connection will be allocated for each operati
 	protected static final Logger logger = Logger.getLogger( NotificationsDaoImpl.class );
 
 	/** All finder methods in this class use this SELECT constant to build their queries. */
-	protected final String SQL_SELECT = "SELECT id, text, requestid, created, receiver FROM " + getTableName() + "";
+	protected final String SQL_SELECT = "SELECT id, text, requestid, created, receiver, sender, type FROM " + getTableName() + "";
 
 	/** Finder methods will pass this value to the JDBC setMaxRows method. */
 	protected int maxRows;
 
 	/** SQL INSERT statement for this table. */
-	protected final String SQL_INSERT = "INSERT INTO " + getTableName() + " ( id, text, requestid, created, receiver ) VALUES ( ?, ?, ?, ?, ? )";
+	protected final String SQL_INSERT = "INSERT INTO " + getTableName() + " ( id, text, requestid, created, receiver, sender, type ) VALUES ( ?, ?, ?, ?, ?, ?, ? )";
 
 	/** SQL UPDATE statement for this table. */
-	protected final String SQL_UPDATE = "UPDATE " + getTableName() + " SET id = ?, text = ?, requestid = ?, created = ?, receiver = ? WHERE id = ?";
+	protected final String SQL_UPDATE = "UPDATE " + getTableName() + " SET id = ?, text = ?, requestid = ?, created = ?, receiver = ?, sender = ?, type = ? WHERE id = ?";
 
 	/** SQL DELETE statement for this table. */
 	protected final String SQL_DELETE = "DELETE FROM " + getTableName() + " WHERE id = ?";
@@ -70,8 +70,14 @@ calls to this DAO, otherwise a new Connection will be allocated for each operati
 	/** Index of column receiver. */
 	protected static final int COLUMN_RECEIVER = 5;
 
+	/** Index of column sender. */
+	protected static final int COLUMN_SENDER = 6;
+
+	/** Index of column type. */
+	protected static final int COLUMN_TYPE = 7;
+
 	/** Number of columns. */
-	protected static final int NUMBER_OF_COLUMNS = 5;
+	protected static final int NUMBER_OF_COLUMNS = 7;
 
 	/** Index of primary-key column id. */
 	protected static final int PK_COLUMN_ID = 1;
@@ -103,6 +109,8 @@ calls to this DAO, otherwise a new Connection will be allocated for each operati
 			stmt.setInt( index++, dto.getRequestid() );
 			stmt.setTimestamp(index++, dto.getCreated()==null ? null : new java.sql.Timestamp( dto.getCreated().getTime() ) );
 			stmt.setString( index++, dto.getReceiver() );
+			stmt.setString( index++, dto.getSender() );
+			stmt.setString( index++, dto.getType() );
 			if (logger.isDebugEnabled()) {
 				logger.debug( "Executing " + SQL_INSERT + " with DTO: " + dto);
 			}
@@ -160,7 +168,9 @@ calls to this DAO, otherwise a new Connection will be allocated for each operati
 			stmt.setInt( index++, dto.getRequestid() );
 			stmt.setTimestamp(index++, dto.getCreated()==null ? null : new java.sql.Timestamp( dto.getCreated().getTime() ) );
 			stmt.setString( index++, dto.getReceiver() );
-			stmt.setInt( 6, pk.getId() );
+			stmt.setString( index++, dto.getSender() );
+			stmt.setString( index++, dto.getType() );
+			stmt.setInt( 8, pk.getId() );
 			int rows = stmt.executeUpdate();
 			reset(dto);
 			long t2 = System.currentTimeMillis();
@@ -277,15 +287,15 @@ calls to this DAO, otherwise a new Connection will be allocated for each operati
 	}
 
 	/**
-	 * Returns all rows from the notifications table that match the criteria 'receiver = :receiver'.
+	 * Returns all rows from the notifications table that match the criteria 'sender = :sender'.
 	 *
-	 * @param receiver the receiver
+	 * @param sender the sender
 	 * @return the notifications[]
 	 * @throws NotificationsDaoException the notifications dao exception
 	 */
-	public Notifications[] findByUsers(String receiver) throws NotificationsDaoException
+	public Notifications[] findByUsers(String sender) throws NotificationsDaoException
 	{
-		return findByDynamicSelect( SQL_SELECT + " WHERE receiver = ?", new Object[] { receiver } );
+		return findByDynamicSelect( SQL_SELECT + " WHERE sender = ?", new Object[] { sender } );
 	}
 
 	/**
@@ -298,6 +308,18 @@ calls to this DAO, otherwise a new Connection will be allocated for each operati
 	public Notifications[] findByRequest(int requestid) throws NotificationsDaoException
 	{
 		return findByDynamicSelect( SQL_SELECT + " WHERE requestid = ?", new Object[] {  new Integer(requestid) } );
+	}
+
+	/**
+	 * Returns all rows from the notifications table that match the criteria 'receiver = :receiver'.
+	 *
+	 * @param receiver the receiver
+	 * @return the notifications[]
+	 * @throws NotificationsDaoException the notifications dao exception
+	 */
+	public Notifications[] findByUsers2(String receiver) throws NotificationsDaoException
+	{
+		return findByDynamicSelect( SQL_SELECT + " WHERE receiver = ?", new Object[] { receiver } );
 	}
 
 	/**
@@ -358,6 +380,30 @@ calls to this DAO, otherwise a new Connection will be allocated for each operati
 	public Notifications[] findWhereCreatedEquals(Date created) throws NotificationsDaoException
 	{
 		return findByDynamicSelect( SQL_SELECT + " WHERE created = ? ORDER BY created", new Object[] { created==null ? null : new java.sql.Timestamp( created.getTime() ) } );
+	}
+
+	/**
+	 * Returns all rows from the notifications table that match the criteria 'sender = :sender'.
+	 *
+	 * @param sender the sender
+	 * @return the notifications[]
+	 * @throws NotificationsDaoException the notifications dao exception
+	 */
+	public Notifications[] findWhereSenderEquals(String sender) throws NotificationsDaoException
+	{
+		return findByDynamicSelect( SQL_SELECT + " WHERE sender = ? ORDER BY sender", new Object[] { sender } );
+	}
+
+	/**
+	 * Returns all rows from the notifications table that match the criteria 'type = :type'.
+	 *
+	 * @param type the type
+	 * @return the notifications[]
+	 * @throws NotificationsDaoException the notifications dao exception
+	 */
+	public Notifications[] findWhereTypeEquals(String type) throws NotificationsDaoException
+	{
+		return findByDynamicSelect( SQL_SELECT + " WHERE type = ? ORDER BY type", new Object[] { type } );
 	}
 
 	/**
@@ -461,6 +507,8 @@ calls to this DAO, otherwise a new Connection will be allocated for each operati
 		dto.setRequestid( rs.getInt( COLUMN_REQUESTID ) );
 		dto.setCreated( rs.getTimestamp(COLUMN_CREATED ) );
 		dto.setReceiver( rs.getString( COLUMN_RECEIVER ) );
+		dto.setSender( rs.getString( COLUMN_SENDER ) );
+		dto.setType( rs.getString( COLUMN_TYPE ) );
 	}
 
 	/**

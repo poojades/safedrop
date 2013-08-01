@@ -9,17 +9,14 @@ package edu.cmu.sd.dto;
 import edu.cmu.sd.dao.*;
 import edu.cmu.sd.factory.*;
 import edu.cmu.sd.exceptions.*;
-
 import java.io.Serializable;
 import java.util.*;
-
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Ratings.
  */
-@XmlRootElement
 public class Ratings implements Serializable
 {
 	/** 

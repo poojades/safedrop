@@ -18,7 +18,7 @@ public class ResourceManager
     private static String JDBC_DRIVER   = "com.mysql.jdbc.Driver";
     
     /** The jdbc url. */
-    private static String JDBC_URL      = "jdbc:mysql://localhost:4406/mysql";
+    private static String JDBC_URL      = "jdbc:mysql://128.2.204.85:4406/mysql";
 
     /** The jdbc user. */
     private static String JDBC_USER     = "safedrop";

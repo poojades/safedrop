@@ -79,13 +79,13 @@ public interface NotificationsDao
 	public Notifications[] findAll() throws NotificationsDaoException;
 
 	/**
-	 * Returns all rows from the notifications table that match the criteria 'receiver = :receiver'.
+	 * Returns all rows from the notifications table that match the criteria 'sender = :sender'.
 	 *
-	 * @param receiver the receiver
+	 * @param sender the sender
 	 * @return the notifications[]
 	 * @throws NotificationsDaoException the notifications dao exception
 	 */
-	public Notifications[] findByUsers(String receiver) throws NotificationsDaoException;
+	public Notifications[] findByUsers(String sender) throws NotificationsDaoException;
 
 	/**
 	 * Returns all rows from the notifications table that match the criteria 'requestid = :requestid'.
@@ -95,6 +95,15 @@ public interface NotificationsDao
 	 * @throws NotificationsDaoException the notifications dao exception
 	 */
 	public Notifications[] findByRequest(int requestid) throws NotificationsDaoException;
+
+	/**
+	 * Returns all rows from the notifications table that match the criteria 'receiver = :receiver'.
+	 *
+	 * @param receiver the receiver
+	 * @return the notifications[]
+	 * @throws NotificationsDaoException the notifications dao exception
+	 */
+	public Notifications[] findByUsers2(String receiver) throws NotificationsDaoException;
 
 	/**
 	 * Returns all rows from the notifications table that match the criteria 'id = :id'.
@@ -140,6 +149,24 @@ public interface NotificationsDao
 	 * @throws NotificationsDaoException the notifications dao exception
 	 */
 	public Notifications[] findWhereCreatedEquals(Date created) throws NotificationsDaoException;
+
+	/**
+	 * Returns all rows from the notifications table that match the criteria 'sender = :sender'.
+	 *
+	 * @param sender the sender
+	 * @return the notifications[]
+	 * @throws NotificationsDaoException the notifications dao exception
+	 */
+	public Notifications[] findWhereSenderEquals(String sender) throws NotificationsDaoException;
+
+	/**
+	 * Returns all rows from the notifications table that match the criteria 'type = :type'.
+	 *
+	 * @param type the type
+	 * @return the notifications[]
+	 * @throws NotificationsDaoException the notifications dao exception
+	 */
+	public Notifications[] findWhereTypeEquals(String type) throws NotificationsDaoException;
 
 	/**
 	 * Sets the value of maxRows.

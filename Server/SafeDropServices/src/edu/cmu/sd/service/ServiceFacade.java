@@ -26,22 +26,18 @@ import javax.ws.rs.core.UriInfo;
 
 import org.apache.log4j.Logger;
 
-import edu.cmu.sd.dao.MessagesDao;
 import edu.cmu.sd.dao.NotificationsDao;
 import edu.cmu.sd.dao.RequestDao;
 import edu.cmu.sd.dao.UsersDao;
-import edu.cmu.sd.dto.Messages;
 import edu.cmu.sd.dto.Notifications;
 import edu.cmu.sd.dto.NotificationsPk;
 import edu.cmu.sd.dto.RequestPk;
 import edu.cmu.sd.dto.Users;
 import edu.cmu.sd.dto.UsersPk;
-import edu.cmu.sd.exceptions.MessagesDaoException;
 import edu.cmu.sd.exceptions.NotificationsDaoException;
 import edu.cmu.sd.exceptions.RequestDaoException;
 import edu.cmu.sd.exceptions.SafeDropException;
 import edu.cmu.sd.exceptions.UsersDaoException;
-import edu.cmu.sd.factory.MessagesDaoFactory;
 import edu.cmu.sd.factory.NotificationsDaoFactory;
 import edu.cmu.sd.factory.RequestDaoFactory;
 import edu.cmu.sd.factory.UsersDaoFactory;
@@ -91,7 +87,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 	 * @return the string
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes({MediaType.APPLICATION_JSON})
 	@Path("/status")
 	public String status() {
 		return "Running";
@@ -104,7 +100,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getMessages/{email}/{count}")
-	public List<Messages> getMessages(@PathParam("email") String email, @PathParam("count")  int count) throws SafeDropException {
+	public List<Notifications> getMessages(@PathParam("email") String email, @PathParam("count")  int count) throws SafeDropException {
 		if ((null==email) || (email.trim().length()==0))
 			throw new SafeDropException("Email cannot be null or of length zero");
 		
@@ -119,16 +115,17 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			throw new SafeDropException("Failed to validate requester");
 		}
 
-		MessagesDao dao = MessagesDaoFactory.create();
-		Object[] sqlParams = new Object[1];
-		sqlParams[0]=email;
+		NotificationsDao dao = NotificationsDaoFactory.create();
+		Object[] sqlParams = new Object[2];
+		sqlParams[0]=SDConstants.TYPE_MESSAGE;
+		sqlParams[1]=email;
 		try {
-			List<Messages> list = Arrays.asList(dao.findByDynamicWhere("RECEIVER = ? ORDER BY CREATED DESC",sqlParams));
+			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE = ? AND RECEIVER = ? ORDER BY CREATED DESC",sqlParams));
 			if (list!=null)
 				return list.subList(0, (((count > list.size()) || (count<1)))?list.size():count);
 			else
-				return Collections.<Messages>emptyList();
-		} catch (MessagesDaoException e) {
+				return Collections.<Notifications>emptyList();
+		} catch (NotificationsDaoException e) {
 			throw new SafeDropException("Failed to retrieve messages"); 
 		}
 	}
@@ -170,16 +167,17 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		}
 
 
-		MessagesDao dao = MessagesDaoFactory.create();
-		Messages messages = new Messages();
+		NotificationsDao dao = NotificationsDaoFactory.create();
+		Notifications messages = new Notifications();
 		messages.setCreated(new Date());
 		messages.setSender(from);
 		messages.setReceiver(to);
 		messages.setText(message);
+		messages.setType(SDConstants.TYPE_MESSAGE);
 		try {
 			dao.insert(messages);
 			return SDConstants.SUCCESS;
-		} catch (MessagesDaoException e) {
+		} catch (NotificationsDaoException e) {
 			throw new SafeDropException("Failed to send message"); 
 		}
 	}
@@ -210,10 +208,11 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 
 
 		NotificationsDao dao = NotificationsDaoFactory.create();
-		Object[] sqlParams = new Object[1];
-		sqlParams[0]=email;
+		Object[] sqlParams = new Object[2];
+		sqlParams[0]=SDConstants.TYPE_NOTIFICATION;
+		sqlParams[1]=email;
 		try {
-			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("RECEIVER = ? ORDER BY CREATED DESC",sqlParams));
+			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE=? AND RECEIVER = ? ORDER BY CREATED DESC",sqlParams));
 			if (list!=null)
 				return list.subList(0, (((count > list.size()) || (count<1)))?list.size():count);
 			else
@@ -262,7 +261,6 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			throw new SafeDropException("Failed to create a new pickup request");
 		}
 
-		//alternatively notfiying nearby user can be done here or via a job
 		return String.valueOf(pk.getId());
 	}
 
@@ -345,12 +343,13 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		}
 		//checking if requester had a notification 
 		NotificationsDao notiDao = NotificationsDaoFactory.create();
-		Object[] sqlParams = new Object[2];
-		sqlParams[0]=request.getRequester();
-		sqlParams[1]=requestId;
+		Object[] sqlParams = new Object[3];
+		sqlParams[0]=SDConstants.TYPE_NOTIFICATION;
+		sqlParams[1]=request.getRequester();
+		sqlParams[2]=requestId;
 		List<Notifications> list = null;
 		try {
-			list = Arrays.asList(notiDao.findByDynamicWhere("RECEIVER = ? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
+			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE = ? AND RECEIVER = ? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
 			if (list==null || list.size()==0)
 			{
 				throw new SafeDropException("Failed to check if requester actually received a notification"); 
@@ -359,10 +358,11 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			throw new SafeDropException("Failed to check if requester actually received a notification"); 
 		}
 		//removing all notifications for this particular requestId and create new notification
-		sqlParams = new Object[1];
-		sqlParams[0]=requestId;
+		sqlParams = new Object[2];
+		sqlParams[0]=SDConstants.TYPE_NOTIFICATION;;
+		sqlParams[1]=requestId;
 		try {
-			list = Arrays.asList(notiDao.findByDynamicWhere("REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
+			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE=? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
 			if (list!=null) 
 			{
 				for(Notifications noti : list){
@@ -374,6 +374,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		}
 		try{
 			Notifications notidto = new Notifications();
+			notidto.setType(SDConstants.TYPE_NOTIFICATION);
 			notidto.setCreated(new Date());
 			notidto.setReceiver(volunteerEmail);
 			notidto.setRequestid(requestId);
@@ -439,12 +440,13 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		}
 		//checking if requester had a notification 
 		NotificationsDao notiDao = NotificationsDaoFactory.create();
-		Object[] sqlParams = new Object[2];
-		sqlParams[0]=volunteerEmail;
-		sqlParams[1]=requestId;
+		Object[] sqlParams = new Object[3];
+		sqlParams[0]=SDConstants.TYPE_NOTIFICATION;
+		sqlParams[1]=volunteerEmail;
+		sqlParams[2]=requestId;
 		List<Notifications> list = null;
 		try {
-			list = Arrays.asList(notiDao.findByDynamicWhere("RECEIVER = ? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
+			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE=? AND RECEIVER = ? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
 			if (list==null || list.size()==0)
 			{
 				throw new SafeDropException("Failed to check if volunteer actually received a notification"); 
@@ -453,10 +455,11 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			throw new SafeDropException("Failed to check if volunteer actually received a notification"); 
 		}
 		//removing all notifications for this particular requestId and create new notification
-		sqlParams = new Object[1];
-		sqlParams[0]=requestId;
+		sqlParams = new Object[2];
+		sqlParams[0]=SDConstants.TYPE_NOTIFICATION;
+		sqlParams[1]=requestId;
 		try {
-			list = Arrays.asList(notiDao.findByDynamicWhere("REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
+			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE=? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
 			if (list!=null) 
 			{
 				for(Notifications noti : list){
@@ -468,6 +471,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		}
 		try{
 			Notifications notidto = new Notifications();
+			notidto.setType(SDConstants.TYPE_NOTIFICATION);
 			notidto.setCreated(new Date());
 			notidto.setReceiver(request.getRequester());
 			notidto.setRequestid(requestId);
@@ -574,15 +578,6 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			@FormParam("lastlat") String lastlat, 
 			@FormParam("lastlong") String lastlong, 
 			@FormParam("zip") String zip) throws SafeDropException {
-		logger.info("firstname:"  +firstname );
-		logger.info("lastname:"  +lastname );
-		logger.info("mobile:"  +mobile );
-		logger.info("econtact:"  +econtact );
-		logger.info("ename:"  +ename );
-		logger.info("status:"  +status );
-		logger.info("lastlat:"  +lastlat );
-		logger.info("lastlong:"  +lastlong );
-		logger.info("zip:"  +zip );
 		UsersDao userDao = UsersDaoFactory.create();
 		try {
 			Users user = userDao.findByPrimaryKey(email);
@@ -604,14 +599,14 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			if (ename != null && ename.trim().length()>0){
 				user.setEname(ename);
 			}
-			if (lastlat != null && lastlat.trim().length()>0){
+			if (lastlat != null && lastlong.trim().length()>0){
 				user.setLastlat(lastlat);
 			}
 			if (lastlong != null && lastlong.trim().length()>0){
-				user.setLastlong(lastlong);
+				user.setLastlat(lastlong);
 			}
 			if (zip != null && zip.trim().length()>0){
-				user.setZip(zip);
+				user.setLastlat(zip);
 			}
 
 			if (status != null && (
@@ -619,8 +614,6 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 					status.trim().equalsIgnoreCase(SDConstants.INACTIVE_STATUS))){
 				user.setStatus(status);
 			}
-			
-			logger.info("User Before Update " + user);
 			userDao.update(new UsersPk(user.getEmail()), user);
 			return SDConstants.SUCCESS;
 		} catch (UsersDaoException e) {

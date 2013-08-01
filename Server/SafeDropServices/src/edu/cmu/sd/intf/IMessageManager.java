@@ -7,7 +7,7 @@ package edu.cmu.sd.intf;
 
 import java.util.List;
 
-import edu.cmu.sd.dto.Messages;
+import edu.cmu.sd.dto.Notifications;
 import edu.cmu.sd.exceptions.SafeDropException;
 
 // TODO: Auto-generated Javadoc
@@ -24,7 +24,7 @@ public interface IMessageManager {
 	 * @return the messages
 	 * @throws SafeDropException the safe drop exception
 	 */
-	public List<Messages> getMessages(String email, int count) throws SafeDropException;
+	public List<Notifications> getMessages(String email, int count) throws SafeDropException;
 	
 	/**
 	 * Send message.

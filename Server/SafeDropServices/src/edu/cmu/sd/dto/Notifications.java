@@ -9,17 +9,14 @@ package edu.cmu.sd.dto;
 import edu.cmu.sd.dao.*;
 import edu.cmu.sd.factory.*;
 import edu.cmu.sd.exceptions.*;
-
 import java.io.Serializable;
 import java.util.*;
-
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Notifications.
  */
-@XmlRootElement
 public class Notifications implements Serializable
 {
 	/** 
@@ -46,6 +43,16 @@ public class Notifications implements Serializable
 	 * This attribute maps to the column receiver in the notifications table.
 	 */
 	protected String receiver;
+
+	/** 
+	 * This attribute maps to the column sender in the notifications table.
+	 */
+	protected String sender;
+
+	/** 
+	 * This attribute maps to the column type in the notifications table.
+	 */
+	protected String type;
 
 	/**
 	 * Method 'Notifications'.
@@ -155,6 +162,46 @@ public class Notifications implements Serializable
 	}
 
 	/**
+	 * Method 'getSender'.
+	 *
+	 * @return String
+	 */
+	public String getSender()
+	{
+		return sender;
+	}
+
+	/**
+	 * Method 'setSender'.
+	 *
+	 * @param sender the new sender
+	 */
+	public void setSender(String sender)
+	{
+		this.sender = sender;
+	}
+
+	/**
+	 * Method 'getType'.
+	 *
+	 * @return String
+	 */
+	public String getType()
+	{
+		return type;
+	}
+
+	/**
+	 * Method 'setType'.
+	 *
+	 * @param type the new type
+	 */
+	public void setType(String type)
+	{
+		this.type = type;
+	}
+
+	/**
 	 * Method 'equals'.
 	 *
 	 * @param _other the _other
@@ -195,6 +242,14 @@ public class Notifications implements Serializable
 			return false;
 		}
 		
+		if (sender == null ? _cast.sender != sender : !sender.equals( _cast.sender )) {
+			return false;
+		}
+		
+		if (type == null ? _cast.type != type : !type.equals( _cast.type )) {
+			return false;
+		}
+		
 		return true;
 	}
 
@@ -218,6 +273,14 @@ public class Notifications implements Serializable
 		
 		if (receiver != null) {
 			_hashCode = 29 * _hashCode + receiver.hashCode();
+		}
+		
+		if (sender != null) {
+			_hashCode = 29 * _hashCode + sender.hashCode();
+		}
+		
+		if (type != null) {
+			_hashCode = 29 * _hashCode + type.hashCode();
 		}
 		
 		return _hashCode;
@@ -247,6 +310,8 @@ public class Notifications implements Serializable
 		ret.append( ", requestid=" + requestid );
 		ret.append( ", created=" + created );
 		ret.append( ", receiver=" + receiver );
+		ret.append( ", sender=" + sender );
+		ret.append( ", type=" + type );
 		return ret.toString();
 	}
 
