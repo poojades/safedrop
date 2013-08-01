@@ -116,6 +116,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Requester should be available & active to create a SafeDrop request");
 			}
 		} catch (UsersDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate requester");
 		}
 
@@ -129,6 +130,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			else
 				return Collections.<Messages>emptyList();
 		} catch (MessagesDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to retrieve messages"); 
 		}
 	}
@@ -166,6 +168,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Message To should be available & active to create a SafeDrop request");
 			}
 		} catch (UsersDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate requester");
 		}
 
@@ -180,6 +183,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			dao.insert(messages);
 			return SDConstants.SUCCESS;
 		} catch (MessagesDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to send message"); 
 		}
 	}
@@ -205,6 +209,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Requester should be available & active to create a SafeDrop request");
 			}
 		} catch (UsersDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate requester");
 		}
 
@@ -219,6 +224,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			else
 				return Collections.<Notifications>emptyList();
 		} catch (NotificationsDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to retrieve notifications"); 
 		}
 	}
@@ -245,6 +251,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Requester should be available & active to create a SafeDrop request");
 			}
 		} catch (UsersDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate requester");
 		}
 
@@ -255,10 +262,11 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		request.setRequester(email);
 		request.setCreated(new Date());
 		request.setStatus(SDConstants.REQ_NEW_STATUS);
-		logger.debug(request);
+		logger.info(request);
 		try {
 			pk = dao.insert(request);
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to create a new pickup request");
 		}
 
@@ -281,6 +289,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		try {
 			request = dao.findByPrimaryKey(new RequestPk(requestId));
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Request is not available, cannot cancel request");
 		}
 		if (request.getStatus().equalsIgnoreCase(SDConstants.REQ_DONE_STATUS)){
@@ -293,6 +302,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		try {
 			dao.update(new RequestPk(request.getId()), request);
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to cancel pickup request");
 		}
 
@@ -324,6 +334,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Request should be available & status should be ACCEPTED to accept a Volunteer");
 			}
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate request");
 		}
 		//checking if requester is valid and active
@@ -341,6 +352,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Requester should be available & active for the volunteer to accept a Volunteer");
 			}
 		} catch (UsersDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate requester or volunteer");
 		}
 		//checking if requester had a notification 
@@ -356,6 +368,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Failed to check if requester actually received a notification"); 
 			}
 		} catch (NotificationsDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to check if requester actually received a notification"); 
 		}
 		//removing all notifications for this particular requestId and create new notification
@@ -370,6 +383,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				}
 			}
 		} catch (NotificationsDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to delete notifications for all possbile volunteers"); 
 		}
 		try{
@@ -380,12 +394,14 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			notidto.setText("Accepted By : " + request.getRequester());
 			notiDao.insert(notidto);
 		}catch (NotificationsDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to send notification to requester"); 
 		}
 		request.setStatus(SDConstants.REQ_INPROG_STATUS);
 		try {
 			dao.update(new RequestPk(request.getId()), request);
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to update request status"); 
 		}
 		return SDConstants.SUCCESS;
@@ -418,6 +434,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Request should be available & status should be PENDING to Accept a Requester");
 			}
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate request");
 		}
 		//checking if requester is valid and active
@@ -435,6 +452,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Requester should be available & active for the volunteer to accept Requester");
 			}
 		} catch (UsersDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate requester or volunteer");
 		}
 		//checking if requester had a notification 
@@ -450,6 +468,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Failed to check if volunteer actually received a notification"); 
 			}
 		} catch (NotificationsDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to check if volunteer actually received a notification"); 
 		}
 		//removing all notifications for this particular requestId and create new notification
@@ -464,6 +483,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				}
 			}
 		} catch (NotificationsDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to delete notifications for all possbile volunteers"); 
 		}
 		try{
@@ -474,12 +494,14 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			notidto.setText("Accepted By : " + volunteerEmail);
 			notiDao.insert(notidto);
 		}catch (NotificationsDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to send notification to requester"); 
 		}
 		request.setStatus(SDConstants.REQ_ACCEPTED_STATUS);
 		try {
 			dao.update(new RequestPk(request.getId()), request);
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to update request status"); 
 		}
 		return SDConstants.SUCCESS;
@@ -501,6 +523,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				throw new SafeDropException("Request should be available for fetching status");
 			}
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to get request status");
 		}
 		return request.getStatus();
@@ -527,6 +550,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			dao.update(new RequestPk(request.getId()), request);
 			return SDConstants.SUCCESS;
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate request");
 		}
 	}
@@ -552,6 +576,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			dao.update(new RequestPk(request.getId()), request);
 			return SDConstants.SUCCESS;
 		} catch (RequestDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to validate request");
 		}
 	}
@@ -613,6 +638,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			userDao.update(new UsersPk(user.getEmail()), user);
 			return SDConstants.SUCCESS;
 		} catch (UsersDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to update user status");
 		}
 	}
@@ -637,6 +663,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			}
 			return user;
 		}catch (UsersDaoException e) {
+			e.printStackTrace(); logger.info(e);
 			throw new SafeDropException("Failed to get user status");
 		}
 	}

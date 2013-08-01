@@ -13,7 +13,7 @@
     </init-param>
     <init-param>
       <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
-      <param-value>com.sun.jersey.api.container.filter.LoggingFilter;com.ntm.filters.SecurityTokenizerFilter</param-value>
+      <param-value>com.sun.jersey.api.container.filter.LoggingFilter;edu.cmu.sd.filters.SecurityTokenizerFilter</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

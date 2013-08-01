@@ -23,8 +23,14 @@ public class ResourceManager
     /** The jdbc user. */
     private static String JDBC_USER     = "root";
     
-    /** The jdbc password. */
-    private static String JDBC_PASSWORD = "root";
+    
+    /** The jdbc password. server */
+     
+    private static String JDBC_PASSWORD = "LRmysqlredmineAHSW";
+    
+    
+    /** The jdbc password. local */
+    //private static String JDBC_PASSWORD = "root";
 
     /** The driver. */
     private static Driver driver = null;
