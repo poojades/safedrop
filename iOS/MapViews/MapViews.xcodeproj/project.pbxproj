@@ -11,6 +11,7 @@
 		AF004BEB17A9DF0B002B3C8F /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = AF004BEA17A9DF0B002B3C8F /* user.png */; };
 		AF004BED17A9E025002B3C8F /* user_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = AF004BEC17A9E025002B3C8F /* user_highlight.png */; };
 		AF004BEF17AA7368002B3C8F /* startMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = AF004BEE17AA7368002B3C8F /* startMarker.png */; };
+		AF004C1317AA9BDE002B3C8F /* iOSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AF004C1217AA9BDE002B3C8F /* iOSRequest.m */; };
 		AF08F2A017A9B5C800DBF02A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F29F17A9B5C800DBF02A /* UIKit.framework */; };
 		AF08F2A217A9B5C800DBF02A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2A117A9B5C800DBF02A /* Foundation.framework */; };
 		AF08F2A417A9B5C800DBF02A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2A317A9B5C800DBF02A /* CoreGraphics.framework */; };
@@ -58,6 +59,8 @@
 		AF004BEA17A9DF0B002B3C8F /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		AF004BEC17A9E025002B3C8F /* user_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_highlight.png; sourceTree = "<group>"; };
 		AF004BEE17AA7368002B3C8F /* startMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startMarker.png; sourceTree = "<group>"; };
+		AF004C1117AA9BDE002B3C8F /* iOSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSRequest.h; sourceTree = "<group>"; };
+		AF004C1217AA9BDE002B3C8F /* iOSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSRequest.m; sourceTree = "<group>"; };
 		AF08F29C17A9B5C800DBF02A /* MapViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapViews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF08F29F17A9B5C800DBF02A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AF08F2A117A9B5C800DBF02A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -133,6 +136,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF004C0F17AA9BA7002B3C8F /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				AF08F2AE17A9B5C800DBF02A /* AppDelegate.h */,
+				AF08F2AF17A9B5C800DBF02A /* AppDelegate.m */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		AF004C1017AA9BBC002B3C8F /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				AF004C1117AA9BDE002B3C8F /* iOSRequest.h */,
+				AF004C1217AA9BDE002B3C8F /* iOSRequest.m */,
+			);
+			name = WebService;
+			sourceTree = "<group>";
+		};
 		AF08F29317A9B5C800DBF02A = {
 			isa = PBXGroup;
 			children = (
@@ -169,8 +190,8 @@
 		AF08F2A517A9B5C800DBF02A /* MapViews */ = {
 			isa = PBXGroup;
 			children = (
-				AF08F2AE17A9B5C800DBF02A /* AppDelegate.h */,
-				AF08F2AF17A9B5C800DBF02A /* AppDelegate.m */,
+				AF004C1017AA9BBC002B3C8F /* WebService */,
+				AF004C0F17AA9BA7002B3C8F /* Delegate */,
 				AF08F2B717A9B5C800DBF02A /* ViewController.h */,
 				AF08F2B817A9B5C800DBF02A /* ViewController.m */,
 				AF08F2BA17A9B5C800DBF02A /* ViewController.xib */,
@@ -353,6 +374,7 @@
 				AF08F2AC17A9B5C800DBF02A /* main.m in Sources */,
 				AF08F2B017A9B5C800DBF02A /* AppDelegate.m in Sources */,
 				AF08F2B917A9B5C800DBF02A /* ViewController.m in Sources */,
+				AF004C1317AA9BDE002B3C8F /* iOSRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

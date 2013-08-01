@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <QuartzCore/QuartzCore.h>
+#import "iOSRequest.h"
 
 @interface ViewController ()
 
@@ -167,7 +168,7 @@
             CLLocationCoordinate2D target =
             CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
             _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:6];
-            
+            [self sendLocationToServer];
             
         }
     }];
@@ -175,11 +176,50 @@
     
 }
 
+- (void) sendLocationToServer {
+    NSString *address = @"http://128.2.204.85:6080/SafeDropServices/rest/service/setUserInfo";
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    NSString *tmp = [[NSString alloc] initWithFormat:@"%f", marker.position.latitude];
+    
+     [params setValue:@"sankhasp@cmu.edu" forKey:@"email"];
+    [params setValue:tmp forKey:@"lastlat"];
+    
+    tmp = [[NSString alloc] initWithFormat:@"%f", marker.position.longitude];
+    
+    [params setValue:tmp forKey:@"lastlong"];
+    
+    [params setValue:@"15213" forKey:@"zip"];
+    
+    [iOSRequest requestREST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                NSLog(@"SUCCESS : %@", result);
+            } else {
+                NSLog(@"ERROR: %@",error);
+            }
+        });
+    }];
+
+}
+
 
 - (IBAction)locateMe:(id)sender {
-    NSLog(@"locateMe called");
-
+    NSString *address = @"http://128.2.204.85:6080/SafeDropServices/rest/service/requestPickup";
     [self startStandardUpdates];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:@"sankhasp@cmu.edu" forKey:@"email"];
+
+    
+    [iOSRequest requestREST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                NSLog(@"SUCCESS : %@", result);
+            } else {
+                NSLog(@"ERROR: %@",error);
+            }
+        });
+    }];
+
     
 }
 
