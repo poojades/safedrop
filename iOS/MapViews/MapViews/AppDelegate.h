@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import <RestKit/RestKit.h>
-
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
