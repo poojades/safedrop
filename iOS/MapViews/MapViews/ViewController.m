@@ -26,12 +26,23 @@
 @synthesize buttonPanel;
 @synthesize notificationPanel;
 @synthesize infoLabel;
+@synthesize inButtonButtonPanel;
+@synthesize inLabelButtonPanel;
+@synthesize status;
+@synthesize cancelRequestButton;
 
- GMSMarker *marker;
- GMSCameraPosition *camera;
+
+NSString *zipCode;
+GMSMarker *marker;
+GMSCameraPosition *camera;
+int requestId;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self startStandardUpdates];
+    status=New;
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
     
@@ -163,11 +174,11 @@
             marker.infoWindowAnchor = CGPointMake(0, 0);
             marker.icon = [UIImage imageNamed:@"startMarker"];
             marker.map = _mapView;
-        
+            
             
             CLLocationCoordinate2D target =
             CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-            _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:6];
+            _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:kGMSMaxZoomLevel - 8];
             [self sendLocationToServer];
             
         }
@@ -203,25 +214,53 @@
 }
 
 
-- (IBAction)locateMe:(id)sender {
+- (void) createPickupRequestToServer {
+    inLabelButtonPanel.text=@"[Creating New Request]";
     NSString *address = @"http://128.2.204.85:6080/SafeDropServices/rest/service/requestPickup";
-    [self startStandardUpdates];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:@"sankhasp@cmu.edu" forKey:@"email"];
-
-    
     [iOSRequest requestREST:address withParams:params onCompletion:^(NSString *result, NSError *error){
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
                 NSLog(@"SUCCESS : %@", result);
+                @try {
+                   requestId = result.integerValue;
+                    status = New;
+                    [cancelRequestButton setHidden:FALSE];
+                    [inButtonButtonPanel setTitle:@"Request Created" forState:UIControlStateNormal];
+                    [inButtonButtonPanel setEnabled:FALSE];
+                    inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                }
+                @catch (NSException *exception) {
+                    inLabelButtonPanel.text=@"[Failed to Create New Request]";
+                }
+                
             } else {
+                inLabelButtonPanel.text=@"[Failed to Create New Request]";
                 NSLog(@"ERROR: %@",error);
             }
         });
     }];
-
     
 }
+
+
+- (IBAction)clickButtoninButtonPanel:(id)sender {
+
+    if (status)
+    {
+        status=New;
+    }
+    switch (status) {
+        case New:
+            [self createPickupRequestToServer];
+            break;
+        default:
+            break;
+    }
+
+}
+
 
 - (void)startStandardUpdates
 {

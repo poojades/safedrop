@@ -42,6 +42,7 @@
 		AF08F2F317A9B7DE00DBF02A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2F217A9B7DE00DBF02A /* OpenGLES.framework */; };
 		AF08F2F517A9B7E500DBF02A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2F417A9B7E500DBF02A /* QuartzCore.framework */; };
 		AF08F2F717A9B7EF00DBF02A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2F617A9B7EF00DBF02A /* SystemConfiguration.framework */; };
+		AFB7773B17AAE97F009D5A65 /* power.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB7773A17AAE97F009D5A65 /* power.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		AF08F2F217A9B7DE00DBF02A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		AF08F2F417A9B7E500DBF02A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AF08F2F617A9B7EF00DBF02A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AFB7773A17AAE97F009D5A65 /* power.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = power.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 		AF08F2A617A9B5C800DBF02A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFB7773A17AAE97F009D5A65 /* power.png */,
 				AF004BEE17AA7368002B3C8F /* startMarker.png */,
 				AF004BEC17A9E025002B3C8F /* user_highlight.png */,
 				AF004BEA17A9DF0B002B3C8F /* user.png */,
@@ -337,6 +340,7 @@
 				AF004BEB17A9DF0B002B3C8F /* user.png in Resources */,
 				AF004BED17A9E025002B3C8F /* user_highlight.png in Resources */,
 				AF004BEF17AA7368002B3C8F /* startMarker.png in Resources */,
+				AFB7773B17AAE97F009D5A65 /* power.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

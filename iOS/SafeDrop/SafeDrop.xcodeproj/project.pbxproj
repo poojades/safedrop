@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AFB7774917AAEB11009D5A65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB7774817AAEB11009D5A65 /* UIKit.framework */; };
+		AFB7774B17AAEB11009D5A65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB7774A17AAEB11009D5A65 /* Foundation.framework */; };
+		AFB7774D17AAEB11009D5A65 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB7774C17AAEB11009D5A65 /* CoreGraphics.framework */; };
+		AFB7775317AAEB11009D5A65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AFB7775117AAEB11009D5A65 /* InfoPlist.strings */; };
+		AFB7775517AAEB11009D5A65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB7775417AAEB11009D5A65 /* main.m */; };
+		AFB7775917AAEB11009D5A65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB7775817AAEB11009D5A65 /* AppDelegate.m */; };
+		AFB7775B17AAEB11009D5A65 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB7775A17AAEB11009D5A65 /* Default.png */; };
+		AFB7775D17AAEB11009D5A65 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB7775C17AAEB11009D5A65 /* Default@2x.png */; };
+		AFB7775F17AAEB11009D5A65 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB7775E17AAEB11009D5A65 /* Default-568h@2x.png */; };
+		AFB7776217AAEB11009D5A65 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB7776017AAEB11009D5A65 /* MainStoryboard.storyboard */; };
+		AFB7776517AAEB11009D5A65 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB7776417AAEB11009D5A65 /* ViewController.m */; };
+		AFB7776D17AAEB11009D5A65 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB7776C17AAEB11009D5A65 /* SenTestingKit.framework */; };
+		AFB7776E17AAEB11009D5A65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB7774817AAEB11009D5A65 /* UIKit.framework */; };
+		AFB7776F17AAEB11009D5A65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB7774A17AAEB11009D5A65 /* Foundation.framework */; };
+		AFB7777717AAEB11009D5A65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AFB7777517AAEB11009D5A65 /* InfoPlist.strings */; };
+		AFB7777A17AAEB11009D5A65 /* SafeDropTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB7777917AAEB11009D5A65 /* SafeDropTests.m */; };
+		AFB7778517AAEF74009D5A65 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB7778417AAEF74009D5A65 /* NotificationsViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFB7777017AAEB11009D5A65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFB7773D17AAEB11009D5A65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFB7774417AAEB11009D5A65;
+			remoteInfo = SafeDrop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AFB7774517AAEB11009D5A65 /* SafeDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFB7774817AAEB11009D5A65 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AFB7774A17AAEB11009D5A65 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AFB7774C17AAEB11009D5A65 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AFB7775017AAEB11009D5A65 /* SafeDrop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SafeDrop-Info.plist"; sourceTree = "<group>"; };
+		AFB7775217AAEB11009D5A65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AFB7775417AAEB11009D5A65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AFB7775617AAEB11009D5A65 /* SafeDrop-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeDrop-Prefix.pch"; sourceTree = "<group>"; };
+		AFB7775717AAEB11009D5A65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AFB7775817AAEB11009D5A65 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AFB7775A17AAEB11009D5A65 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		AFB7775C17AAEB11009D5A65 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		AFB7775E17AAEB11009D5A65 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AFB7776117AAEB11009D5A65 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		AFB7776317AAEB11009D5A65 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		AFB7776417AAEB11009D5A65 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AFB7776B17AAEB11009D5A65 /* SafeDropTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeDropTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFB7776C17AAEB11009D5A65 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		AFB7777417AAEB11009D5A65 /* SafeDropTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SafeDropTests-Info.plist"; sourceTree = "<group>"; };
+		AFB7777617AAEB11009D5A65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AFB7777817AAEB11009D5A65 /* SafeDropTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafeDropTests.h; sourceTree = "<group>"; };
+		AFB7777917AAEB11009D5A65 /* SafeDropTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeDropTests.m; sourceTree = "<group>"; };
+		AFB7778317AAEF74009D5A65 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationsViewController.h; path = SafeDrop/NotificationsViewController.h; sourceTree = "<group>"; };
+		AFB7778417AAEF74009D5A65 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationsViewController.m; path = SafeDrop/NotificationsViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AFB7774217AAEB11009D5A65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB7774917AAEB11009D5A65 /* UIKit.framework in Frameworks */,
+				AFB7774B17AAEB11009D5A65 /* Foundation.framework in Frameworks */,
+				AFB7774D17AAEB11009D5A65 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFB7776717AAEB11009D5A65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB7776D17AAEB11009D5A65 /* SenTestingKit.framework in Frameworks */,
+				AFB7776E17AAEB11009D5A65 /* UIKit.framework in Frameworks */,
+				AFB7776F17AAEB11009D5A65 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AFB7773C17AAEB11009D5A65 = {
+			isa = PBXGroup;
+			children = (
+				AFB7778317AAEF74009D5A65 /* NotificationsViewController.h */,
+				AFB7778417AAEF74009D5A65 /* NotificationsViewController.m */,
+				AFB7774E17AAEB11009D5A65 /* SafeDrop */,
+				AFB7777217AAEB11009D5A65 /* SafeDropTests */,
+				AFB7774717AAEB11009D5A65 /* Frameworks */,
+				AFB7774617AAEB11009D5A65 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AFB7774617AAEB11009D5A65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AFB7774517AAEB11009D5A65 /* SafeDrop.app */,
+				AFB7776B17AAEB11009D5A65 /* SafeDropTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AFB7774717AAEB11009D5A65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFB7774817AAEB11009D5A65 /* UIKit.framework */,
+				AFB7774A17AAEB11009D5A65 /* Foundation.framework */,
+				AFB7774C17AAEB11009D5A65 /* CoreGraphics.framework */,
+				AFB7776C17AAEB11009D5A65 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFB7774E17AAEB11009D5A65 /* SafeDrop */ = {
+			isa = PBXGroup;
+			children = (
+				AFB7775717AAEB11009D5A65 /* AppDelegate.h */,
+				AFB7775817AAEB11009D5A65 /* AppDelegate.m */,
+				AFB7776017AAEB11009D5A65 /* MainStoryboard.storyboard */,
+				AFB7776317AAEB11009D5A65 /* ViewController.h */,
+				AFB7776417AAEB11009D5A65 /* ViewController.m */,
+				AFB7774F17AAEB11009D5A65 /* Supporting Files */,
+			);
+			path = SafeDrop;
+			sourceTree = "<group>";
+		};
+		AFB7774F17AAEB11009D5A65 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AFB7775017AAEB11009D5A65 /* SafeDrop-Info.plist */,
+				AFB7775117AAEB11009D5A65 /* InfoPlist.strings */,
+				AFB7775417AAEB11009D5A65 /* main.m */,
+				AFB7775617AAEB11009D5A65 /* SafeDrop-Prefix.pch */,
+				AFB7775A17AAEB11009D5A65 /* Default.png */,
+				AFB7775C17AAEB11009D5A65 /* Default@2x.png */,
+				AFB7775E17AAEB11009D5A65 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AFB7777217AAEB11009D5A65 /* SafeDropTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFB7777817AAEB11009D5A65 /* SafeDropTests.h */,
+				AFB7777917AAEB11009D5A65 /* SafeDropTests.m */,
+				AFB7777317AAEB11009D5A65 /* Supporting Files */,
+			);
+			path = SafeDropTests;
+			sourceTree = "<group>";
+		};
+		AFB7777317AAEB11009D5A65 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AFB7777417AAEB11009D5A65 /* SafeDropTests-Info.plist */,
+				AFB7777517AAEB11009D5A65 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AFB7774417AAEB11009D5A65 /* SafeDrop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFB7777D17AAEB11009D5A65 /* Build configuration list for PBXNativeTarget "SafeDrop" */;
+			buildPhases = (
+				AFB7774117AAEB11009D5A65 /* Sources */,
+				AFB7774217AAEB11009D5A65 /* Frameworks */,
+				AFB7774317AAEB11009D5A65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SafeDrop;
+			productName = SafeDrop;
+			productReference = AFB7774517AAEB11009D5A65 /* SafeDrop.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AFB7776A17AAEB11009D5A65 /* SafeDropTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFB7778017AAEB11009D5A65 /* Build configuration list for PBXNativeTarget "SafeDropTests" */;
+			buildPhases = (
+				AFB7776617AAEB11009D5A65 /* Sources */,
+				AFB7776717AAEB11009D5A65 /* Frameworks */,
+				AFB7776817AAEB11009D5A65 /* Resources */,
+				AFB7776917AAEB11009D5A65 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFB7777117AAEB11009D5A65 /* PBXTargetDependency */,
+			);
+			name = SafeDropTests;
+			productName = SafeDropTests;
+			productReference = AFB7776B17AAEB11009D5A65 /* SafeDropTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AFB7773D17AAEB11009D5A65 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Self;
+			};
+			buildConfigurationList = AFB7774017AAEB11009D5A65 /* Build configuration list for PBXProject "SafeDrop" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AFB7773C17AAEB11009D5A65;
+			productRefGroup = AFB7774617AAEB11009D5A65 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AFB7774417AAEB11009D5A65 /* SafeDrop */,
+				AFB7776A17AAEB11009D5A65 /* SafeDropTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AFB7774317AAEB11009D5A65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB7775317AAEB11009D5A65 /* InfoPlist.strings in Resources */,
+				AFB7775B17AAEB11009D5A65 /* Default.png in Resources */,
+				AFB7775D17AAEB11009D5A65 /* Default@2x.png in Resources */,
+				AFB7775F17AAEB11009D5A65 /* Default-568h@2x.png in Resources */,
+				AFB7776217AAEB11009D5A65 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFB7776817AAEB11009D5A65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB7777717AAEB11009D5A65 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AFB7776917AAEB11009D5A65 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AFB7774117AAEB11009D5A65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB7775517AAEB11009D5A65 /* main.m in Sources */,
+				AFB7775917AAEB11009D5A65 /* AppDelegate.m in Sources */,
+				AFB7776517AAEB11009D5A65 /* ViewController.m in Sources */,
+				AFB7778517AAEF74009D5A65 /* NotificationsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFB7776617AAEB11009D5A65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB7777A17AAEB11009D5A65 /* SafeDropTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AFB7777117AAEB11009D5A65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFB7774417AAEB11009D5A65 /* SafeDrop */;
+			targetProxy = AFB7777017AAEB11009D5A65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AFB7775117AAEB11009D5A65 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFB7775217AAEB11009D5A65 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AFB7776017AAEB11009D5A65 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFB7776117AAEB11009D5A65 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		AFB7777517AAEB11009D5A65 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFB7777617AAEB11009D5A65 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AFB7777B17AAEB11009D5A65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AFB7777C17AAEB11009D5A65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AFB7777E17AAEB11009D5A65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SafeDrop/SafeDrop-Prefix.pch";
+				INFOPLIST_FILE = "SafeDrop/SafeDrop-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		AFB7777F17AAEB11009D5A65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SafeDrop/SafeDrop-Prefix.pch";
+				INFOPLIST_FILE = "SafeDrop/SafeDrop-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		AFB7778117AAEB11009D5A65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SafeDrop.app/SafeDrop";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SafeDrop/SafeDrop-Prefix.pch";
+				INFOPLIST_FILE = "SafeDropTests/SafeDropTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		AFB7778217AAEB11009D5A65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SafeDrop.app/SafeDrop";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SafeDrop/SafeDrop-Prefix.pch";
+				INFOPLIST_FILE = "SafeDropTests/SafeDropTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AFB7774017AAEB11009D5A65 /* Build configuration list for PBXProject "SafeDrop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFB7777B17AAEB11009D5A65 /* Debug */,
+				AFB7777C17AAEB11009D5A65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFB7777D17AAEB11009D5A65 /* Build configuration list for PBXNativeTarget "SafeDrop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFB7777E17AAEB11009D5A65 /* Debug */,
+				AFB7777F17AAEB11009D5A65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AFB7778017AAEB11009D5A65 /* Build configuration list for PBXNativeTarget "SafeDropTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFB7778117AAEB11009D5A65 /* Debug */,
+				AFB7778217AAEB11009D5A65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AFB7773D17AAEB11009D5A65 /* Project object */;
+}

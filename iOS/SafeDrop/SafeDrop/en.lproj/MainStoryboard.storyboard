@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4V-mi-fCT">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gq6-kq-OeO">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Open Messages">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="8Zx-a8-wlF" kind="modal" modalTransitionStyle="flipHorizontal" id="npC-E3-mny"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5V-TV-Vol">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Open Notifications">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="onT-24-qjO" kind="modal" id="Syl-2z-v7o"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="C5V-TV-Vol" secondAttribute="bottom" constant="101" id="NIp-ml-SwP"/>
+                            <constraint firstItem="q4V-mi-fCT" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="NVG-8U-k5W"/>
+                            <constraint firstItem="q4V-mi-fCT" firstAttribute="top" secondItem="3" secondAttribute="top" constant="209" id="c3Q-O5-9W1"/>
+                            <constraint firstAttribute="bottom" secondItem="gq6-kq-OeO" secondAttribute="bottom" constant="186" id="fzl-AR-nzq"/>
+                            <constraint firstItem="q4V-mi-fCT" firstAttribute="centerX" secondItem="gq6-kq-OeO" secondAttribute="centerX" type="default" id="o8D-Eg-mhy"/>
+                            <constraint firstItem="C5V-TV-Vol" firstAttribute="centerX" secondItem="gq6-kq-OeO" secondAttribute="centerX" type="default" id="vcM-MB-XAb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="homeLabel" destination="q4V-mi-fCT" id="pdg-gu-7U7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-106" y="11"/>
+        </scene>
+        <!--Notifications View Controller-->
+        <scene sceneID="8SC-l7-vu1">
+            <objects>
+                <viewController id="8Zx-a8-wlF" customClass="NotificationsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ETm-bY-MzK">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clr-tR-WT8">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kr9-De-mp5">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Return to Home">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kPH-Ai-Cpx" kind="unwind" unwindAction="returned:" id="ep4-r2-Ku3"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a22-bq-xkf">
+                                <items>
+                                    <navigationItem title="Title" id="43k-xM-JQc"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="a22-bq-xkf" firstAttribute="top" secondItem="ETm-bY-MzK" secondAttribute="top" type="default" id="995-NI-IF2"/>
+                            <constraint firstAttribute="bottom" secondItem="Kr9-De-mp5" secondAttribute="bottom" constant="224" id="HqB-We-JoG"/>
+                            <constraint firstItem="Kr9-De-mp5" firstAttribute="centerX" secondItem="Clr-tR-WT8" secondAttribute="centerX" type="default" id="QPF-fJ-RlX"/>
+                            <constraint firstItem="a22-bq-xkf" firstAttribute="leading" secondItem="ETm-bY-MzK" secondAttribute="leading" type="default" id="XCy-6E-4Gu"/>
+                            <constraint firstItem="Clr-tR-WT8" firstAttribute="top" secondItem="ETm-bY-MzK" secondAttribute="top" constant="246" id="bKo-Aq-aud"/>
+                            <constraint firstItem="a22-bq-xkf" firstAttribute="centerX" secondItem="Clr-tR-WT8" secondAttribute="centerX" type="default" id="iju-9E-CIr"/>
+                            <constraint firstItem="a22-bq-xkf" firstAttribute="trailing" secondItem="ETm-bY-MzK" secondAttribute="trailing" type="default" id="iyD-O0-jt1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mzi-xO-nOr"/>
+                    <connections>
+                        <segue destination="kPH-Ai-Cpx" kind="unwind" unwindAction="returned:" id="VgW-1R-0Zb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OcT-YG-9li" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="kPH-Ai-Cpx" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="627" y="-304"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="m1a-e9-KBx">
+            <objects>
+                <tableViewController id="onT-24-qjO" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iGe-HY-HY2">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="OB0-SM-GnV">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="onT-24-qjO" id="grx-55-daJ"/>
+                            <outlet property="delegate" destination="onT-24-qjO" id="1kq-DR-6Fv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="QLz-rK-lXJ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YgD-em-Mtb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="631" y="353"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NotificationsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationsViewController.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="returned:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="homeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
