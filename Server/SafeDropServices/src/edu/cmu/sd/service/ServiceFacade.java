@@ -99,8 +99,8 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/getMessages/{email}/{count}")
-	public List<Notifications> getMessages(@PathParam("email") String email, @PathParam("count")  int count) throws SafeDropException {
+	@Path("/getMessages/{email}/{afterMessageId}")
+	public List<Notifications> getMessages(@PathParam("email") String email, @PathParam("afterMessageId")  int afterMessageId) throws SafeDropException {
 		if ((null==email) || (email.trim().length()==0))
 			throw new SafeDropException("Email cannot be null or of length zero");
 		
@@ -116,13 +116,14 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		}
 
 		NotificationsDao dao = NotificationsDaoFactory.create();
-		Object[] sqlParams = new Object[2];
+		Object[] sqlParams = new Object[3];
 		sqlParams[0]=SDConstants.TYPE_MESSAGE;
 		sqlParams[1]=email;
+		sqlParams[2]=afterMessageId;
 		try {
-			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE = ? AND RECEIVER = ? ORDER BY CREATED DESC",sqlParams));
+			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE = ? AND RECEIVER = ? AND ID > ? ORDER BY CREATED DESC",sqlParams));
 			if (list!=null)
-				return list.subList(0, (((count > list.size()) || (count<1)))?list.size():count);
+				return list;
 			else
 				return Collections.<Notifications>emptyList();
 		} catch (NotificationsDaoException e) {

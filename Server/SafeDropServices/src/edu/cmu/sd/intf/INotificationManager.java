@@ -20,9 +20,9 @@ public interface INotificationManager {
 	 * Gets the notifications.
 	 *
 	 * @param email the email
-	 * @param count the count
+	 * @param afterMessageId the after message id
 	 * @return the notifications
 	 * @throws SafeDropException the safe drop exception
 	 */
-	public List<Notifications> getNotifications(String email, int count) throws SafeDropException;
+	public List<Notifications> getNotifications(String email, int afterMessageId) throws SafeDropException;
 }
