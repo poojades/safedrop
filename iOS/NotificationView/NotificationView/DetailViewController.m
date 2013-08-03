@@ -40,11 +40,12 @@
         [formatter setDateStyle:NSDateFormatterMediumStyle];
     }
     if (theNotification) {
-        self.idLabel.text = [NSString stringWithFormat:@"%d", theNotification.id];
+        self.idLabel.text = [NSString stringWithFormat:@"%d",theNotification.id];
         self.senderLabel.text=theNotification.sender;
         self.receiverLabel.text=theNotification.receiver;
-        self.requestIdLabel.text=[NSString stringWithFormat:@"%d", theNotification.requestId];
+        self.requestIdLabel.text=[NSString stringWithFormat:@"%d", [theNotification requestId]];
         self.textLabel.text=theNotification.text;
+        NSLog(@"%@",theNotification.created);
         self.createdLabel.text = [formatter stringFromDate:(NSDate *)theNotification.created];
         self.typeLabel.text=theNotification.type;
     }

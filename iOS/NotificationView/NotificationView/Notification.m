@@ -14,6 +14,7 @@
 -(id)initWithId:(NSInteger *)id text:(NSString *)text  requestId:(NSInteger *)requestId  receiver:(NSString *)receiver  sender:(NSString *)sender type:(NSString *)type created:(NSDate *)created{
     self = [super init];
     if (self) {
+        _id=id;
         _text = text;
         _requestId = requestId;
         _receiver = receiver;
