@@ -13,5 +13,7 @@
 @interface MasterViewController : UITableViewController
 
 @property (strong, nonatomic) NotificationsDataController *dataController;
+- (IBAction)openNotifications:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *uiLabel;
 
 @end

@@ -13,5 +13,9 @@
 @interface MasterViewController : UITableViewController
 
 @property (strong, nonatomic) NotificationsDataController *dataController;
+- (IBAction)goBackToSafeDrop:(id)sender;
+
+
+
 
 @end

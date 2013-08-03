@@ -24,6 +24,7 @@
 
 @implementation MasterViewController
 
+@synthesize uiLabel;
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -145,4 +146,7 @@ return [self.dataController countOfList];
     }];
 }
 
+- (IBAction)openNotifications:(id)sender {
+    uiLabel.text=@"hi";
+}
 @end

@@ -69,7 +69,7 @@
 +(void)refreshNotifications:(NSString *)userEmail andLastRefreshedId:(NSInteger *)lastRefreshedId onCompletion:(RequestDictionaryCompletionHandler)complete{
     //userEmail = [userEmail URLEncode];
     
-    NSString *basePath = @"http://128.2.204.85:6080/SafeDropServices/rest/service/getNotifications/";
+    NSString *basePath = kGetNotificationURL;
     NSString *fullPath = [basePath stringByAppendingFormat:@"%@/%d",userEmail,*lastRefreshedId];
     
     NSLog(fullPath);

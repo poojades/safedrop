@@ -21,6 +21,8 @@
     GMSMapView *_mapView;
 }
 
+
+@synthesize uiLabel;
 @synthesize mapViewOnScreen;
 @synthesize infoPanel;
 @synthesize buttonPanel;
@@ -28,29 +30,27 @@
 @synthesize infoLabel;
 @synthesize inButtonButtonPanel;
 @synthesize inLabelButtonPanel;
-@synthesize status;
 @synthesize cancelRequestButton;
 
 
 NSString *zipCode;
 GMSMarker *marker;
 GMSCameraPosition *camera;
-int requestId;
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.restorationIdentifier = @"ViewController";
+    self.restorationClass = [self class];
+    
+    [self getRequestUpdates];
+    
     [self startStandardUpdates];
+    
     status=New;
-    
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    
-     camera = [GMSCameraPosition cameraWithLatitude:-33.86
-                                                            longitude:151.20
-                                                                 zoom:6];
-    
-    
+        
     
        
     // border radius
@@ -68,8 +68,10 @@ int requestId;
     
    
     
-    _mapView = [GMSMapView mapWithFrame:mapViewOnScreen.bounds camera:camera];
-    _mapView.myLocationEnabled = YES;
+    if (!_mapView){
+        _mapView = [GMSMapView mapWithFrame:mapViewOnScreen.bounds camera:camera];
+        _mapView.myLocationEnabled = YES;
+    }
     
     // border radius
     [_mapView.layer setCornerRadius:10.0f];
@@ -174,7 +176,7 @@ int requestId;
             marker.infoWindowAnchor = CGPointMake(0, 0);
             marker.icon = [UIImage imageNamed:@"startMarker"];
             marker.map = _mapView;
-            
+            zipCode = [placemark performSelector:NSSelectorFromString(@"postalCode")];
             
             CLLocationCoordinate2D target =
             CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
@@ -188,53 +190,41 @@ int requestId;
 }
 
 - (void) sendLocationToServer {
-    NSString *address = @"http://128.2.204.85:6080/SafeDropServices/rest/service/setUserInfo";
+    NSString *address = kSetUserInfoURL;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     NSString *tmp = [[NSString alloc] initWithFormat:@"%f", marker.position.latitude];
     
-     [params setValue:@"sankhasp@cmu.edu" forKey:@"email"];
+    [params setValue:kRequesterUsername forKey:@"email"];
     [params setValue:tmp forKey:@"lastlat"];
     
     tmp = [[NSString alloc] initWithFormat:@"%f", marker.position.longitude];
     
     [params setValue:tmp forKey:@"lastlong"];
     
-    [params setValue:@"15213" forKey:@"zip"];
-    
-    [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error) {
-                NSLog(@"SUCCESS : %@", result);
-            } else {
-                NSLog(@"ERROR: %@",error);
-            }
-        });
-    }];
+    [params setValue:zipCode forKey:@"zip"];
 
 }
 
 
 - (void) createPickupRequestToServer {
     inLabelButtonPanel.text=@"[Creating New Request]";
-    NSString *address = @"http://128.2.204.85:6080/SafeDropServices/rest/service/requestPickup";
+    NSString *address = kRequestPickupURL;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:@"sankhasp@cmu.edu" forKey:@"email"];
+    [params setValue:kRequesterUsername forKey:@"email"];
     [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
                 NSLog(@"SUCCESS : %@", result);
                 @try {
-                   requestId = result.integerValue;
-                    status = New;
-                    [cancelRequestButton setHidden:FALSE];
-                    [inButtonButtonPanel setTitle:@"Request Created" forState:UIControlStateNormal];
-                    [inButtonButtonPanel setEnabled:FALSE];
-                    inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                    [GlobalSettings replaceObjectAtIndex:0 withObject:result];
+                    NSLog(@"%@",GlobalSettings);
+                    status=New;
+                    [self getRequestUpdates];
                 }
                 @catch (NSException *exception) {
+                    NSLog(@"Exception : %@", exception);
                     inLabelButtonPanel.text=@"[Failed to Create New Request]";
                 }
-                
             } else {
                 inLabelButtonPanel.text=@"[Failed to Create New Request]";
                 NSLog(@"ERROR: %@",error);
@@ -247,7 +237,7 @@ int requestId;
 
 - (IBAction)clickButtoninButtonPanel:(id)sender {
 
-    if (status)
+    if (!status)
     {
         status=New;
     }
@@ -286,6 +276,115 @@ int requestId;
     }
 }
 
+- (void) getRequestUpdates
+{
+    
+    NSLog(@"getRequestUpdates called");
+    NSString* requestId;
+    @try {
+        requestId= [GlobalSettings objectAtIndex:0];
+        if ([requestId isEqualToString:@"0"]) {
+            status=NotCreated;
+            [cancelRequestButton setHidden:TRUE];
+            [inButtonButtonPanel setTitle:@"Pickup Request" forState:UIControlStateNormal];
+            [inButtonButtonPanel setEnabled:TRUE];
+            inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
+            return;
+        }
+        NSString *address = [NSString stringWithFormat:@"%@/%@",kRequestStatusURL,requestId];
+        NSLog(address);
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        [params setValue:kRequesterUsername forKey:@"email"];
+        [iOSRequest requestRESTGET:address onCompletion:^(NSString *result, NSError *error){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!error) {
+                    NSLog(@"SUCCESS : %@", result);
+                    if ([result isEqualToString:@"N"]){
+                        status = New;
+                        [cancelRequestButton setHidden:FALSE];
+                        [inButtonButtonPanel setTitle:@"Request Created" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setEnabled:FALSE];
+                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                    }
+                    else if ([result isEqualToString:@"P"]){
+                        
+                        status=Pending;
+                        [cancelRequestButton setHidden:FALSE];
+                        [inButtonButtonPanel setTitle:@"Request Pending" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setEnabled:FALSE];
+                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                    }
+                    else if ([result isEqualToString:@"I"]){
+                        
+                        status=InProgress;
+                        [cancelRequestButton setHidden:FALSE];
+                        [inButtonButtonPanel setTitle:@"Request Progress" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setEnabled:FALSE];
+                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                    }
+                    else if ([result isEqualToString:@"A"]){
+                        status=Accepted;
+                        [cancelRequestButton setHidden:FALSE];
+                        [inButtonButtonPanel setTitle:@"Request Accepted" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setEnabled:FALSE];
+                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                    }
+                    else if ([result isEqualToString:@"C"]){
+                        
+                        status=Cancel;
+                        [cancelRequestButton setHidden:FALSE];
+                        [inButtonButtonPanel setTitle:@"Request Cancelled" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setEnabled:FALSE];
+                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                    }
+                    else if ([result isEqualToString:@"D"]){
+                        
+                        status=Done;
+                        [cancelRequestButton setHidden:FALSE];
+                        [inButtonButtonPanel setTitle:@"Request Done" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setEnabled:FALSE];
+                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                    }
+                    else if ([result isEqualToString:@"R"]){
+                        
+                        status=Archived;
+                        [cancelRequestButton setHidden:FALSE];
+                        [inButtonButtonPanel setTitle:@"Request Archived" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setEnabled:FALSE];
+                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                    }
+                    else{
+                        status=NotCreated;
+                        NSLog(@"ERROR: %@",error);
+                        [cancelRequestButton setHidden:TRUE];
+                        [inButtonButtonPanel setTitle:@"Pickup Request" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setEnabled:TRUE];
+                        inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
+                        
+                    }
+                    
+                } else {
+                    status=NotCreated;
+                    [cancelRequestButton setHidden:TRUE];
+                    [inButtonButtonPanel setTitle:@"Pickup Request" forState:UIControlStateNormal];
+                    [inButtonButtonPanel setEnabled:TRUE];
+                    inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
+                }
+            });
+        }];
+
+    }
+    @catch (NSException *exception) {
+        status=NotCreated;
+        NSLog(@"ERROR: %@",exception);
+        [cancelRequestButton setHidden:TRUE];
+        [inButtonButtonPanel setTitle:@"Pickup Request" forState:UIControlStateNormal];
+        [inButtonButtonPanel setEnabled:TRUE];
+        inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
+    }
+    
+    
+}
 
 
 

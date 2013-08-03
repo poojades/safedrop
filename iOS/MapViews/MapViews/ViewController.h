@@ -10,20 +10,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-typedef enum  {
-    New,
-    Archived,
-    Done,
-    Cancel,
-    Pending,
-    InProgress,
-    Accepted
-} RequestStatus;
+#import "Globals.h"
+
+
 
 
 @interface ViewController : UIViewController <CLLocationManagerDelegate>{CLLocationManager *locationManager;
-    
-    RequestStatus status;
 }
 @property (weak, nonatomic) IBOutlet UIView *mapViewOnScreen;
 @property (weak, nonatomic) IBOutlet UIView *infoPanel;
@@ -34,6 +26,8 @@ typedef enum  {
 @property (weak, nonatomic) IBOutlet UILabel *inLabelButtonPanel;
 @property (nonatomic) RequestStatus status;
 @property (weak, nonatomic) IBOutlet UIButton *cancelRequestButton;
+- (IBAction)changeLabel:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *uiLabel;
 
 
 - (IBAction)clickButtoninButtonPanel:(id)sender;

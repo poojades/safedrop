@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Globals.h"
+#import "iOSRequest.h"
 
 @class Notification;
 
@@ -22,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *createdLabel;
 
+- (IBAction)acceptVolunteer:(id)sender;
 
 @end

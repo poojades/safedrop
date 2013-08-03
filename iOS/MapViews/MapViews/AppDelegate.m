@@ -17,6 +17,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [GMSServices provideAPIKey:@"AIzaSyDe0pJxdVDFIimZQ_hrNUgk4zswwL6rDRM"];
+    GlobalSettings = [[NSMutableArray alloc] init];
+    [GlobalSettings insertObject:@"0" atIndex:0];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];

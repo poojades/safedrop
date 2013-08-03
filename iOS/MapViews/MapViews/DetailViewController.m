@@ -51,6 +51,9 @@
     }
 }
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -64,4 +67,42 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)acceptVolunteer:(id)sender {
+    NSString *address = kAcceptRequestURL;
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    @try {
+        NSString* requestId= [GlobalSettings objectAtIndex:0];
+        [params setValue:kRequesterUsername forKey:@"volunteerEmail"];
+        [params setValue:requestId forKey:@"requestId"];
+    }
+    @catch (NSException *exception) {
+        <#handler#>
+    }
+    @finally {
+        <#statements#>
+    }
+    
+    NSString* requestId= [GlobalSettings objectAtIndex:0];
+
+    
+    [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                NSLog(@"SUCCESS : %@", result);
+                @try {
+                    [GlobalSettings replaceObjectAtIndex:0 withObject:result];
+                    NSLog(@"%@",GlobalSettings);
+                    status=Accepted;
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"Exception : %@", exception);
+                    //show alert
+                }
+            } else {
+                //show alert
+                NSLog(@"ERROR: %@",error);
+            }
+        });
+    }];
+}
 @end

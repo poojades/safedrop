@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Globals.h"
 
 @class ViewController;
 
@@ -15,5 +16,6 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) ViewController *viewController;
+
 
 @end

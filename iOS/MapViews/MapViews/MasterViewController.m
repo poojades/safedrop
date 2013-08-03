@@ -17,6 +17,8 @@
 
 #import "DetailViewController.h"
 
+#import "ViewController.h"
+
 
 
 
@@ -111,38 +113,77 @@ return [self.dataController countOfList];
 
                dispatch_async(dispatch_get_main_queue(), ^{
             NSArray* notifcations = [data objectForKey:@"notifications"];
-            for (NSDictionary *dict in notifcations) {
-                                    
-                NSLog(@"DICT: %@", dict);
-                Notification *notification;
-                NSInteger id = [[dict objectForKey:@"id"] integerValue];
-            
-                if (id>lastRefreshID)
-                {
-                    [self.dataController setLastRefreshId: id];
-                    NSLog(@"%ld",(long)[self.dataController getLastRefreshId]);
-
-                }
-
-                NSInteger requestId = [[dict objectForKey:@"requestid"] integerValue];
-                
-                NSString *text = [dict objectForKey:@"text"];
-                
-                NSString *receiver = [dict objectForKey:@"receiver"];
-                
-                NSString *sender = [dict objectForKey:@"sender"];
-                NSDate *created = [dict objectForKey:@"created"];
-                NSString *type = [dict objectForKey:@"type"];
-                
-                notification = [[Notification alloc] initWithId:&id text:text requestId:&requestId receiver:receiver sender:sender type:type created:created];
-                
-                [self.dataController addNotification:notification];
-            }
-            if (withTableRefresh){
-            [[self tableView] reloadData];
-            }
+                   @try {
+                       for (NSDictionary *dict in notifcations) {
+                           
+                           NSLog(@"DICT: %@", dict);
+                           Notification *notification;
+                           NSInteger id = [[dict objectForKey:@"id"] integerValue];
+                           
+                           if (id>lastRefreshID)
+                           {
+                               [self.dataController setLastRefreshId: id];
+                               NSLog(@"%ld",(long)[self.dataController getLastRefreshId]);
+                               
+                           }
+                           
+                           NSInteger requestId = [[dict objectForKey:@"requestid"] integerValue];
+                           
+                           NSString *text = [dict objectForKey:@"text"];
+                           
+                           NSString *receiver = [dict objectForKey:@"receiver"];
+                           
+                           NSString *sender = [dict objectForKey:@"sender"];
+                           NSDate *created = [dict objectForKey:@"created"];
+                           NSString *type = [dict objectForKey:@"type"];
+                           
+                           notification = [[Notification alloc] initWithId:&id text:text requestId:&requestId receiver:receiver sender:sender type:type created:created];
+                           
+                           [self.dataController addNotification:notification];
+                       }
+                       if (withTableRefresh){
+                           [[self tableView] reloadData];
+                       }
+                   }
+                   @catch (NSException *exception) {
+                       NSDictionary *dict = notifcations;
+                           
+                           NSLog(@"DICT: %@", dict);
+                           Notification *notification;
+                           NSInteger id = [[dict objectForKey:@"id"] integerValue];
+                           
+                           if (id>lastRefreshID)
+                           {
+                               [self.dataController setLastRefreshId: id];
+                               NSLog(@"%ld",(long)[self.dataController getLastRefreshId]);
+                               
+                           }
+                           
+                           NSInteger requestId = [[dict objectForKey:@"requestid"] integerValue];
+                           
+                           NSString *text = [dict objectForKey:@"text"];
+                           
+                           NSString *receiver = [dict objectForKey:@"receiver"];
+                           
+                           NSString *sender = [dict objectForKey:@"sender"];
+                           NSDate *created = [dict objectForKey:@"created"];
+                           NSString *type = [dict objectForKey:@"type"];
+                           
+                           notification = [[Notification alloc] initWithId:&id text:text requestId:&requestId receiver:receiver sender:sender type:type created:created];
+                           
+                           [self.dataController addNotification:notification];
+                       
+                       if (withTableRefresh){
+                           [[self tableView] reloadData];
+                       }
+                   }
         });
     }];
 }
 
+- (IBAction)goBackToSafeDrop:(id)sender {
+    ViewController *viewController=[[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+    
+    [self presentViewController:viewController animated:YES completion:nil];
+}
 @end

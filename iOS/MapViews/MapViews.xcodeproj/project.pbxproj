@@ -116,6 +116,7 @@
 		AFD4953917AD4C5A004D5FF6 /* NSString+WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WebService.m"; sourceTree = "<group>"; };
 		AFD4954517AD50FE004D5FF6 /* iOSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSRequest.m; sourceTree = "<group>"; };
 		AFD4954617AD50FE004D5FF6 /* iOSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSRequest.h; sourceTree = "<group>"; };
+		AFD4954817AD8407004D5FF6 /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +159,7 @@
 		AF004C0F17AA9BA7002B3C8F /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
+				AFD4954817AD8407004D5FF6 /* Globals.h */,
 				AF08F2AE17A9B5C800DBF02A /* AppDelegate.h */,
 				AF08F2AF17A9B5C800DBF02A /* AppDelegate.m */,
 			);

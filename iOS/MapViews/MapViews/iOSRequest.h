@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Globals.h"
 typedef void(^RequestCompletionHandler)(NSString *, NSError *);
 typedef void(^RequestDictionaryCompletionHandler)(NSDictionary*);
 @interface iOSRequest : NSObject
