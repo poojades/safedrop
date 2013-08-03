@@ -378,6 +378,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			Notifications notidto = new Notifications();
 			notidto.setType(SDConstants.TYPE_NOTIFICATION);
 			notidto.setCreated(new Date());
+			notidto.setSender(request.getRequester());
 			notidto.setReceiver(volunteerEmail);
 			notidto.setRequestid(requestId);
 			notidto.setText("Accepted By : " + request.getRequester());
@@ -475,6 +476,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			Notifications notidto = new Notifications();
 			notidto.setType(SDConstants.TYPE_NOTIFICATION);
 			notidto.setCreated(new Date());
+			notidto.setSender(volunteerEmail);
 			notidto.setReceiver(request.getRequester());
 			notidto.setRequestid(requestId);
 			notidto.setText("Accepted By : " + volunteerEmail);
