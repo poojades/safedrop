@@ -11,9 +11,12 @@
 @interface NotificationsDataController : NSObject
 
 @property (nonatomic, copy) NSMutableArray *masterNotificationList;
+@property (nonatomic, assign) NSInteger lastRefreshId;
 
 - (NSUInteger)countOfList;
 - (Notification *)objectInListAtIndex:(NSUInteger)theIndex;
 - (void)refreshNotifications:(NSString *)userEmail andLastRefreshId:(NSInteger *)lastRefreshId;
 - (void)addNotification:(Notification *)notification;
+- (NSInteger)getLastRefreshId;
+- (void)setLastRefreshId:(NSInteger)id;
 @end

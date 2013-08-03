@@ -36,14 +36,14 @@
     userEmail = [userEmail URLEncode];
     
     NSString *basePath = @"http://128.2.204.85:6080/SafeDropServices/rest/service/getNotifications/";
-    NSString *fullPath = [basePath stringByAppendingFormat:@"%@/%@",userEmail,[NSString stringWithFormat:@"%d", lastRefreshedId] ];
+    NSString *fullPath = [basePath stringByAppendingFormat:@"%@/%d",userEmail,*lastRefreshedId];
     
+    NSLog(fullPath);
     [iOSRequest requestPath:fullPath onCompletion:^(NSString *result, NSError *error){
         if (error || [result isEqualToString:@""]) {
             if (complete) complete(nil);
         } else {
             NSDictionary *user = [result JSON];
-            NSLog(result);
             if (complete) complete(user);
         }
     }];
