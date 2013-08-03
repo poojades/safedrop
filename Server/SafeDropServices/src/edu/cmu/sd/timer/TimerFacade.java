@@ -87,7 +87,7 @@ public class TimerFacade extends TimerTask implements ITimedServicesManager {
 								notidto.setReceiver(volunteer.getEmail());
 								notidto.setSender(req.getRequester());
 								notidto.setRequestid(req.getId());
-								notidto.setText("Your request for pickup has been accepted by " + volunteer.getFirstname());
+								notidto.setText(requester.getFirstname() + " needs your help for SafeDrop, can you help?");
 								try {
 									notiDao.insert(notidto);
 									++notifications;
