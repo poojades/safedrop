@@ -38,5 +38,6 @@ typedef enum  {
 
 - (IBAction)clickButtoninButtonPanel:(id)sender;
 
+- (IBAction)clickButtoninNotificationPanel:(id)sender;
 
 @end

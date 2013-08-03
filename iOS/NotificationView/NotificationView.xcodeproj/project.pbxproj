@@ -28,6 +28,25 @@
 		AFB778B017ABE31C009D5A65 /* NotificationsDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB778AF17ABE31C009D5A65 /* NotificationsDataController.m */; };
 		AFB778E817AC0AF1009D5A65 /* NSString+WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB778E517AC0AF1009D5A65 /* NSString+WebService.m */; };
 		AFB778E917AC0AF1009D5A65 /* iOSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB778E717AC0AF1009D5A65 /* iOSRequest.m */; };
+		AFB778EB17AC9C62009D5A65 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB778EA17AC9C62009D5A65 /* user.png */; };
+		AFD4948717AD360D004D5FF6 /* power.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD4948417AD360C004D5FF6 /* power.png */; };
+		AFD4948817AD360D004D5FF6 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD4948517AD360C004D5FF6 /* settings.png */; };
+		AFD4948917AD360D004D5FF6 /* volunteers.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD4948617AD360D004D5FF6 /* volunteers.png */; };
+		AFD4949517AD3E89004D5FF6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD4949417AD3E89004D5FF6 /* ViewController.m */; };
+		AFD4949717AD3F12004D5FF6 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD4949617AD3F12004D5FF6 /* GoogleMaps.framework */; };
+		AFD4949917AD3F2F004D5FF6 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AFD4949817AD3F2F004D5FF6 /* GoogleMaps.bundle */; };
+		AFD4949B17AD3F55004D5FF6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD4949A17AD3F55004D5FF6 /* AVFoundation.framework */; };
+		AFD4949D17AD3F5E004D5FF6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD4949C17AD3F5E004D5FF6 /* CoreData.framework */; };
+		AFD4949F17AD3F65004D5FF6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD4949E17AD3F65004D5FF6 /* CoreLocation.framework */; };
+		AFD494A117AD3F6F004D5FF6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD494A017AD3F6F004D5FF6 /* CoreText.framework */; };
+		AFD494A317AD3F76004D5FF6 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD494A217AD3F76004D5FF6 /* GLKit.framework */; };
+		AFD494A517AD3F7E004D5FF6 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD494A417AD3F7E004D5FF6 /* ImageIO.framework */; };
+		AFD494A717AD3F89004D5FF6 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD494A617AD3F89004D5FF6 /* libc++.dylib */; };
+		AFD494A917AD3F9C004D5FF6 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD494A817AD3F9C004D5FF6 /* libicucore.dylib */; };
+		AFD494AB17AD3FA3004D5FF6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD494AA17AD3FA3004D5FF6 /* libz.dylib */; };
+		AFD494AD17AD3FAB004D5FF6 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD494AC17AD3FAB004D5FF6 /* OpenGLES.framework */; };
+		AFD494AF17AD3FB2004D5FF6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD494AE17AD3FB2004D5FF6 /* QuartzCore.framework */; };
+		AFD494B117AD3FBA004D5FF6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD494B017AD3FBA004D5FF6 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,14 +84,34 @@
 		AFB7789E17ABDE92009D5A65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AFB778A017ABDE92009D5A65 /* NotificationViewTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationViewTests.h; sourceTree = "<group>"; };
 		AFB778A117ABDE92009D5A65 /* NotificationViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationViewTests.m; sourceTree = "<group>"; };
-		AFB778AB17ABDF8B009D5A65 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = NotificationView/Notification.h; sourceTree = "<group>"; };
-		AFB778AC17ABDF8B009D5A65 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = NotificationView/Notification.m; sourceTree = "<group>"; };
-		AFB778AE17ABE31C009D5A65 /* NotificationsDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationsDataController.h; path = NotificationView/NotificationsDataController.h; sourceTree = "<group>"; };
-		AFB778AF17ABE31C009D5A65 /* NotificationsDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationsDataController.m; path = NotificationView/NotificationsDataController.m; sourceTree = "<group>"; };
-		AFB778E417AC0AF1009D5A65 /* NSString+WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+WebService.h"; path = "NotificationView/NSString+WebService.h"; sourceTree = "<group>"; };
-		AFB778E517AC0AF1009D5A65 /* NSString+WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+WebService.m"; path = "NotificationView/NSString+WebService.m"; sourceTree = "<group>"; };
-		AFB778E617AC0AF1009D5A65 /* iOSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSRequest.h; path = NotificationView/iOSRequest.h; sourceTree = "<group>"; };
-		AFB778E717AC0AF1009D5A65 /* iOSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSRequest.m; path = NotificationView/iOSRequest.m; sourceTree = "<group>"; };
+		AFB778AB17ABDF8B009D5A65 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		AFB778AC17ABDF8B009D5A65 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		AFB778AE17ABE31C009D5A65 /* NotificationsDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsDataController.h; sourceTree = "<group>"; };
+		AFB778AF17ABE31C009D5A65 /* NotificationsDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsDataController.m; sourceTree = "<group>"; };
+		AFB778E417AC0AF1009D5A65 /* NSString+WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WebService.h"; sourceTree = "<group>"; };
+		AFB778E517AC0AF1009D5A65 /* NSString+WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WebService.m"; sourceTree = "<group>"; };
+		AFB778E617AC0AF1009D5A65 /* iOSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSRequest.h; sourceTree = "<group>"; };
+		AFB778E717AC0AF1009D5A65 /* iOSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSRequest.m; sourceTree = "<group>"; };
+		AFB778EA17AC9C62009D5A65 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		AFD4948417AD360C004D5FF6 /* power.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = power.png; sourceTree = "<group>"; };
+		AFD4948517AD360C004D5FF6 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		AFD4948617AD360D004D5FF6 /* volunteers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volunteers.png; sourceTree = "<group>"; };
+		AFD4949317AD3E89004D5FF6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../../MapViews/MapViews/ViewController.h; sourceTree = "<group>"; };
+		AFD4949417AD3E89004D5FF6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../../MapViews/MapViews/ViewController.m; sourceTree = "<group>"; };
+		AFD4949617AD3F12004D5FF6 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		AFD4949817AD3F2F004D5FF6 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
+		AFD4949A17AD3F55004D5FF6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		AFD4949C17AD3F5E004D5FF6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AFD4949E17AD3F65004D5FF6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		AFD494A017AD3F6F004D5FF6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		AFD494A217AD3F76004D5FF6 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		AFD494A417AD3F7E004D5FF6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		AFD494A617AD3F89004D5FF6 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		AFD494A817AD3F9C004D5FF6 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		AFD494AA17AD3FA3004D5FF6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		AFD494AC17AD3FAB004D5FF6 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		AFD494AE17AD3FB2004D5FF6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AFD494B017AD3FBA004D5FF6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +119,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD494B117AD3FBA004D5FF6 /* SystemConfiguration.framework in Frameworks */,
+				AFD494AF17AD3FB2004D5FF6 /* QuartzCore.framework in Frameworks */,
+				AFD494AD17AD3FAB004D5FF6 /* OpenGLES.framework in Frameworks */,
+				AFD494AB17AD3FA3004D5FF6 /* libz.dylib in Frameworks */,
+				AFD494A917AD3F9C004D5FF6 /* libicucore.dylib in Frameworks */,
+				AFD494A717AD3F89004D5FF6 /* libc++.dylib in Frameworks */,
+				AFD494A517AD3F7E004D5FF6 /* ImageIO.framework in Frameworks */,
+				AFD494A317AD3F76004D5FF6 /* GLKit.framework in Frameworks */,
+				AFD494A117AD3F6F004D5FF6 /* CoreText.framework in Frameworks */,
+				AFD4949F17AD3F65004D5FF6 /* CoreLocation.framework in Frameworks */,
+				AFD4949D17AD3F5E004D5FF6 /* CoreData.framework in Frameworks */,
+				AFD4949B17AD3F55004D5FF6 /* AVFoundation.framework in Frameworks */,
 				AFB7786E17ABDE91009D5A65 /* UIKit.framework in Frameworks */,
 				AFB7787017ABDE91009D5A65 /* Foundation.framework in Frameworks */,
 				AFB7787217ABDE91009D5A65 /* CoreGraphics.framework in Frameworks */,
+				AFD4949717AD3F12004D5FF6 /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,14 +154,6 @@
 		AFB7786117ABDE91009D5A65 = {
 			isa = PBXGroup;
 			children = (
-				AFB778E417AC0AF1009D5A65 /* NSString+WebService.h */,
-				AFB778E517AC0AF1009D5A65 /* NSString+WebService.m */,
-				AFB778E617AC0AF1009D5A65 /* iOSRequest.h */,
-				AFB778E717AC0AF1009D5A65 /* iOSRequest.m */,
-				AFB778AB17ABDF8B009D5A65 /* Notification.h */,
-				AFB778AC17ABDF8B009D5A65 /* Notification.m */,
-				AFB778AE17ABE31C009D5A65 /* NotificationsDataController.h */,
-				AFB778AF17ABE31C009D5A65 /* NotificationsDataController.m */,
 				AFB7787317ABDE91009D5A65 /* NotificationView */,
 				AFB7789A17ABDE92009D5A65 /* NotificationViewTests */,
 				AFB7786C17ABDE91009D5A65 /* Frameworks */,
@@ -129,6 +173,20 @@
 		AFB7786C17ABDE91009D5A65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AFD494B017AD3FBA004D5FF6 /* SystemConfiguration.framework */,
+				AFD494AE17AD3FB2004D5FF6 /* QuartzCore.framework */,
+				AFD494AC17AD3FAB004D5FF6 /* OpenGLES.framework */,
+				AFD494AA17AD3FA3004D5FF6 /* libz.dylib */,
+				AFD494A817AD3F9C004D5FF6 /* libicucore.dylib */,
+				AFD494A617AD3F89004D5FF6 /* libc++.dylib */,
+				AFD494A417AD3F7E004D5FF6 /* ImageIO.framework */,
+				AFD494A217AD3F76004D5FF6 /* GLKit.framework */,
+				AFD494A017AD3F6F004D5FF6 /* CoreText.framework */,
+				AFD4949E17AD3F65004D5FF6 /* CoreLocation.framework */,
+				AFD4949C17AD3F5E004D5FF6 /* CoreData.framework */,
+				AFD4949A17AD3F55004D5FF6 /* AVFoundation.framework */,
+				AFD4949817AD3F2F004D5FF6 /* GoogleMaps.bundle */,
+				AFD4949617AD3F12004D5FF6 /* GoogleMaps.framework */,
 				AFB7786D17ABDE91009D5A65 /* UIKit.framework */,
 				AFB7786F17ABDE91009D5A65 /* Foundation.framework */,
 				AFB7787117ABDE91009D5A65 /* CoreGraphics.framework */,
@@ -140,13 +198,13 @@
 		AFB7787317ABDE91009D5A65 /* NotificationView */ = {
 			isa = PBXGroup;
 			children = (
-				AFB7787C17ABDE91009D5A65 /* AppDelegate.h */,
-				AFB7787D17ABDE91009D5A65 /* AppDelegate.m */,
+				AFD494B717AD467C004D5FF6 /* Utils */,
+				AFD494B617AD466B004D5FF6 /* DataModel */,
+				AFD494B517AD465B004D5FF6 /* RatingsView */,
+				AFD494B417AD4649004D5FF6 /* NotificationsView */,
+				AFD494B317AD4632004D5FF6 /* HomeView */,
+				AFD494B217AD4625004D5FF6 /* Delegate */,
 				AFB7788517ABDE92009D5A65 /* MainStoryboard.storyboard */,
-				AFB7788817ABDE92009D5A65 /* MasterViewController.h */,
-				AFB7788917ABDE92009D5A65 /* MasterViewController.m */,
-				AFB7788B17ABDE92009D5A65 /* DetailViewController.h */,
-				AFB7788C17ABDE92009D5A65 /* DetailViewController.m */,
 				AFB7787417ABDE91009D5A65 /* Supporting Files */,
 			);
 			path = NotificationView;
@@ -155,6 +213,10 @@
 		AFB7787417ABDE91009D5A65 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFD4948417AD360C004D5FF6 /* power.png */,
+				AFD4948517AD360C004D5FF6 /* settings.png */,
+				AFD4948617AD360D004D5FF6 /* volunteers.png */,
+				AFB778EA17AC9C62009D5A65 /* user.png */,
 				AFB7787517ABDE91009D5A65 /* NotificationView-Info.plist */,
 				AFB7787617ABDE91009D5A65 /* InfoPlist.strings */,
 				AFB7787917ABDE91009D5A65 /* main.m */,
@@ -183,6 +245,64 @@
 				AFB7789D17ABDE92009D5A65 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AFD494B217AD4625004D5FF6 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				AFB7787C17ABDE91009D5A65 /* AppDelegate.h */,
+				AFB7787D17ABDE91009D5A65 /* AppDelegate.m */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		AFD494B317AD4632004D5FF6 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				AFD4949317AD3E89004D5FF6 /* ViewController.h */,
+				AFD4949417AD3E89004D5FF6 /* ViewController.m */,
+			);
+			name = HomeView;
+			sourceTree = "<group>";
+		};
+		AFD494B417AD4649004D5FF6 /* NotificationsView */ = {
+			isa = PBXGroup;
+			children = (
+				AFB7788817ABDE92009D5A65 /* MasterViewController.h */,
+				AFB7788917ABDE92009D5A65 /* MasterViewController.m */,
+			);
+			name = NotificationsView;
+			sourceTree = "<group>";
+		};
+		AFD494B517AD465B004D5FF6 /* RatingsView */ = {
+			isa = PBXGroup;
+			children = (
+				AFB7788B17ABDE92009D5A65 /* DetailViewController.h */,
+				AFB7788C17ABDE92009D5A65 /* DetailViewController.m */,
+			);
+			name = RatingsView;
+			sourceTree = "<group>";
+		};
+		AFD494B617AD466B004D5FF6 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				AFB778AB17ABDF8B009D5A65 /* Notification.h */,
+				AFB778AC17ABDF8B009D5A65 /* Notification.m */,
+				AFB778AE17ABE31C009D5A65 /* NotificationsDataController.h */,
+				AFB778AF17ABE31C009D5A65 /* NotificationsDataController.m */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		AFD494B717AD467C004D5FF6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AFB778E417AC0AF1009D5A65 /* NSString+WebService.h */,
+				AFB778E517AC0AF1009D5A65 /* NSString+WebService.m */,
+				AFB778E617AC0AF1009D5A65 /* iOSRequest.h */,
+				AFB778E717AC0AF1009D5A65 /* iOSRequest.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +381,11 @@
 				AFB7788217ABDE92009D5A65 /* Default@2x.png in Resources */,
 				AFB7788417ABDE92009D5A65 /* Default-568h@2x.png in Resources */,
 				AFB7788717ABDE92009D5A65 /* MainStoryboard.storyboard in Resources */,
+				AFB778EB17AC9C62009D5A65 /* user.png in Resources */,
+				AFD4948717AD360D004D5FF6 /* power.png in Resources */,
+				AFD4948817AD360D004D5FF6 /* settings.png in Resources */,
+				AFD4948917AD360D004D5FF6 /* volunteers.png in Resources */,
+				AFD4949917AD3F2F004D5FF6 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +428,7 @@
 				AFB778B017ABE31C009D5A65 /* NotificationsDataController.m in Sources */,
 				AFB778E817AC0AF1009D5A65 /* NSString+WebService.m in Sources */,
 				AFB778E917AC0AF1009D5A65 /* iOSRequest.m in Sources */,
+				AFD4949517AD3E89004D5FF6 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,9 +537,15 @@
 		AFB778A617ABDE92009D5A65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NotificationView/NotificationView-Prefix.pch";
 				INFOPLIST_FILE = "NotificationView/NotificationView-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -422,9 +554,15 @@
 		AFB778A717ABDE92009D5A65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NotificationView/NotificationView-Prefix.pch";
 				INFOPLIST_FILE = "NotificationView/NotificationView-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

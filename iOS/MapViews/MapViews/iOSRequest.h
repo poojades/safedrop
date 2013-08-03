@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 
 typedef void(^RequestCompletionHandler)(NSString *, NSError *);
+typedef void(^RequestDictionaryCompletionHandler)(NSDictionary*);
 @interface iOSRequest : NSObject
 
 
-+(void)requestREST:(NSString *)path withParams:(NSMutableDictionary *)params
++(void)requestRESTPOST:(NSString *)path withParams:(NSMutableDictionary *)params
       onCompletion:(RequestCompletionHandler)complete;
 
++(void)requestRESTGET:(NSString *)path
+          onCompletion:(RequestCompletionHandler)complete;
 
++(void)refreshNotifications:(NSString *)userEmail andLastRefreshedId:(NSInteger *)lastRefreshedId onCompletion:(RequestDictionaryCompletionHandler)complete;
 @end

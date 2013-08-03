@@ -2,7 +2,7 @@
 //  AppDelegate.h
 //  SafeDrop
 //
-//  Created by Sankha Subhra Pathak on 8/1/13.
+//  Created by Sankha Subhra Pathak on 8/3/13.
 //  Copyright (c) 2013 Self. All rights reserved.
 //
 

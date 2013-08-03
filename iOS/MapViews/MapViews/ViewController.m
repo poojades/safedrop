@@ -201,7 +201,7 @@ int requestId;
     
     [params setValue:@"15213" forKey:@"zip"];
     
-    [iOSRequest requestREST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+    [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
                 NSLog(@"SUCCESS : %@", result);
@@ -219,7 +219,7 @@ int requestId;
     NSString *address = @"http://128.2.204.85:6080/SafeDropServices/rest/service/requestPickup";
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:@"sankhasp@cmu.edu" forKey:@"email"];
-    [iOSRequest requestREST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+    [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
                 NSLog(@"SUCCESS : %@", result);
@@ -259,6 +259,14 @@ int requestId;
             break;
     }
 
+}
+
+- (IBAction)clickButtoninNotificationPanel:(id)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"NotificationStoryBoard" bundle:nil];
+    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"MasterViewController"];
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:vc animated:YES completion:NULL];
+    
 }
 
 
