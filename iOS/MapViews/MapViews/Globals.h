@@ -26,7 +26,7 @@ typedef enum  {
 
 RequestStatus status;
 
-#define kRequesterUsername @"poojadesai@cmu.edu"
+#define kRequesterUsername @"sankhasp@cmu.edu"
 
 #define kGetNotificationURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getNotifications/";
 
@@ -43,4 +43,6 @@ RequestStatus status;
 #define kAcceptRequesterURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/acceptRequester"
 
 #define kgetLastRequestByUserURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getLastRequestByUser"
+
+#define kgetOtherUserInfoURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getOtherUserInfo"
 #endif

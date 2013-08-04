@@ -11,6 +11,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "iOSRequest.h"
 
+#import "NSString+WebService.h"
+
 @interface ViewController ()
 
 @end
@@ -38,6 +40,73 @@ NSString *zipCode;
 GMSMarker *SelfMarker;
 GMSMarker *OtherMarker;
 GMSCameraPosition *camera;
+
+
+- (void)getDirections {
+    
+    
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false", SelfMarker.position.latitude, SelfMarker.position.longitude, OtherMarker.position.latitude, OtherMarker.position.longitude];
+    NSLog(url);
+    
+    
+    [iOSRequest requestRESTGET:url onCompletion:^(NSString *result, NSError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error || [result isEqualToString:@""]) {
+                NSLog(@"---------------------> %@",error);
+            } else {
+                NSDictionary *response = [result JSON];
+                
+                
+                
+                int points_count = 0;
+                if ([[response objectForKey:@"routes"] count])
+                    points_count = [[[[[[response objectForKey:@"routes"] objectAtIndex:0] objectForKey:@"legs"] objectAtIndex:0] objectForKey:@"steps"] count];
+                
+                
+                 CLLocationCoordinate2D points[points_count * 2];
+                
+                GMSMutablePath *path = [GMSMutablePath path];
+                
+                int j = 0;
+                NSArray *steps = nil;
+                if (points_count && [[[[response objectForKey:@"routes"] objectAtIndex:0] objectForKey:@"legs"] count])
+                    steps = [[[[[response objectForKey:@"routes"] objectAtIndex:0] objectForKey:@"legs"] objectAtIndex:0] objectForKey:@"steps"];
+                for (int i = 0; i < points_count; i++) {
+                    
+                    double st_lat = [[[[steps objectAtIndex:i] objectForKey:@"start_location"] valueForKey:@"lat"] doubleValue];
+                    double st_lon = [[[[steps objectAtIndex:i] objectForKey:@"start_location"] valueForKey:@"lng"] doubleValue];
+                    //NSLog(@"lat lon: %f %f", st_lat, st_lon);
+                        points[j] = CLLocationCoordinate2DMake(st_lat, st_lon);
+                        j++;
+                    double end_lat = [[[[steps objectAtIndex:i] objectForKey:@"end_location"] valueForKey:@"lat"] doubleValue];
+                    double end_lon = [[[[steps objectAtIndex:i] objectForKey:@"end_location"] valueForKey:@"lng"] doubleValue];
+                        points[j] = CLLocationCoordinate2DMake(end_lat, end_lon);
+//                        endCoordinate = CLLocationCoordinate2DMake(end_lat, end_lon);
+                        j++;
+                   // NSLog(@"%d",j);
+                }
+                
+                for (int i = 0; i < points_count*2; i++) {
+                    [path addLatitude:points[i].latitude longitude:points[i].longitude];
+                }
+//                MKPolyline *polyline = [MKPolyline polylineWithCoordinates:points count:points_count * 2];
+//                [_mapView addOverlay:polyline];
+                GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+                polyline.strokeColor = [UIColor greenColor];
+                polyline.strokeWidth = 10.f;
+                polyline.geodesic = YES;
+                polyline.map = _mapView;
+
+            }
+        });}];
+    
+    
+
+    
+    
+    
+}
+
 
 
 
@@ -167,8 +236,6 @@ GMSCameraPosition *camera;
             infoLabel.text=[NSString stringWithFormat:@"%@",[placemark performSelector:NSSelectorFromString(@"locality")]];
             
             SelfMarker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-            
-            SelfMarker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
             SelfMarker.title = @"Your Location";
             SelfMarker.snippet =[NSString stringWithFormat:@"%@ %@ [%@]", [placemark performSelector:NSSelectorFromString(@"name")],[placemark performSelector:NSSelectorFromString(@"locality")],[placemark performSelector:NSSelectorFromString(@"postalCode")]];
             SelfMarker.infoWindowAnchor = CGPointMake(0, 0);
@@ -180,7 +247,10 @@ GMSCameraPosition *camera;
             CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
             _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:kGMSMaxZoomLevel - 8];
             [self sendLocationToServer];
-            
+            if (status==InProgress){
+                [self getOtherLocationFromServer];
+                
+            }
         }
     }];
     
@@ -214,20 +284,39 @@ GMSCameraPosition *camera;
 
 }
 
-- (void) getOtherLocationFromServer {
-    NSString *address = kSetUserInfoURL;
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    NSString *tmp = [[NSString alloc] initWithFormat:@"%f", SelfMarker.position.latitude];
+- (void) getOtherLocationFromServer{
+        NSString *basePath = kgetOtherUserInfoURL;
     
-    [params setValue:kRequesterUsername forKey:@"email"];
-    [params setValue:tmp forKey:@"lastlat"];
+        NSString* requestId= [GlobalSettings objectAtIndex:0];
+        NSString *fullPath = [basePath stringByAppendingFormat:@"/%@/%@",kRequesterUsername,requestId];
+        
+        NSLog(@"%@",fullPath);
     
-    tmp = [[NSString alloc] initWithFormat:@"%f", SelfMarker.position.longitude];
     
-    [params setValue:tmp forKey:@"lastlong"];
-    
-    [params setValue:zipCode forKey:@"zip"];
-    
+    [iOSRequest requestRESTGET:fullPath onCompletion:^(NSString *result, NSError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error || [result isEqualToString:@""]) {
+                    NSLog(@"---------------------> %@",error);
+            } else {
+                NSDictionary *otherLocation = [result JSON];
+                NSLog(@"---------------------> %@",otherLocation);
+                NSString *lat = [otherLocation objectForKey:@"lastlat"];
+                NSString *longitude = [otherLocation objectForKey:@"lastlong"];
+                
+                
+                CLLocation *LocationAtual = [[CLLocation alloc] initWithLatitude:[lat floatValue] longitude:[longitude floatValue]];
+                if (nil == OtherMarker){
+                    OtherMarker  = [[GMSMarker alloc] init];
+                }
+                
+                OtherMarker.position = CLLocationCoordinate2DMake(LocationAtual.coordinate.latitude, LocationAtual.coordinate.longitude);
+                  OtherMarker.infoWindowAnchor = CGPointMake(0, 0);
+                OtherMarker.title = @"Other Person's Location";
+            OtherMarker.map = _mapView;
+                [self getDirections];
+            }
+        });}];
+            
 }
 
 
@@ -308,6 +397,7 @@ GMSCameraPosition *camera;
     if (nil == SelfMarker){
         SelfMarker  = [[GMSMarker alloc] init];
     }
+  
 }
 
 - (void) getRequestUpdates

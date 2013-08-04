@@ -131,10 +131,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF08F2F117A9B7CF00DBF02A /* libz.dylib in Frameworks */,
+				AF08F2A417A9B5C800DBF02A /* CoreGraphics.framework in Frameworks */,
 				AF08F2F717A9B7EF00DBF02A /* SystemConfiguration.framework in Frameworks */,
 				AF08F2F517A9B7E500DBF02A /* QuartzCore.framework in Frameworks */,
 				AF08F2F317A9B7DE00DBF02A /* OpenGLES.framework in Frameworks */,
-				AF08F2F117A9B7CF00DBF02A /* libz.dylib in Frameworks */,
 				AF08F2EF17A9B7B100DBF02A /* libicucore.dylib in Frameworks */,
 				AF08F2ED17A9B79900DBF02A /* libc++.dylib in Frameworks */,
 				AF08F2EB17A9B78800DBF02A /* ImageIO.framework in Frameworks */,
@@ -145,7 +146,6 @@
 				AF08F2E117A9B76700DBF02A /* AVFoundation.framework in Frameworks */,
 				AF08F2A017A9B5C800DBF02A /* UIKit.framework in Frameworks */,
 				AF08F2A217A9B5C800DBF02A /* Foundation.framework in Frameworks */,
-				AF08F2A417A9B5C800DBF02A /* CoreGraphics.framework in Frameworks */,
 				AF08F2DD17A9B6DE00DBF02A /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
