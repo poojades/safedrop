@@ -22,6 +22,9 @@ public interface IRequestManager {
 	 */
 	public String requestPickup(String email) throws SafeDropException;
 	
+	
+
+	
 	/**
 	 * Cancel pickup.
 	 *

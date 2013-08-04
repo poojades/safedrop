@@ -49,4 +49,7 @@ public interface IUserManager {
 	 * @throws SafeDropException the safe drop exception
 	 */
 	public Users getUserInfo(String email) throws SafeDropException;
+	
+	
+	public Users getOtherUserInfo(String email, int requestId) throws SafeDropException;
 }

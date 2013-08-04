@@ -668,4 +668,42 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		}
 				
 	}
+
+	@Override
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getOtherUserInfo/{email}/{requestId}")
+	public Users getOtherUserInfo(@PathParam ("email") String email, @PathParam ("requestId") int requestId)
+			throws SafeDropException {
+		RequestDao dao = RequestDaoFactory.create();
+		edu.cmu.sd.dto.Request request = null;
+		try {
+			request = dao.findByPrimaryKey(requestId);
+			if (request==null){
+				throw new SafeDropException("Request should be available for fetching status");
+			}
+			if (request.getStatus()!=SDConstants.REQ_INPROG_STATUS){
+				if (request.getRequester().equalsIgnoreCase(email)){
+					//he is the requester so fetch the volunteer's userInfo
+					NotificationsDao notidao = NotificationsDaoFactory.create();
+					Notifications[] notification = notidao.findByRequest(requestId);
+					if (notification==null || notification.length>1)
+						throw new SafeDropException("Failed to get other user status"); 
+					else
+						return getUserInfo(notification[0].getReceiver());
+					
+				}
+				else{
+					//he is the volunteer so fetch the requesters userInfo
+					return getUserInfo(request.getRequester());
+				}
+				
+			}
+			else
+				throw new SafeDropException("Request has to be in IN-PROGRESS Status to send you other user info");
+			
+		} catch (RequestDaoException | NotificationsDaoException e) {
+			throw new SafeDropException("Failed to get other user status");
+		}
+	}
 }
