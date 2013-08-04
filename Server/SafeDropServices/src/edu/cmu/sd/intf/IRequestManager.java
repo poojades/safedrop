@@ -31,6 +31,16 @@ public interface IRequestManager {
 	 */
 	public String cancelPickup(int requestId) throws SafeDropException;
 	
+	
+	/**
+	 * Gets the last request by user.
+	 *
+	 * @param email the email
+	 * @return the last request by user
+	 * @throws SafeDropException the safe drop exception
+	 */
+	public String getLastRequestByUser(String email) throws SafeDropException;
+	
 	/**
 	 * Accept volunteer.
 	 *

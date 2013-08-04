@@ -648,4 +648,24 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			throw new SafeDropException("Failed to get user status");
 		}
 	}
+
+	@Override
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getLastRequestByUser/{email}")
+	public String getLastRequestByUser(@PathParam ("email") String email) throws SafeDropException {
+		RequestDao dao = RequestDaoFactory.create();
+		Object[] sqlParams = new Object[1];
+		sqlParams[0]=email;
+		try {
+			edu.cmu.sd.dto.Request[] request = dao.findByDynamicWhere("REQUESTER=? ORDER BY ID DESC LIMIT 1", sqlParams);
+			if (request.length>0)
+				return String.valueOf(request[0].getId());
+			else
+				return "0";
+		} catch (RequestDaoException e) {
+			throw new SafeDropException("Get last request by User Failed");
+		}
+				
+	}
 }
