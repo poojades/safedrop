@@ -603,14 +603,14 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 			if (ename != null && ename.trim().length()>0){
 				user.setEname(ename);
 			}
-			if (lastlat != null && lastlong.trim().length()>0){
+			if (lastlat != null && lastlat.trim().length()>0){
 				user.setLastlat(lastlat);
 			}
 			if (lastlong != null && lastlong.trim().length()>0){
-				user.setLastlat(lastlong);
+				user.setLastlong(lastlong);
 			}
 			if (zip != null && zip.trim().length()>0){
-				user.setLastlat(zip);
+				user.setZip(zip);
 			}
 
 			if (status != null && (
