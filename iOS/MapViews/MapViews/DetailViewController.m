@@ -40,12 +40,11 @@
         [formatter setDateStyle:NSDateFormatterMediumStyle];
     }
     if (theNotification) {
-        self.idLabel.text = [NSString stringWithFormat:@"%d",theNotification.id];
+        self.idLabel.text = theNotification.id;
         self.senderLabel.text=theNotification.sender;
         self.receiverLabel.text=theNotification.receiver;
-        self.requestIdLabel.text=[NSString stringWithFormat:@"%d", [theNotification requestId]];
+        self.requestIdLabel.text=theNotification.requestId;
         self.textLabel.text=theNotification.text;
-        NSLog(@"%@",theNotification.created);
         self.createdLabel.text = [formatter stringFromDate:(NSDate *)theNotification.created];
         self.typeLabel.text=theNotification.type;
     }
@@ -67,42 +66,66 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)acceptVolunteer:(id)sender {
-    NSString *address = kAcceptRequestURL;
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    @try {
-        NSString* requestId= [GlobalSettings objectAtIndex:0];
+
+
+
+- (IBAction)accept:(id)sender {
+
+    //if user is requester
+    NSString* requestId = [GlobalSettings objectAtIndex:0];
+    
+    if (![requestId isEqualToString:@"0"]) {
+        NSString *address = kAcceptVolunteerURL;
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        [params setValue:self.notification.sender forKey:@"volunteerEmail"];
+        [params setValue:requestId forKey:@"requestId"];
+        
+        [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!error) {
+                    NSLog(@"SUCCESS : %@", result);
+                    @try {
+                        status=Accepted;
+                        [GlobalSettings insertObject:@"0" atIndex:1];
+                    }
+                    @catch (NSException *exception) {
+                        NSLog(@"Exception : %@", exception);
+                        //show alert
+                    }
+                } else {
+                    //show alert
+                    NSLog(@"ERROR: %@",error);
+                }
+            });
+        }];
+
+    }
+    else{
+        NSString *address = kAcceptRequesterURL;
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        requestId = self.notification.requestId;
         [params setValue:kRequesterUsername forKey:@"volunteerEmail"];
         [params setValue:requestId forKey:@"requestId"];
-    }
-    @catch (NSException *exception) {
-        <#handler#>
-    }
-    @finally {
-        <#statements#>
-    }
-    
-    NSString* requestId= [GlobalSettings objectAtIndex:0];
-
-    
-    [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error) {
-                NSLog(@"SUCCESS : %@", result);
-                @try {
-                    [GlobalSettings replaceObjectAtIndex:0 withObject:result];
-                    NSLog(@"%@",GlobalSettings);
-                    status=Accepted;
-                }
-                @catch (NSException *exception) {
-                    NSLog(@"Exception : %@", exception);
+        
+        [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!error) {
+                    NSLog(@"SUCCESS : %@", result);
+                    @try {
+                        status=Accepted;
+                    }
+                    @catch (NSException *exception) {
+                        NSLog(@"Exception : %@", exception);
+                        //show alert
+                    }
+                } else {
                     //show alert
+                    NSLog(@"ERROR: %@",error);
                 }
-            } else {
-                //show alert
-                NSLog(@"ERROR: %@",error);
-            }
-        });
-    }];
+            });
+        }];
+    }
+    
+    
 }
 @end

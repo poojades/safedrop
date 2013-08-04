@@ -312,22 +312,22 @@ GMSCameraPosition *camera;
                         [cancelRequestButton setHidden:FALSE];
                         [inButtonButtonPanel setTitle:@"Request Pending" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
-                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                        inLabelButtonPanel.text=@"[Waiting for confirmation...]";
                     }
                     else if ([result isEqualToString:@"I"]){
                         
                         status=InProgress;
                         [cancelRequestButton setHidden:FALSE];
-                        [inButtonButtonPanel setTitle:@"Request Progress" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setTitle:@"Request inProgress" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
-                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                        inLabelButtonPanel.text=@"[SafeDrop in session...]";
                     }
                     else if ([result isEqualToString:@"A"]){
                         status=Accepted;
                         [cancelRequestButton setHidden:FALSE];
                         [inButtonButtonPanel setTitle:@"Request Accepted" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
-                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                        inLabelButtonPanel.text=@"[Check Notifications...]";
                     }
                     else if ([result isEqualToString:@"C"]){
                         
@@ -335,7 +335,7 @@ GMSCameraPosition *camera;
                         [cancelRequestButton setHidden:FALSE];
                         [inButtonButtonPanel setTitle:@"Request Cancelled" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
-                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                        inLabelButtonPanel.text=@"[Initimating volunteers...]";
                     }
                     else if ([result isEqualToString:@"D"]){
                         
@@ -343,7 +343,7 @@ GMSCameraPosition *camera;
                         [cancelRequestButton setHidden:FALSE];
                         [inButtonButtonPanel setTitle:@"Request Done" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
-                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                        inLabelButtonPanel.text=@"[Request Completed...]";
                     }
                     else if ([result isEqualToString:@"R"]){
                         
@@ -351,7 +351,7 @@ GMSCameraPosition *camera;
                         [cancelRequestButton setHidden:FALSE];
                         [inButtonButtonPanel setTitle:@"Request Archived" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
-                        inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                        inLabelButtonPanel.text=@"[Request has been archived...]";
                     }
                     else{
                         status=NotCreated;

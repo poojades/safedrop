@@ -11,7 +11,7 @@
 
 @implementation Notification
 
--(id)initWithId:(NSInteger *)id text:(NSString *)text  requestId:(NSInteger *)requestId  receiver:(NSString *)receiver  sender:(NSString *)sender type:(NSString *)type created:(NSDate *)created{
+-(id)initWithId:(NSString *)id text:(NSString *)text  requestId:(NSString *)requestId  receiver:(NSString *)receiver  sender:(NSString *)sender type:(NSString *)type created:(NSDate *)created{
     self = [super init];
     if (self) {
         _id=id;

@@ -19,5 +19,5 @@ typedef void(^RequestDictionaryCompletionHandler)(NSDictionary*);
 +(void)requestRESTGET:(NSString *)path
           onCompletion:(RequestCompletionHandler)complete;
 
-+(void)refreshNotifications:(NSString *)userEmail andLastRefreshedId:(NSInteger *)lastRefreshedId onCompletion:(RequestDictionaryCompletionHandler)complete;
++(void)refreshNotifications:(NSString *)userEmail andLastRefreshId:(NSString *)lastRefreshId onCompletion:(RequestDictionaryCompletionHandler)complete;
 @end

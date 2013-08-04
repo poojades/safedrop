@@ -18,7 +18,9 @@
 {
     [GMSServices provideAPIKey:@"AIzaSyDe0pJxdVDFIimZQ_hrNUgk4zswwL6rDRM"];
     GlobalSettings = [[NSMutableArray alloc] init];
-    [GlobalSettings insertObject:@"0" atIndex:0];
+    [GlobalSettings insertObject:@"0" atIndex:0]; //requestId
+    [GlobalSettings insertObject:@"0" atIndex:1]; //lastRefreshId
+
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

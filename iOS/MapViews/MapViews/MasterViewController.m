@@ -19,7 +19,7 @@
 
 #import "ViewController.h"
 
-
+#import "Globals.h"
 
 
 
@@ -108,26 +108,37 @@ return [self.dataController countOfList];
 }
 
 -(void)refreshDataTable:(BOOL) withTableRefresh{
-        NSInteger lastRefreshID = [self.dataController getLastRefreshId];
-    [iOSRequest refreshNotifications:@"sankhasp@cmu.edu" andLastRefreshedId:&lastRefreshID onCompletion:^(NSDictionary *data){
+    
+    
+    
+    
+        NSString *lastRefreshID = [GlobalSettings objectAtIndex:1];
+    [iOSRequest refreshNotifications:kRequesterUsername andLastRefreshId:lastRefreshID onCompletion:^(NSDictionary *data){
 
                dispatch_async(dispatch_get_main_queue(), ^{
             NSArray* notifcations = [data objectForKey:@"notifications"];
+                   if ([lastRefreshID isEqualToString:@"0"]){
+                       if (notifcations==nil){
+                        self.dataController.masterNotificationList=[[NSMutableArray alloc] init];
+                       }
+                   }
                    @try {
+                       
                        for (NSDictionary *dict in notifcations) {
                            
                            NSLog(@"DICT: %@", dict);
                            Notification *notification;
-                           NSInteger id = [[dict objectForKey:@"id"] integerValue];
                            
-                           if (id>lastRefreshID)
+                           NSString *id = [dict objectForKey:@"id"];
+                        
+                           
+                           if ([id integerValue]>[lastRefreshID integerValue])
                            {
-                               [self.dataController setLastRefreshId: id];
-                               NSLog(@"%ld",(long)[self.dataController getLastRefreshId]);
-                               
+                                   [GlobalSettings insertObject:id atIndex:1];
                            }
+                        
                            
-                           NSInteger requestId = [[dict objectForKey:@"requestid"] integerValue];
+                           NSString *requestId = [dict objectForKey:@"requestid"];
                            
                            NSString *text = [dict objectForKey:@"text"];
                            
@@ -137,7 +148,7 @@ return [self.dataController countOfList];
                            NSDate *created = [dict objectForKey:@"created"];
                            NSString *type = [dict objectForKey:@"type"];
                            
-                           notification = [[Notification alloc] initWithId:&id text:text requestId:&requestId receiver:receiver sender:sender type:type created:created];
+                           notification = [[Notification alloc] initWithId:id text:text requestId:requestId receiver:receiver sender:sender type:type created:created];
                            
                            [self.dataController addNotification:notification];
                        }
@@ -150,16 +161,15 @@ return [self.dataController countOfList];
                            
                            NSLog(@"DICT: %@", dict);
                            Notification *notification;
-                           NSInteger id = [[dict objectForKey:@"id"] integerValue];
-                           
-                           if (id>lastRefreshID)
+
+                       NSString *id =[dict objectForKey:@"id"];
+                           if ([id integerValue]>[lastRefreshID integerValue])
                            {
-                               [self.dataController setLastRefreshId: id];
-                               NSLog(@"%ld",(long)[self.dataController getLastRefreshId]);
+                               [GlobalSettings insertObject:id atIndex:1];
                                
                            }
                            
-                           NSInteger requestId = [[dict objectForKey:@"requestid"] integerValue];
+                           NSString *requestId = [dict objectForKey:@"requestid"];
                            
                            NSString *text = [dict objectForKey:@"text"];
                            
@@ -169,7 +179,7 @@ return [self.dataController countOfList];
                            NSDate *created = [dict objectForKey:@"created"];
                            NSString *type = [dict objectForKey:@"type"];
                            
-                           notification = [[Notification alloc] initWithId:&id text:text requestId:&requestId receiver:receiver sender:sender type:type created:created];
+                           notification = [[Notification alloc] initWithId:id text:text requestId:requestId receiver:receiver sender:sender type:type created:created];
                            
                            [self.dataController addNotification:notification];
                        

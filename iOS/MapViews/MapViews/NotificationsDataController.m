@@ -42,16 +42,16 @@
     }
 }
 
--(void)refreshNotifications:(NSString *)userEmail andLastRefreshId:(NSInteger *)lastRefreshId
+-(void)refreshNotifications:(NSString *)userEmail andLastRefreshId:(NSString *)lastRefreshId
 {
-    [iOSRequest refreshNotifications:@"sankhasp@cmu.edu" andLastRefreshedId:lastRefreshId onCompletion:^(NSDictionary *data){
+    [iOSRequest refreshNotifications:kRequesterUsername andLastRefreshId:lastRefreshId onCompletion:^(NSDictionary *data){
         NSArray* notifcations = [data objectForKey:@"notifications"];
             for (NSDictionary *dict in notifcations) {
                 
                 NSLog(@"DICT: %@", dict);
                 Notification *notification;
-                NSInteger id = [[dict objectForKey:@"id"] integerValue];
-                NSInteger requestId = [[dict objectForKey:@"requestid"] integerValue];
+                NSString *id = [dict objectForKey:@"id"];
+                NSString *requestId = [dict objectForKey:@"requestid"];
                 
                 NSString *text = [dict objectForKey:@"text"];
                 
@@ -61,7 +61,7 @@
                 NSDate *created = [dict objectForKey:@"created"];
                 NSString *type = [dict objectForKey:@"type"];
                 
-                notification = [[Notification alloc] initWithId:&id text:text requestId:&requestId receiver:receiver sender:sender type:type created:created];
+                notification = [[Notification alloc] initWithId:id text:text requestId:requestId receiver:receiver sender:sender type:type created:created];
                 
                 //[[Notification alloc] initWithId:id text:text requestId:requestId  recevier:receiver sender:sender type:type created:created];
                 [self addNotification:notification];
@@ -72,7 +72,6 @@
 - (id)init {
     if (self = [super init]) {
         [self initializeDefaultDataList];
-        [self setLastRefreshId:0];
         return self;
     }
     return nil;
@@ -90,11 +89,5 @@
     [self.masterNotificationList addObject:notification];
 }
 
-- (NSInteger) getLastRefreshId{
-    return [self lastRefreshId];
-}
 
-- (void)setLastRefreshId:(NSInteger)id {
-    _lastRefreshId=id;
-}
 @end

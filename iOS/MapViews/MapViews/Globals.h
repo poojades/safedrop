@@ -11,6 +11,8 @@
 
 NSMutableArray * GlobalSettings;
 
+//position 0 -> requestId
+
 typedef enum  {
     NotCreated,
     New,
@@ -35,6 +37,7 @@ RequestStatus status;
 
 #define kRequestStatusURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getRequestStatus"
 
-#define kAcceptRequestURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/acceptVolunteer"
+#define kAcceptVolunteerURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/acceptVolunteer"
 
+#define kAcceptRequesterURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/acceptRequester"
 #endif

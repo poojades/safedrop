@@ -10,15 +10,15 @@
 
 @interface Notification : NSObject
 
-@property (nonatomic) NSInteger *id;
+@property (nonatomic) NSString* id;
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic) NSInteger *requestId;
+@property (nonatomic) NSString* requestId;
 @property (nonatomic, copy) NSString *receiver;
 @property (nonatomic, copy) NSString *sender;
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, strong) NSDate *created;
 
--(id)initWithId:(NSInteger *)id text:(NSString *)text  requestId:(NSInteger *)requestId  receiver:(NSString *)receiver  sender:(NSString *)sender type:(NSString *)type created:(NSDate *)created;
+-(id)initWithId:(NSString *)id text:(NSString *)text  requestId:(NSString *)requestId  receiver:(NSString *)receiver  sender:(NSString *)sender type:(NSString *)type created:(NSDate *)created;
 
 
 

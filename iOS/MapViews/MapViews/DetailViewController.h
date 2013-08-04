@@ -24,6 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *createdLabel;
 
-- (IBAction)acceptVolunteer:(id)sender;
+- (IBAction)accept:(id)sender;
 
 @end

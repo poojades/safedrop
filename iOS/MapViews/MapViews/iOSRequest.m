@@ -66,13 +66,13 @@
                            }];
 }
 
-+(void)refreshNotifications:(NSString *)userEmail andLastRefreshedId:(NSInteger *)lastRefreshedId onCompletion:(RequestDictionaryCompletionHandler)complete{
++(void)refreshNotifications:(NSString *)userEmail andLastRefreshId:(NSString *)lastRefreshId onCompletion:(RequestDictionaryCompletionHandler)complete{
     //userEmail = [userEmail URLEncode];
     
     NSString *basePath = kGetNotificationURL;
-    NSString *fullPath = [basePath stringByAppendingFormat:@"%@/%d",userEmail,*lastRefreshedId];
+    NSString *fullPath = [basePath stringByAppendingFormat:@"%@/%@",userEmail,lastRefreshId];
     
-    NSLog(fullPath);
+    NSLog(@"%@",fullPath);
     [iOSRequest requestRESTGET:fullPath onCompletion:^(NSString *result, NSError *error){
         if (error || [result isEqualToString:@""]) {
             if (complete) complete(nil);
