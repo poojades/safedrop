@@ -200,6 +200,17 @@ GMSCameraPosition *camera;
     [params setValue:tmp forKey:@"lastlong"];
     
     [params setValue:zipCode forKey:@"zip"];
+    
+    [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                NSLog(@"SUCCESS : %@", result);
+            } else {
+                NSLog(@"ERROR: %@",error);
+            }
+        });
+    }];
+
 
 }
 

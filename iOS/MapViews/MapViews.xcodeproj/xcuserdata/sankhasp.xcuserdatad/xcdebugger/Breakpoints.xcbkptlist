@@ -21,25 +21,47 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/ViewController.m"
-         timestampString = "397330035.602166"
+         timestampString = "397331130.114109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "286"
-         endingLineNumber = "286"
-         landmarkName = "-getRequestUpdates"
-         landmarkType = "5">
+         startingLineNumber = "297"
+         endingLineNumber = "297">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/ViewController.m"
-         timestampString = "397329471.219137"
+         timestampString = "397331130.114109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "343"
-         endingLineNumber = "343"
-         landmarkName = "-getRequestUpdates"
+         startingLineNumber = "354"
+         endingLineNumber = "354">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MapViews/ViewController.m"
+         timestampString = "397330714.694821"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "179"
+         endingLineNumber = "179"
+         landmarkName = "-locationManager:didUpdateLocations:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MapViews/ViewController.m"
+         timestampString = "397330816.826439"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "190"
+         endingLineNumber = "190"
+         landmarkName = "-sendLocationToServer"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
