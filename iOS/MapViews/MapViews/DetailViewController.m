@@ -85,7 +85,7 @@
                 if (!error) {
                     NSLog(@"SUCCESS : %@", result);
                     @try {
-                        status=Accepted;
+                        status=InProgress;
                         [GlobalSettings insertObject:@"0" atIndex:1];
                     }
                     @catch (NSException *exception) {
@@ -113,6 +113,8 @@
                     NSLog(@"SUCCESS : %@", result);
                     @try {
                         status=Accepted;
+                        [GlobalSettings insertObject:self.notification.requestId  atIndex:0];
+                        [GlobalSettings insertObject:@"0" atIndex:1];
                     }
                     @catch (NSException *exception) {
                         NSLog(@"Exception : %@", exception);

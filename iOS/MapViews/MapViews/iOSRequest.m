@@ -66,6 +66,7 @@
                            }];
 }
 
+
 +(void)refreshNotifications:(NSString *)userEmail andLastRefreshId:(NSString *)lastRefreshId onCompletion:(RequestDictionaryCompletionHandler)complete{
     //userEmail = [userEmail URLEncode];
     
@@ -85,5 +86,44 @@
             if (complete) complete(user);
         }
     }];
+}
++(void) getLastRequestByUser:(NSString *)userEmail{
+    GlobalSettings = [[NSMutableArray alloc] init];
+    
+    NSString *basePath = kgetLastRequestByUserURL;
+    NSString *fullPath = [basePath stringByAppendingFormat:@"/%@",userEmail];
+    
+    NSLog(@"%@",fullPath);
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:fullPath]
+                                                  cachePolicy:NSURLCacheStorageAllowedInMemoryOnly
+                                              timeoutInterval:10];
+    
+    
+    NSError        *error = nil;
+    NSURLResponse  *response = nil;
+    
+    
+    NSData *data =  [NSURLConnection sendSynchronousRequest: request returningResponse: &response error: &error];
+    
+    NSString* stringReply = (NSString *)[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    if (!error) {
+        NSLog(@"SUCCESS : %@", stringReply );
+        @try {
+            [GlobalSettings insertObject:stringReply atIndex:0];
+            [GlobalSettings insertObject:@"0" atIndex:1];
+            NSLog(@"%@",GlobalSettings);
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Exception : %@", exception);
+            [GlobalSettings insertObject:@"0" atIndex:0];
+            [GlobalSettings insertObject:@"0" atIndex:1];
+        }
+    } else {
+        [GlobalSettings insertObject:@"0" atIndex:0];
+        [GlobalSettings insertObject:@"0" atIndex:1];
+    }
+    
 }
 @end

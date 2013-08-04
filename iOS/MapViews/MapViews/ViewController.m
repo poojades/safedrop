@@ -31,26 +31,24 @@
 @synthesize inButtonButtonPanel;
 @synthesize inLabelButtonPanel;
 @synthesize cancelRequestButton;
+@synthesize notificationButton;
 
 
 NSString *zipCode;
-GMSMarker *marker;
+GMSMarker *SelfMarker;
+GMSMarker *OtherMarker;
 GMSCameraPosition *camera;
 
 
 
 - (void)viewDidLoad
 {
+   
     [super viewDidLoad];
-    self.restorationIdentifier = @"ViewController";
-    self.restorationClass = [self class];
-    
-    [self getRequestUpdates];
-    
     [self startStandardUpdates];
+    [self getRequestUpdates];
+
     
-    status=New;
-        
     
        
     // border radius
@@ -168,14 +166,14 @@ GMSCameraPosition *camera;
         for (CLPlacemark * placemark in placemarks) {
             infoLabel.text=[NSString stringWithFormat:@"%@",[placemark performSelector:NSSelectorFromString(@"locality")]];
             
-            marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+            SelfMarker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
             
-            marker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-            marker.title = @"Your Location";
-            marker.snippet =[NSString stringWithFormat:@"%@ %@ [%@]", [placemark performSelector:NSSelectorFromString(@"name")],[placemark performSelector:NSSelectorFromString(@"locality")],[placemark performSelector:NSSelectorFromString(@"postalCode")]];
-            marker.infoWindowAnchor = CGPointMake(0, 0);
-            marker.icon = [UIImage imageNamed:@"startMarker"];
-            marker.map = _mapView;
+            SelfMarker.position = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+            SelfMarker.title = @"Your Location";
+            SelfMarker.snippet =[NSString stringWithFormat:@"%@ %@ [%@]", [placemark performSelector:NSSelectorFromString(@"name")],[placemark performSelector:NSSelectorFromString(@"locality")],[placemark performSelector:NSSelectorFromString(@"postalCode")]];
+            SelfMarker.infoWindowAnchor = CGPointMake(0, 0);
+            SelfMarker.icon = [UIImage imageNamed:@"startMarker"];
+            SelfMarker.map = _mapView;
             zipCode = [placemark performSelector:NSSelectorFromString(@"postalCode")];
             
             CLLocationCoordinate2D target =
@@ -192,17 +190,33 @@ GMSCameraPosition *camera;
 - (void) sendLocationToServer {
     NSString *address = kSetUserInfoURL;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    NSString *tmp = [[NSString alloc] initWithFormat:@"%f", marker.position.latitude];
+    NSString *tmp = [[NSString alloc] initWithFormat:@"%f", SelfMarker.position.latitude];
     
     [params setValue:kRequesterUsername forKey:@"email"];
     [params setValue:tmp forKey:@"lastlat"];
     
-    tmp = [[NSString alloc] initWithFormat:@"%f", marker.position.longitude];
+    tmp = [[NSString alloc] initWithFormat:@"%f", SelfMarker.position.longitude];
     
     [params setValue:tmp forKey:@"lastlong"];
     
     [params setValue:zipCode forKey:@"zip"];
 
+}
+
+- (void) getOtherLocationFromServer {
+    NSString *address = kSetUserInfoURL;
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    NSString *tmp = [[NSString alloc] initWithFormat:@"%f", SelfMarker.position.latitude];
+    
+    [params setValue:kRequesterUsername forKey:@"email"];
+    [params setValue:tmp forKey:@"lastlat"];
+    
+    tmp = [[NSString alloc] initWithFormat:@"%f", SelfMarker.position.longitude];
+    
+    [params setValue:tmp forKey:@"lastlong"];
+    
+    [params setValue:zipCode forKey:@"zip"];
+    
 }
 
 
@@ -252,10 +266,19 @@ GMSCameraPosition *camera;
 }
 
 - (IBAction)clickButtoninNotificationPanel:(id)sender {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"NotificationStoryBoard" bundle:nil];
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"MasterViewController"];
-    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:vc animated:YES completion:NULL];
+    
+    if (status!=InProgress){
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"NotificationStoryBoard" bundle:nil];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"MasterViewController"];
+        vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:vc animated:YES completion:NULL];        
+    }
+    else{
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MessageStoryBoard" bundle:nil];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"MsgMasterViewController"];
+        vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:vc animated:YES completion:NULL];
+    }
     
 }
 
@@ -271,8 +294,8 @@ GMSCameraPosition *camera;
         locationManager.distanceFilter = 0;
         [locationManager startUpdatingLocation];
     }
-    if (nil == marker){
-        marker  = [[GMSMarker alloc] init];
+    if (nil == SelfMarker){
+        SelfMarker  = [[GMSMarker alloc] init];
     }
 }
 
@@ -314,14 +337,6 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Waiting for confirmation...]";
                     }
-                    else if ([result isEqualToString:@"I"]){
-                        
-                        status=InProgress;
-                        [cancelRequestButton setHidden:FALSE];
-                        [inButtonButtonPanel setTitle:@"Request inProgress" forState:UIControlStateNormal];
-                        [inButtonButtonPanel setEnabled:FALSE];
-                        inLabelButtonPanel.text=@"[SafeDrop in session...]";
-                    }
                     else if ([result isEqualToString:@"A"]){
                         status=Accepted;
                         [cancelRequestButton setHidden:FALSE];
@@ -329,13 +344,19 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Check Notifications...]";
                     }
-                    else if ([result isEqualToString:@"C"]){
+                    else if ([result isEqualToString:@"I"]){
                         
-                        status=Cancel;
+                        status=InProgress;
                         [cancelRequestButton setHidden:FALSE];
-                        [inButtonButtonPanel setTitle:@"Request Cancelled" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setTitle:@"Request inProgress" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
-                        inLabelButtonPanel.text=@"[Initimating volunteers...]";
+                        inLabelButtonPanel.text=@"[SafeDrop in session...]";
+                        
+                        NSString *msgButtonImageName = @"msg";
+                        
+                        UIImage *slImage = [UIImage imageNamed:msgButtonImageName];
+                        
+                        [self.notificationButton setImage:slImage forState:UIControlStateNormal];
                     }
                     else if ([result isEqualToString:@"D"]){
                         
@@ -352,6 +373,14 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setTitle:@"Request Archived" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Request has been archived...]";
+                    }
+                    else if ([result isEqualToString:@"C"]){
+                        
+                        status=Cancel;
+                        [cancelRequestButton setHidden:FALSE];
+                        [inButtonButtonPanel setTitle:@"Request Cancelled" forState:UIControlStateNormal];
+                        [inButtonButtonPanel setEnabled:FALSE];
+                        inLabelButtonPanel.text=@"[Initimating volunteers...]";
                     }
                     else{
                         status=NotCreated;

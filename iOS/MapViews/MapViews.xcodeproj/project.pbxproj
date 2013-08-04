@@ -41,6 +41,9 @@
 		AF08F2F317A9B7DE00DBF02A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2F217A9B7DE00DBF02A /* OpenGLES.framework */; };
 		AF08F2F517A9B7E500DBF02A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2F417A9B7E500DBF02A /* QuartzCore.framework */; };
 		AF08F2F717A9B7EF00DBF02A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2F617A9B7EF00DBF02A /* SystemConfiguration.framework */; };
+		AF4E509717AEBB4C00802784 /* MsgMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4E509617AEBB4C00802784 /* MsgMasterViewController.m */; };
+		AF4E509917AEC17200802784 /* MessageStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4E509817AEC17200802784 /* MessageStoryBoard.storyboard */; };
+		AF4E509B17AEC65400802784 /* msg.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E509A17AEC65400802784 /* msg.png */; };
 		AFB7773B17AAE97F009D5A65 /* power.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB7773A17AAE97F009D5A65 /* power.png */; };
 		AFD494B917AD4873004D5FF6 /* NotificationStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */; };
 		AFD4953A17AD4C5A004D5FF6 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD4953117AD4C5A004D5FF6 /* MasterViewController.m */; };
@@ -80,7 +83,7 @@
 		AF08F2B317A9B5C800DBF02A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		AF08F2B517A9B5C800DBF02A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AF08F2B717A9B5C800DBF02A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AF08F2B817A9B5C800DBF02A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AF08F2B817A9B5C800DBF02A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AF08F2BB17A9B5C800DBF02A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		AF08F2C217A9B5C800DBF02A /* MapViewsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapViewsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF08F2C317A9B5C800DBF02A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -102,6 +105,10 @@
 		AF08F2F217A9B7DE00DBF02A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		AF08F2F417A9B7E500DBF02A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AF08F2F617A9B7EF00DBF02A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AF4E509517AEBB4C00802784 /* MsgMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgMasterViewController.h; sourceTree = "<group>"; };
+		AF4E509617AEBB4C00802784 /* MsgMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgMasterViewController.m; sourceTree = "<group>"; };
+		AF4E509817AEC17200802784 /* MessageStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageStoryBoard.storyboard; sourceTree = "<group>"; };
+		AF4E509A17AEC65400802784 /* msg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg.png; sourceTree = "<group>"; };
 		AFB7773A17AAE97F009D5A65 /* power.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = power.png; sourceTree = "<group>"; };
 		AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NotificationStoryBoard.storyboard; path = ../NotificationStoryBoard.storyboard; sourceTree = "<group>"; };
 		AFD4953017AD4C5A004D5FF6 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -169,6 +176,8 @@
 		AF004C1017AA9BBC002B3C8F /* WebService */ = {
 			isa = PBXGroup;
 			children = (
+				AFD4953817AD4C5A004D5FF6 /* NSString+WebService.h */,
+				AFD4953917AD4C5A004D5FF6 /* NSString+WebService.m */,
 				AFD4954517AD50FE004D5FF6 /* iOSRequest.m */,
 				AFD4954617AD50FE004D5FF6 /* iOSRequest.h */,
 			);
@@ -211,16 +220,7 @@
 		AF08F2A517A9B5C800DBF02A /* MapViews */ = {
 			isa = PBXGroup;
 			children = (
-				AFD4953017AD4C5A004D5FF6 /* DetailViewController.h */,
-				AFD4953117AD4C5A004D5FF6 /* MasterViewController.m */,
-				AFD4953217AD4C5A004D5FF6 /* DetailViewController.m */,
-				AFD4953317AD4C5A004D5FF6 /* Notification.m */,
-				AFD4953417AD4C5A004D5FF6 /* MasterViewController.h */,
-				AFD4953517AD4C5A004D5FF6 /* Notification.h */,
-				AFD4953617AD4C5A004D5FF6 /* NotificationsDataController.h */,
-				AFD4953717AD4C5A004D5FF6 /* NotificationsDataController.m */,
-				AFD4953817AD4C5A004D5FF6 /* NSString+WebService.h */,
-				AFD4953917AD4C5A004D5FF6 /* NSString+WebService.m */,
+				AF4E509017AEB7D800802784 /* MessageView */,
 				AFD494BB17AD488D004D5FF6 /* Notification */,
 				AFD494BA17AD4880004D5FF6 /* HomeView */,
 				AF004C1017AA9BBC002B3C8F /* WebService */,
@@ -233,6 +233,7 @@
 		AF08F2A617A9B5C800DBF02A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF4E509A17AEC65400802784 /* msg.png */,
 				AFB7773A17AAE97F009D5A65 /* power.png */,
 				AF004BEE17AA7368002B3C8F /* startMarker.png */,
 				AF004BEC17A9E025002B3C8F /* user_highlight.png */,
@@ -287,6 +288,16 @@
 			name = LinkedFrameworks;
 			sourceTree = "<group>";
 		};
+		AF4E509017AEB7D800802784 /* MessageView */ = {
+			isa = PBXGroup;
+			children = (
+				AF4E509817AEC17200802784 /* MessageStoryBoard.storyboard */,
+				AF4E509517AEBB4C00802784 /* MsgMasterViewController.h */,
+				AF4E509617AEBB4C00802784 /* MsgMasterViewController.m */,
+			);
+			name = MessageView;
+			sourceTree = "<group>";
+		};
 		AFD494BA17AD4880004D5FF6 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +311,14 @@
 		AFD494BB17AD488D004D5FF6 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				AFD4953017AD4C5A004D5FF6 /* DetailViewController.h */,
+				AFD4953117AD4C5A004D5FF6 /* MasterViewController.m */,
+				AFD4953217AD4C5A004D5FF6 /* DetailViewController.m */,
+				AFD4953317AD4C5A004D5FF6 /* Notification.m */,
+				AFD4953417AD4C5A004D5FF6 /* MasterViewController.h */,
+				AFD4953517AD4C5A004D5FF6 /* Notification.h */,
+				AFD4953617AD4C5A004D5FF6 /* NotificationsDataController.h */,
+				AFD4953717AD4C5A004D5FF6 /* NotificationsDataController.m */,
 				AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */,
 			);
 			name = Notification;
@@ -388,6 +407,8 @@
 				AF004BEF17AA7368002B3C8F /* startMarker.png in Resources */,
 				AFB7773B17AAE97F009D5A65 /* power.png in Resources */,
 				AFD494B917AD4873004D5FF6 /* NotificationStoryBoard.storyboard in Resources */,
+				AF4E509917AEC17200802784 /* MessageStoryBoard.storyboard in Resources */,
+				AF4E509B17AEC65400802784 /* msg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +452,7 @@
 				AFD4953D17AD4C5A004D5FF6 /* NotificationsDataController.m in Sources */,
 				AFD4953E17AD4C5A004D5FF6 /* NSString+WebService.m in Sources */,
 				AFD4954717AD50FE004D5FF6 /* iOSRequest.m in Sources */,
+				AF4E509717AEBB4C00802784 /* MsgMasterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

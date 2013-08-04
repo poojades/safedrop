@@ -29,6 +29,7 @@
 - (IBAction)changeLabel:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *uiLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *notificationButton;
 
 - (IBAction)clickButtoninButtonPanel:(id)sender;
 

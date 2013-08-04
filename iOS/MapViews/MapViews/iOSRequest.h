@@ -20,4 +20,7 @@ typedef void(^RequestDictionaryCompletionHandler)(NSDictionary*);
           onCompletion:(RequestCompletionHandler)complete;
 
 +(void)refreshNotifications:(NSString *)userEmail andLastRefreshId:(NSString *)lastRefreshId onCompletion:(RequestDictionaryCompletionHandler)complete;
+
++(void)getLastRequestByUser:(NSString *)userEmail;
+
 @end

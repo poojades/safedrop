@@ -10,6 +10,7 @@
 
 #import "ViewController.h"
 
+#import "iOSRequest.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 @implementation AppDelegate
@@ -17,11 +18,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [GMSServices provideAPIKey:@"AIzaSyDe0pJxdVDFIimZQ_hrNUgk4zswwL6rDRM"];
-    GlobalSettings = [[NSMutableArray alloc] init];
-    [GlobalSettings insertObject:@"0" atIndex:0]; //requestId
-    [GlobalSettings insertObject:@"0" atIndex:1]; //lastRefreshId
-
     
+    [iOSRequest getLastRequestByUser:kRequesterUsername];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
@@ -29,6 +27,10 @@
     [self.window makeKeyAndVisible];
         return YES;
 }
+
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
