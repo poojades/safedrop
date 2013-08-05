@@ -735,7 +735,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		try {
 			returnarray =  dao.findByUsers2(volunteerEmail);
 			
-			if (returnarray!=null || returnarray.length==1){
+			if (returnarray!=null && returnarray.length==1){
 				Ratings rating = returnarray[0];
 				Ratings ratings = new Ratings();
 				ratings.setId(0);
