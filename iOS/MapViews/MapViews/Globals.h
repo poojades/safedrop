@@ -26,7 +26,7 @@ typedef enum  {
 
 RequestStatus status;
 
-#define kRequesterUsername @"sankhasp@cmu.edu"
+#define kRequesterUsername @"sankhasp1@cmu.edu"
 
 #define kGetNotificationURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getNotifications/";
 

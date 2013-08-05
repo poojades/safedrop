@@ -24,7 +24,7 @@
 }
 
 
-@synthesize uiLabel;
+
 @synthesize mapViewOnScreen;
 @synthesize infoPanel;
 @synthesize buttonPanel;
@@ -34,79 +34,185 @@
 @synthesize inLabelButtonPanel;
 @synthesize cancelRequestButton;
 @synthesize notificationButton;
-
+@synthesize safeDropIcon;
+@synthesize subLocationLabel;
 
 NSString *zipCode;
 GMSMarker *SelfMarker;
 GMSMarker *OtherMarker;
 GMSCameraPosition *camera;
 
+GMSPolyline *polyRoute;
+GMSPolygon *polyRegion;
+
 
 - (void)getDirections {
-    
-    
     NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false", SelfMarker.position.latitude, SelfMarker.position.longitude, OtherMarker.position.latitude, OtherMarker.position.longitude];
-    NSLog(url);
+    NSLog(@"%@",url);
     
     
     [iOSRequest requestRESTGET:url onCompletion:^(NSString *result, NSError *error){
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error || [result isEqualToString:@""]) {
-                NSLog(@"---------------------> %@",error);
+                    NSLog(@"%@",error);
             } else {
                 NSDictionary *response = [result JSON];
                 
-                
-                
-                int points_count = 0;
-                if ([[response objectForKey:@"routes"] count])
-                    points_count = [[[[[[response objectForKey:@"routes"] objectAtIndex:0] objectForKey:@"legs"] objectAtIndex:0] objectForKey:@"steps"] count];
-                
-                
-                 CLLocationCoordinate2D points[points_count * 2];
-                
-                GMSMutablePath *path = [GMSMutablePath path];
-                
-                int j = 0;
-                NSArray *steps = nil;
-                if (points_count && [[[[response objectForKey:@"routes"] objectAtIndex:0] objectForKey:@"legs"] count])
-                    steps = [[[[[response objectForKey:@"routes"] objectAtIndex:0] objectForKey:@"legs"] objectAtIndex:0] objectForKey:@"steps"];
-                for (int i = 0; i < points_count; i++) {
+                @try {
+                    NSString* encodedString = [[[[response objectForKey:@"routes"] objectAtIndex:0] objectForKey:@"overview_polyline"]objectForKey:@"points"];
+                    const char *bytes = [encodedString UTF8String];
+                    NSUInteger length = [encodedString lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+                    NSUInteger idx = 0;
                     
-                    double st_lat = [[[[steps objectAtIndex:i] objectForKey:@"start_location"] valueForKey:@"lat"] doubleValue];
-                    double st_lon = [[[[steps objectAtIndex:i] objectForKey:@"start_location"] valueForKey:@"lng"] doubleValue];
-                    //NSLog(@"lat lon: %f %f", st_lat, st_lon);
-                        points[j] = CLLocationCoordinate2DMake(st_lat, st_lon);
-                        j++;
-                    double end_lat = [[[[steps objectAtIndex:i] objectForKey:@"end_location"] valueForKey:@"lat"] doubleValue];
-                    double end_lon = [[[[steps objectAtIndex:i] objectForKey:@"end_location"] valueForKey:@"lng"] doubleValue];
-                        points[j] = CLLocationCoordinate2DMake(end_lat, end_lon);
-//                        endCoordinate = CLLocationCoordinate2DMake(end_lat, end_lon);
-                        j++;
-                   // NSLog(@"%d",j);
-                }
-                
-                for (int i = 0; i < points_count*2; i++) {
-                    [path addLatitude:points[i].latitude longitude:points[i].longitude];
-                }
-//                MKPolyline *polyline = [MKPolyline polylineWithCoordinates:points count:points_count * 2];
-//                [_mapView addOverlay:polyline];
-                GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-                polyline.strokeColor = [UIColor greenColor];
-                polyline.strokeWidth = 10.f;
-                polyline.geodesic = YES;
-                polyline.map = _mapView;
+                    NSUInteger count = length / 4;
+                    CLLocationCoordinate2D *coords = calloc(count, sizeof(CLLocationCoordinate2D));
+                    NSUInteger coordIdx = 0;
+                    
+                    float latitude = 0;
+                    float longitude = 0;
+                    while (idx < length) {
+                        char byte = 0;
+                        int res = 0;
+                        char shift = 0;
+                        
+                        do {
+                            byte = bytes[idx++] - 63;
+                            res |= (byte & 0x1F) << shift;
+                            shift += 5;
+                        } while (byte >= 0x20);
+                        
+                        float deltaLat = ((res & 1) ? ~(res >> 1) : (res >> 1));
+                        latitude += deltaLat;
+                        
+                        shift = 0;
+                        res = 0;
+                        
+                        do {
+                            byte = bytes[idx++] - 0x3F;
+                            res |= (byte & 0x1F) << shift;
+                            shift += 5;
+                        } while (byte >= 0x20);
+                        
+                        float deltaLon = ((res & 1) ? ~(res >> 1) : (res >> 1));
+                        longitude += deltaLon;
+                        
+                        float finalLat = latitude * 1E-5;
+                        float finalLon = longitude * 1E-5;
+                        
+                        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(finalLat, finalLon);
+                        coords[coordIdx++] = coord;
+                        
+                        if (coordIdx == count) {
+                            NSUInteger newCount = count + 10;
+                            coords = realloc(coords, newCount * sizeof(CLLocationCoordinate2D));
+                            count = newCount;
+                        }
+                    }
+                    GMSMutablePath *pathForRegion= [GMSMutablePath path];
+                    
+                    for (int i = 0; i < coordIdx; i++) {
+                        [pathForRegion addLatitude:coords[i].latitude longitude:coords[i].longitude];
+                    }
+                    
+                    [pathForRegion addLatitude:OtherMarker.position.latitude longitude:OtherMarker.position.longitude];
+                    
+                    if (nil==polyRoute)
+                    {
+                        polyRoute=[GMSPolyline polylineWithPath:pathForRegion];
+                    }
+                    else{
+                        polyRoute.map=nil;
+                        polyRoute=[GMSPolyline polylineWithPath:pathForRegion];
+                    }
+                    
+                    
+                    polyRoute.strokeColor = [UIColor blueColor];
+                    polyRoute.strokeWidth = 10.f;
+                    polyRoute.geodesic = YES;
+                    polyRoute.map = _mapView;
+                    
+                    
+                    GMSCoordinateBounds *bounds;
+                    bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:SelfMarker.position
+                                                                  coordinate:OtherMarker.position];
+                    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds
+                                                             withPadding:300.0f];
+                    [_mapView animateWithCameraUpdate:update];
 
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"%@",exception);
+                }
             }
         });}];
     
-    
-
-    
-    
-    
 }
 
+-(void) showDistance{
+    @try {
+        CLLocation *firstLocation = [[CLLocation alloc] initWithLatitude:SelfMarker.position.latitude longitude:SelfMarker.position.longitude];
+        CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:OtherMarker.position.latitude longitude:OtherMarker.position.longitude];
+        CLLocationDistance distance = [firstLocation distanceFromLocation:secondLocation];
+        subLocationLabel.text = [NSString stringWithFormat:@"Distance: %.2f miles",distance*0.000621371];
+    }
+    @catch (NSException *exception) {
+        subLocationLabel.text = @"Failed to fetch distance";
+    }
+ 
+}
+
+
+- (void) showZipRegion{
+    NSString *url = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=false", zipCode];
+    NSLog(@"%@",url);
+    @try {
+        [iOSRequest requestRESTGET:url onCompletion:^(NSString *result, NSError *error){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error || [result isEqualToString:@""]) {
+                    NSLog(@"%@",error);
+                } else {
+                    NSDictionary *response = [result JSON];
+                    NSString* x1 = [[[[[[response objectForKey:@"results"] objectAtIndex:0] objectForKey:@"geometry"]objectForKey:@"bounds"] objectForKey:@"northeast"]objectForKey:@"lat"];
+                    NSString* y1 = [[[[[[response objectForKey:@"results"] objectAtIndex:0] objectForKey:@"geometry"]objectForKey:@"bounds"] objectForKey:@"northeast"]objectForKey:@"lng"];
+                    NSString* x2 = [[[[[[response objectForKey:@"results"] objectAtIndex:0] objectForKey:@"geometry"] objectForKey:@"bounds"] objectForKey:@"southwest"]objectForKey:@"lat"];
+                    NSString* y2 = [[[[[[response objectForKey:@"results"] objectAtIndex:0] objectForKey:@"geometry"] objectForKey:@"bounds"] objectForKey:@"southwest"]objectForKey:@"lng"];
+                    
+                    GMSMutablePath *pathForRegion= [GMSMutablePath path];
+                    
+                    [pathForRegion addLatitude:[x1 floatValue] longitude:[y1 floatValue]];
+                    [pathForRegion addLatitude:[x2 floatValue] longitude:[y1 floatValue]];
+                    [pathForRegion addLatitude:[x2 floatValue] longitude:[y1 floatValue]];
+                    [pathForRegion addLatitude:[x2 floatValue] longitude:[y2 floatValue]];
+                    [pathForRegion addLatitude:[x2 floatValue] longitude:[y2 floatValue]];
+                    [pathForRegion addLatitude:[x1 floatValue] longitude:[y2 floatValue]];
+                    [pathForRegion addLatitude:[x1 floatValue] longitude:[y2 floatValue]];
+                    [pathForRegion addLatitude:[x1 floatValue] longitude:[y1 floatValue]];
+                    
+                    
+                    if (nil==polyRegion)
+                    {
+                        polyRegion=[GMSPolygon polygonWithPath:pathForRegion];
+                        
+                    }
+                    else{
+                        polyRegion.map=nil;
+                        polyRegion=[GMSPolygon polygonWithPath:pathForRegion];
+                    }
+                    
+                    
+                    polyRegion.fillColor = [UIColor colorWithRed:0.25 green:0 blue:0 alpha:0.05];
+                    polyRegion.strokeColor = [UIColor brownColor];
+                    polyRegion.strokeWidth = 2;
+                    polyRegion.map = _mapView;
+                    
+                }
+            });}];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@",exception);
+    }
+    
+}
 
 
 
@@ -116,7 +222,7 @@ GMSCameraPosition *camera;
     [super viewDidLoad];
     [self startStandardUpdates];
     [self getRequestUpdates];
-
+    
     
     
        
@@ -242,14 +348,16 @@ GMSCameraPosition *camera;
             SelfMarker.icon = [UIImage imageNamed:@"startMarker"];
             SelfMarker.map = _mapView;
             zipCode = [placemark performSelector:NSSelectorFromString(@"postalCode")];
-            
-            CLLocationCoordinate2D target =
-            CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-            _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:kGMSMaxZoomLevel - 8];
+            if (status==NotCreated){
+                CLLocationCoordinate2D target =
+                CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+                _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:kGMSMaxZoomLevel - 8];
+            }
             [self sendLocationToServer];
+            [self showZipRegion];
             if (status==InProgress){
                 [self getOtherLocationFromServer];
-                
+                [self showDistance];
             }
         }
     }];
@@ -365,8 +473,17 @@ GMSCameraPosition *camera;
 
 }
 
+
+
 - (IBAction)clickButtoninNotificationPanel:(id)sender {
-    
+    [_mapView clear];
+    _mapView=nil;
+    SelfMarker=nil;
+    OtherMarker=nil;
+    polyRoute.map=nil;
+    polyRoute=nil;
+    polyRegion.map=nil;
+    polyRegion=nil;
     if (status!=InProgress){
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"NotificationStoryBoard" bundle:nil];
         UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"MasterViewController"];
@@ -429,6 +546,7 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setTitle:@"Request Created" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
+                         safeDropIcon.hidden=TRUE;
                     }
                     else if ([result isEqualToString:@"P"]){
                         
@@ -437,6 +555,7 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setTitle:@"Request Pending" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Waiting for confirmation...]";
+                         safeDropIcon.hidden=TRUE;
                     }
                     else if ([result isEqualToString:@"A"]){
                         status=Accepted;
@@ -444,6 +563,7 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setTitle:@"Request Accepted" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Check Notifications...]";
+                        safeDropIcon.hidden=TRUE;
                     }
                     else if ([result isEqualToString:@"I"]){
                         
@@ -453,6 +573,7 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[SafeDrop in session...]";
                         
+                        safeDropIcon.hidden=FALSE;
                         NSString *msgButtonImageName = @"msg";
                         
                         UIImage *slImage = [UIImage imageNamed:msgButtonImageName];
@@ -466,6 +587,8 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setTitle:@"Request Done" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Request Completed...]";
+                        safeDropIcon.hidden=TRUE;
+
                     }
                     else if ([result isEqualToString:@"R"]){
                         
@@ -474,6 +597,8 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setTitle:@"Request Archived" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Request has been archived...]";
+                        safeDropIcon.hidden=TRUE;
+
                     }
                     else if ([result isEqualToString:@"C"]){
                         
@@ -482,6 +607,8 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setTitle:@"Request Cancelled" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Initimating volunteers...]";
+                        safeDropIcon.hidden=TRUE;
+
                     }
                     else{
                         status=NotCreated;
@@ -490,6 +617,7 @@ GMSCameraPosition *camera;
                         [inButtonButtonPanel setTitle:@"Pickup Request" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:TRUE];
                         inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
+                         safeDropIcon.hidden=TRUE;
                         
                     }
                     
@@ -499,6 +627,7 @@ GMSCameraPosition *camera;
                     [inButtonButtonPanel setTitle:@"Pickup Request" forState:UIControlStateNormal];
                     [inButtonButtonPanel setEnabled:TRUE];
                     inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
+                     safeDropIcon.hidden=TRUE;
                 }
             });
         }];

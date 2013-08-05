@@ -10,5 +10,19 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "main:main.m">
+      </ContextState>
+      <ContextState
+         contextName = "__31-[ViewController getDirections]_block_invoke_2:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[[response objectForKey:@&quot;routes&quot;] count]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController getRequestUpdates]:ViewController.m">
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

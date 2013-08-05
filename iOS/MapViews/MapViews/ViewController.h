@@ -26,8 +26,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *inLabelButtonPanel;
 @property (nonatomic) RequestStatus status;
 @property (weak, nonatomic) IBOutlet UIButton *cancelRequestButton;
-- (IBAction)changeLabel:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *uiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subLocationLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *safeDropIcon;
 
 @property (weak, nonatomic) IBOutlet UIButton *notificationButton;
 

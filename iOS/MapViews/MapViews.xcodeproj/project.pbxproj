@@ -44,6 +44,7 @@
 		AF4E509717AEBB4C00802784 /* MsgMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4E509617AEBB4C00802784 /* MsgMasterViewController.m */; };
 		AF4E509917AEC17200802784 /* MessageStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4E509817AEC17200802784 /* MessageStoryBoard.storyboard */; };
 		AF4E509B17AEC65400802784 /* msg.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E509A17AEC65400802784 /* msg.png */; };
+		AF4E50C517AF1A7900802784 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E50C417AF1A7900802784 /* logo.png */; };
 		AFB7773B17AAE97F009D5A65 /* power.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB7773A17AAE97F009D5A65 /* power.png */; };
 		AFD494B917AD4873004D5FF6 /* NotificationStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */; };
 		AFD4953A17AD4C5A004D5FF6 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD4953117AD4C5A004D5FF6 /* MasterViewController.m */; };
@@ -109,6 +110,7 @@
 		AF4E509617AEBB4C00802784 /* MsgMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgMasterViewController.m; sourceTree = "<group>"; };
 		AF4E509817AEC17200802784 /* MessageStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageStoryBoard.storyboard; sourceTree = "<group>"; };
 		AF4E509A17AEC65400802784 /* msg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg.png; sourceTree = "<group>"; };
+		AF4E50C417AF1A7900802784 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		AFB7773A17AAE97F009D5A65 /* power.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = power.png; sourceTree = "<group>"; };
 		AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NotificationStoryBoard.storyboard; path = ../NotificationStoryBoard.storyboard; sourceTree = "<group>"; };
 		AFD4953017AD4C5A004D5FF6 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		AF08F2A617A9B5C800DBF02A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF4E50C417AF1A7900802784 /* logo.png */,
 				AF4E509A17AEC65400802784 /* msg.png */,
 				AFB7773A17AAE97F009D5A65 /* power.png */,
 				AF004BEE17AA7368002B3C8F /* startMarker.png */,
@@ -409,6 +412,7 @@
 				AFD494B917AD4873004D5FF6 /* NotificationStoryBoard.storyboard in Resources */,
 				AF4E509917AEC17200802784 /* MessageStoryBoard.storyboard in Resources */,
 				AF4E509B17AEC65400802784 /* msg.png in Resources */,
+				AF4E50C517AF1A7900802784 /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
