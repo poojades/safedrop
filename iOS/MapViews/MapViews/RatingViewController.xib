@@ -53,18 +53,16 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIBarStyle">1</int>
+						<object class="NSColor" key="IBUITintColor" id="585457106">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+						</object>
 						<array key="IBUIItems">
 							<object class="IBUINavigationItem" id="162009553">
 								<reference key="IBUINavigationBar" ref="807694196"/>
-								<string key="IBUITitle">Rate SafeDrop</string>
+								<string key="IBUITitle">Ratings</string>
 								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="301588922">
 									<string key="IBUITitle">Safe Drop</string>
-									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-									<int key="IBUIStyle">1</int>
-									<reference key="IBUINavigationItem" ref="162009553"/>
-								</object>
-								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="854558491">
-									<string key="IBUITitle">Cancel</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									<int key="IBUIStyle">1</int>
 									<reference key="IBUINavigationItem" ref="162009553"/>
@@ -157,10 +155,7 @@
 									<reference ref="4"/>
 									<reference ref="4"/>
 								</array>
-								<object class="NSColor" key="IBTintColor" id="550635826">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
-								</object>
+								<reference key="IBTintColor" ref="585457106"/>
 							</object>
 							<object class="IBUITextField" id="928754136">
 								<reference key="NSNextResponder" ref="644251776"/>
@@ -240,7 +235,10 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="461155622"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="550635826"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
+						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -503,14 +501,8 @@
 						<reference key="object" ref="162009553"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="301588922"/>
-							<reference ref="854558491"/>
 						</array>
 						<reference key="parent" ref="807694196"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">19</int>
-						<reference key="object" ref="854558491"/>
-						<reference key="parent" ref="162009553"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
@@ -984,7 +976,6 @@
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="285.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<array class="NSMutableArray" key="285.IBViewMetadataConstraints">
 					<reference ref="71663457"/>

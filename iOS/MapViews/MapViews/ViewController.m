@@ -14,7 +14,7 @@
 #import "NSString+WebService.h"
 
 #import "RatingViewController.h"
-
+#import "MessageViewController.h"
 
 @interface ViewController ()
 
@@ -378,7 +378,7 @@ GMSPolygon *polyRegion;
             SelfMarker.icon = [UIImage imageNamed:@"startMarker"];
             SelfMarker.map = _mapView;
             zipCode = [placemark performSelector:NSSelectorFromString(@"postalCode")];
-            if (status==NotCreated || status==Done){
+            if (status==NotCreated || status==Done || status==New){
                 CLLocationCoordinate2D target =
                 CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
                 _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:kGMSMaxZoomLevel - 8];
@@ -563,10 +563,11 @@ GMSPolygon *polyRegion;
         [self presentViewController:vc animated:YES completion:NULL];        
     }
     else{
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MessageStoryBoard" bundle:nil];
-        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"MsgMasterViewController"];
-        vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentViewController:vc animated:YES completion:NULL];
+    
+        MessageViewController *viewController=[[MessageViewController alloc]initWithNibName:@"MessageViewController" bundle:nil];
+        
+        [self presentViewController:viewController animated:YES completion:nil];
+        
     }
     
 }
