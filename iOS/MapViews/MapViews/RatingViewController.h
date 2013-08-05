@@ -10,14 +10,20 @@
 #import "AMRatingControl.h"
 
 @interface RatingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
-    NSArray *tableData;
+    NSDictionary *tableData;
 }
 
 - (IBAction)goBackToSafeDrop:(id)sender;
 
-@property (nonatomic,retain) NSArray *tableData;
+@property (nonatomic,retain) NSDictionary *tableData;
 
 @property (weak, nonatomic) IBOutlet UITableView *reusableCellTableView;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *ratingCommentsText;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *ratingValue;
+
+- (IBAction)addRating:(id)sender;
 
 
 @end

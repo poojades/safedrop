@@ -13,6 +13,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *byField;
 @property (weak, nonatomic) IBOutlet UILabel *textField;
-@property (weak, nonatomic) IBOutlet UISlider *ratingValue;
-
+@property (weak, nonatomic) IBOutlet AMRatingControl *ratingControl;
 @end

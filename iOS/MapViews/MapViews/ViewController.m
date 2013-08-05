@@ -39,6 +39,7 @@
 @synthesize notificationButton;
 @synthesize safeDropIcon;
 @synthesize subLocationLabel;
+@synthesize timer;
 
 NSString *zipCode;
 GMSMarker *SelfMarker;
@@ -47,6 +48,8 @@ GMSCameraPosition *camera;
 
 GMSPolyline *polyRoute;
 GMSPolygon *polyRegion;
+
+
 
 
 - (void)getDirections {
@@ -226,7 +229,7 @@ GMSPolygon *polyRegion;
     [super viewDidLoad];
     [self startStandardUpdates];
     [self getRequestUpdates];
-    
+    [self createTimer];
     
     
        
@@ -333,6 +336,29 @@ GMSPolygon *polyRegion;
     return NO;
 }
 
+
+- (void)createTimer {
+    timer=[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(timerTicked:) userInfo:nil repeats:YES];
+}
+
+- (void)timerTicked:(NSTimer*)timer {
+
+    if (status==Cancel){
+        status=New;
+        //flush the reqestId
+        [GlobalSettings insertObject:@"0" atIndex:0];
+        
+    }
+    if (status==Done){
+        status=New;
+        //flush the reqestId
+        [GlobalSettings insertObject:@"0" atIndex:0];
+        
+    }
+        [self getRequestUpdates];
+   
+}
+
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations {
     NSLog(@"update locations called");
@@ -352,7 +378,7 @@ GMSPolygon *polyRegion;
             SelfMarker.icon = [UIImage imageNamed:@"startMarker"];
             SelfMarker.map = _mapView;
             zipCode = [placemark performSelector:NSSelectorFromString(@"postalCode")];
-            if (status==NotCreated){
+            if (status==NotCreated || status==Done){
                 CLLocationCoordinate2D target =
                 CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
                 _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:kGMSMaxZoomLevel - 8];
@@ -369,7 +395,7 @@ GMSPolygon *polyRegion;
 }
 
 - (void) sendLocationToServer {
-    NSString *address = kSetUserInfoURL;
+    NSString *address = ksetUserInfoURL;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     NSString *tmp = [[NSString alloc] initWithFormat:@"%f", SelfMarker.position.latitude];
     
@@ -408,13 +434,16 @@ GMSPolygon *polyRegion;
     [iOSRequest requestRESTGET:fullPath onCompletion:^(NSString *result, NSError *error){
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error || [result isEqualToString:@""]) {
-                NSLog(@"---------------------> %@",error);
+                NSLog(@"%@",error);
             } else {
                 NSDictionary *otherLocation = [result JSON];
-                NSLog(@"---------------------> %@",otherLocation);
+                NSLog(@"%@",otherLocation);
                 NSString *lat = [otherLocation objectForKey:@"lastlat"];
                 NSString *longitude = [otherLocation objectForKey:@"lastlong"];
+                NSString *otherUserName = [otherLocation objectForKey:@"email"];
                 
+
+                [GlobalSettings insertObject:otherUserName atIndex:2];
                 
                 CLLocation *LocationAtual = [[CLLocation alloc] initWithLatitude:[lat floatValue] longitude:[longitude floatValue]];
                 if (nil == OtherMarker){
@@ -432,7 +461,7 @@ GMSPolygon *polyRegion;
 }
 
 - (void) getEContact{
-        NSString *basePath = kGetUserInfoURL;
+        NSString *basePath = kgetUserInfoURL;
         NSString *fullPath = [basePath stringByAppendingFormat:@"/%@",kRequesterUsername];
         
         NSLog(@"%@",fullPath);
@@ -458,21 +487,21 @@ GMSPolygon *polyRegion;
             NSDictionary *userInfo = [stringReply JSON];
 
             NSString *econtact = [userInfo objectForKey:@"econtact"];
-            [GlobalSettings insertObject:econtact atIndex:2];
+            [GlobalSettings insertObject:econtact atIndex:3];
         }
         @catch (NSException *exception) {
             NSLog(@"Exception : %@", exception);
-            [GlobalSettings insertObject:@"911" atIndex:2];
+            [GlobalSettings insertObject:@"911" atIndex:3];
         }
     } else {
-       [GlobalSettings insertObject:@"911" atIndex:2];
+       [GlobalSettings insertObject:@"911" atIndex:3];
     }
 }
 
 
 - (void) createPickupRequestToServer {
     inLabelButtonPanel.text=@"[Creating New Request]";
-    NSString *address = kRequestPickupURL;
+    NSString *address = krequestPickupURL;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:kRequesterUsername forKey:@"email"];
     [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
@@ -608,7 +637,7 @@ GMSPolygon *polyRegion;
     {
         [self getEContact];
         NSLog(@"Emergency was selected.");
-        NSString *phoneNumber = [GlobalSettings objectAtIndex:2];
+        NSString *phoneNumber = [GlobalSettings objectAtIndex:3];
         NSString *telString = [NSString stringWithFormat:@"tel:%@,%@", phoneNumber, @""];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telString]];
     }
@@ -647,7 +676,7 @@ GMSPolygon *polyRegion;
             inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
             return;
         }
-        NSString *address = [NSString stringWithFormat:@"%@/%@",kRequestStatusURL,requestId];
+        NSString *address = [NSString stringWithFormat:@"%@/%@",krequestStatusURL,requestId];
         NSLog(address);
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         [params setValue:kRequesterUsername forKey:@"email"];

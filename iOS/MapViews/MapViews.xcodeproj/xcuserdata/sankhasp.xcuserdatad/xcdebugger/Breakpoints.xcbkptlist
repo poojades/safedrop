@@ -21,34 +21,34 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/ViewController.m"
-         timestampString = "397366150.400746"
+         timestampString = "397419198.461408"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "618"
-         endingLineNumber = "618">
+         startingLineNumber = "647"
+         endingLineNumber = "647">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/ViewController.m"
-         timestampString = "397366150.400746"
+         timestampString = "397419198.461408"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "678"
-         endingLineNumber = "678">
+         startingLineNumber = "707"
+         endingLineNumber = "707">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "MapViews/ViewController.m"
-         timestampString = "397366267.895064"
+         filePath = "MapViews/CustomCell.m"
+         timestampString = "397400194.074391"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "169"
-         endingLineNumber = "169"
-         landmarkName = "-showZipRegion"
+         startingLineNumber = "23"
+         endingLineNumber = "23"
+         landmarkName = "-initWithStyle:reuseIdentifier:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -56,38 +56,64 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/ViewController.m"
-         timestampString = "397366267.895064"
+         timestampString = "397419145.739219"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "157"
-         endingLineNumber = "157"
-         landmarkName = "-showDistance"
+         startingLineNumber = "346"
+         endingLineNumber = "346"
+         landmarkName = "-timerTicked:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "MapViews/ViewController.m"
-         timestampString = "397366150.400746"
+         filePath = "MapViews/RatingViewController.m"
+         timestampString = "397421175.933895"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "576"
-         endingLineNumber = "576"
-         landmarkName = "-alertView:clickedButtonAtIndex:"
+         startingLineNumber = "122"
+         endingLineNumber = "122"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MapViews/RatingViewController.m"
+         timestampString = "397421328.162203"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "126"
+         endingLineNumber = "126"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "MapViews/ViewController.m"
-         timestampString = "397365444.870487"
+         filePath = "MapViews/RatingViewController.m"
+         timestampString = "397422017.51005"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "434"
-         endingLineNumber = "434"
-         landmarkName = "-getEContact"
+         startingLineNumber = "155"
+         endingLineNumber = "155"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MapViews/RatingViewController.m"
+         timestampString = "397422119.371033"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "43"
+         endingLineNumber = "43"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

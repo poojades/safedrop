@@ -53,6 +53,10 @@
 		AF4E50FC17AF54C700802784 /* ruler.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E50FB17AF54C700802784 /* ruler.png */; };
 		AF4E50FF17AF5BCE00802784 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4E50FE17AF5BCE00802784 /* CustomCell.m */; };
 		AF4E510117AF5C3500802784 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF4E510017AF5C3500802784 /* CustomCell.xib */; };
+		AF4E510717AF80EE00802784 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4E510617AF80EE00802784 /* TPKeyboardAvoidingScrollView.m */; };
+		AF4E510917AFD35500802784 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E510817AFD35400802784 /* add.png */; };
+		AF4E512A17AFDE3700802784 /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E512817AFDE3700802784 /* dot.png */; };
+		AF4E512B17AFDE3700802784 /* starred.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E512917AFDE3700802784 /* starred.png */; };
 		AFB7773B17AAE97F009D5A65 /* power.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB7773A17AAE97F009D5A65 /* power.png */; };
 		AFD494B917AD4873004D5FF6 /* NotificationStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */; };
 		AFD4953A17AD4C5A004D5FF6 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD4953117AD4C5A004D5FF6 /* MasterViewController.m */; };
@@ -129,6 +133,11 @@
 		AF4E50FD17AF5BCE00802784 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		AF4E50FE17AF5BCE00802784 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		AF4E510017AF5C3500802784 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		AF4E510517AF80EE00802784 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		AF4E510617AF80EE00802784 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		AF4E510817AFD35400802784 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		AF4E512817AFDE3700802784 /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
+		AF4E512917AFDE3700802784 /* starred.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starred.png; sourceTree = "<group>"; };
 		AFB7773A17AAE97F009D5A65 /* power.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = power.png; sourceTree = "<group>"; };
 		AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NotificationStoryBoard.storyboard; path = ../NotificationStoryBoard.storyboard; sourceTree = "<group>"; };
 		AFD4953017AD4C5A004D5FF6 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -256,6 +265,9 @@
 		AF08F2A617A9B5C800DBF02A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF4E512817AFDE3700802784 /* dot.png */,
+				AF4E512917AFDE3700802784 /* starred.png */,
+				AF4E510817AFD35400802784 /* add.png */,
 				AF4E50FB17AF54C700802784 /* ruler.png */,
 				AF4E50C417AF1A7900802784 /* logo.png */,
 				AF4E509A17AEC65400802784 /* msg.png */,
@@ -326,6 +338,8 @@
 		AF4E50C617AF38E100802784 /* RateView */ = {
 			isa = PBXGroup;
 			children = (
+				AF4E510517AF80EE00802784 /* TPKeyboardAvoidingScrollView.h */,
+				AF4E510617AF80EE00802784 /* TPKeyboardAvoidingScrollView.m */,
 				AF4E50EC17AF3A5C00802784 /* AMRatingControl.h */,
 				AF4E50ED17AF3A5C00802784 /* AMRatingControl.m */,
 				AF4E50F217AF3AF000802784 /* RatingViewController.h */,
@@ -453,6 +467,9 @@
 				AF4E50F617AF3AF000802784 /* RatingViewController.xib in Resources */,
 				AF4E50FC17AF54C700802784 /* ruler.png in Resources */,
 				AF4E510117AF5C3500802784 /* CustomCell.xib in Resources */,
+				AF4E510917AFD35500802784 /* add.png in Resources */,
+				AF4E512A17AFDE3700802784 /* dot.png in Resources */,
+				AF4E512B17AFDE3700802784 /* starred.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +517,7 @@
 				AF4E509717AEBB4C00802784 /* MsgMasterViewController.m in Sources */,
 				AF4E50F517AF3AF000802784 /* RatingViewController.m in Sources */,
 				AF4E50FF17AF5BCE00802784 /* CustomCell.m in Sources */,
+				AF4E510717AF80EE00802784 /* TPKeyboardAvoidingScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

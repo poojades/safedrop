@@ -29,23 +29,29 @@ RequestStatus status;
 #define kRequesterUsername @"sankhasp1@cmu.edu"
 
 
-#define kGetNotificationURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getNotifications/";
+#define kgetNotificationURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getNotifications/";
 
-#define kSetUserInfoURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/setUserInfo"
+#define ksetUserInfoURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/setUserInfo"
 
-#define kGetUserInfoURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getUserInfo"
+#define kgetUserInfoURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getUserInfo"
 
-#define kRequestPickupURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/requestPickup"
+#define krequestPickupURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/requestPickup"
 
-#define kRequestStatusURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getRequestStatus"
+#define krequestStatusURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getRequestStatus"
 
-#define kAcceptVolunteerURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/acceptVolunteer"
+#define kacceptVolunteerURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/acceptVolunteer"
 
-#define kAcceptRequesterURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/acceptRequester"
+#define kacceptRequesterURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/acceptRequester"
 
 #define kgetLastRequestByUserURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getLastRequestByUser"
 
 #define kgetOtherUserInfoURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getOtherUserInfo"
+
+#define kgetRatingsURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getRatings"
+
+#define kaddRatingsURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/addRating"
+
+#define kcloseRequestURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/closeRequest"
 
 
 #endif

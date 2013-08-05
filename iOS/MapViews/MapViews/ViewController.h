@@ -32,6 +32,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *notificationButton;
 
+
+@property (weak, nonatomic) NSTimer *timer;
+
 - (IBAction)clickButtoninButtonPanel:(id)sender;
 
 - (IBAction)clickButtoninNotificationPanel:(id)sender;

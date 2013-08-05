@@ -70,7 +70,7 @@
 +(void)refreshNotifications:(NSString *)userEmail andLastRefreshId:(NSString *)lastRefreshId onCompletion:(RequestDictionaryCompletionHandler)complete{
     //userEmail = [userEmail URLEncode];
     
-    NSString *basePath = kGetNotificationURL;
+    NSString *basePath = kgetNotificationURL;
     NSString *fullPath = [basePath stringByAppendingFormat:@"%@/%@",userEmail,lastRefreshId];
     
     NSLog(@"%@",fullPath);

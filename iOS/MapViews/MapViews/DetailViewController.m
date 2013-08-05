@@ -77,7 +77,7 @@
     NSString* requestId = [GlobalSettings objectAtIndex:0];
     
     if (![requestId isEqualToString:@"0"]) {
-        NSString *address = kAcceptVolunteerURL;
+        NSString *address = kacceptVolunteerURL;
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         [params setValue:self.notification.sender forKey:@"volunteerEmail"];
         [params setValue:requestId forKey:@"requestId"];
@@ -104,7 +104,7 @@
 
     }
     else{
-        NSString *address = kAcceptRequesterURL;
+        NSString *address = kacceptRequesterURL;
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         requestId = self.notification.requestId;
         [params setValue:kRequesterUsername forKey:@"volunteerEmail"];
