@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-
+#import <MessageUI/MessageUI.h>
 #import "Globals.h"
 
 
 
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate>{CLLocationManager *locationManager;
+@interface ViewController : UIViewController <CLLocationManagerDelegate,UIAlertViewDelegate,MFMessageComposeViewControllerDelegate,UINavigationControllerDelegate>{CLLocationManager *locationManager;
 }
 @property (weak, nonatomic) IBOutlet UIView *mapViewOnScreen;
 @property (weak, nonatomic) IBOutlet UIView *infoPanel;
@@ -35,5 +35,6 @@
 - (IBAction)clickButtoninButtonPanel:(id)sender;
 
 - (IBAction)clickButtoninNotificationPanel:(id)sender;
+- (IBAction)closeSafeDrop:(id)sender;
 
 @end

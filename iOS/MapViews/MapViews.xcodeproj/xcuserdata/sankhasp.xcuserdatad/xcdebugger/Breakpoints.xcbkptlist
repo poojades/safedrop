@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/DetailViewController.m"
-         timestampString = "397325856.403717"
+         timestampString = "397362118.258925"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "75"
-         endingLineNumber = "75"
+         startingLineNumber = "77"
+         endingLineNumber = "77"
          landmarkName = "-accept:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,33 +21,33 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/ViewController.m"
-         timestampString = "397359172.745408"
+         timestampString = "397366150.400746"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "505"
-         endingLineNumber = "505">
+         startingLineNumber = "618"
+         endingLineNumber = "618">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/ViewController.m"
-         timestampString = "397359172.745408"
+         timestampString = "397366150.400746"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "565"
-         endingLineNumber = "565">
+         startingLineNumber = "678"
+         endingLineNumber = "678">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/ViewController.m"
-         timestampString = "397359172.745408"
+         timestampString = "397366267.895064"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "-showZipRegion"
          landmarkType = "5">
       </FileBreakpoint>
@@ -56,12 +56,38 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/ViewController.m"
-         timestampString = "397359172.745408"
+         timestampString = "397366267.895064"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "155"
-         endingLineNumber = "155"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
          landmarkName = "-showDistance"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MapViews/ViewController.m"
+         timestampString = "397366150.400746"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "576"
+         endingLineNumber = "576"
+         landmarkName = "-alertView:clickedButtonAtIndex:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MapViews/ViewController.m"
+         timestampString = "397365444.870487"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "434"
+         endingLineNumber = "434"
+         landmarkName = "-getEContact"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

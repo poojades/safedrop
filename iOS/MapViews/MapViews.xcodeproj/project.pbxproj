@@ -45,6 +45,14 @@
 		AF4E509917AEC17200802784 /* MessageStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4E509817AEC17200802784 /* MessageStoryBoard.storyboard */; };
 		AF4E509B17AEC65400802784 /* msg.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E509A17AEC65400802784 /* msg.png */; };
 		AF4E50C517AF1A7900802784 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E50C417AF1A7900802784 /* logo.png */; };
+		AF4E50EE17AF3A5C00802784 /* AMRatingControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4E50ED17AF3A5C00802784 /* AMRatingControl.m */; };
+		AF4E50F517AF3AF000802784 /* RatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4E50F317AF3AF000802784 /* RatingViewController.m */; };
+		AF4E50F617AF3AF000802784 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF4E50F417AF3AF000802784 /* RatingViewController.xib */; };
+		AF4E50F817AF3DB800802784 /* AMRatingControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4E50ED17AF3A5C00802784 /* AMRatingControl.m */; };
+		AF4E50FA17AF418800802784 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4E50F917AF418800802784 /* MessageUI.framework */; };
+		AF4E50FC17AF54C700802784 /* ruler.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E50FB17AF54C700802784 /* ruler.png */; };
+		AF4E50FF17AF5BCE00802784 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4E50FE17AF5BCE00802784 /* CustomCell.m */; };
+		AF4E510117AF5C3500802784 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF4E510017AF5C3500802784 /* CustomCell.xib */; };
 		AFB7773B17AAE97F009D5A65 /* power.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB7773A17AAE97F009D5A65 /* power.png */; };
 		AFD494B917AD4873004D5FF6 /* NotificationStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */; };
 		AFD4953A17AD4C5A004D5FF6 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD4953117AD4C5A004D5FF6 /* MasterViewController.m */; };
@@ -111,6 +119,16 @@
 		AF4E509817AEC17200802784 /* MessageStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageStoryBoard.storyboard; sourceTree = "<group>"; };
 		AF4E509A17AEC65400802784 /* msg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg.png; sourceTree = "<group>"; };
 		AF4E50C417AF1A7900802784 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		AF4E50EC17AF3A5C00802784 /* AMRatingControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRatingControl.h; sourceTree = "<group>"; };
+		AF4E50ED17AF3A5C00802784 /* AMRatingControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRatingControl.m; sourceTree = "<group>"; };
+		AF4E50F217AF3AF000802784 /* RatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingViewController.h; sourceTree = "<group>"; };
+		AF4E50F317AF3AF000802784 /* RatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingViewController.m; sourceTree = "<group>"; };
+		AF4E50F417AF3AF000802784 /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
+		AF4E50F917AF418800802784 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		AF4E50FB17AF54C700802784 /* ruler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ruler.png; path = ../../../../../../../../../../../../Downloads/ruler.png; sourceTree = "<group>"; };
+		AF4E50FD17AF5BCE00802784 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		AF4E50FE17AF5BCE00802784 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		AF4E510017AF5C3500802784 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		AFB7773A17AAE97F009D5A65 /* power.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = power.png; sourceTree = "<group>"; };
 		AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NotificationStoryBoard.storyboard; path = ../NotificationStoryBoard.storyboard; sourceTree = "<group>"; };
 		AFD4953017AD4C5A004D5FF6 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -133,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF4E50FA17AF418800802784 /* MessageUI.framework in Frameworks */,
 				AF08F2F117A9B7CF00DBF02A /* libz.dylib in Frameworks */,
 				AF08F2A417A9B5C800DBF02A /* CoreGraphics.framework in Frameworks */,
 				AF08F2F717A9B7EF00DBF02A /* SystemConfiguration.framework in Frameworks */,
@@ -209,6 +228,7 @@
 		AF08F29E17A9B5C800DBF02A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AF4E50F917AF418800802784 /* MessageUI.framework */,
 				AF08F2DE17A9B73400DBF02A /* GoogleMaps.bundle */,
 				AF08F2DC17A9B6DE00DBF02A /* GoogleMaps.framework */,
 				AF08F29F17A9B5C800DBF02A /* UIKit.framework */,
@@ -222,8 +242,9 @@
 		AF08F2A517A9B5C800DBF02A /* MapViews */ = {
 			isa = PBXGroup;
 			children = (
+				AF4E50C617AF38E100802784 /* RateView */,
 				AF4E509017AEB7D800802784 /* MessageView */,
-				AFD494BB17AD488D004D5FF6 /* Notification */,
+				AFD494BB17AD488D004D5FF6 /* NotificationsView */,
 				AFD494BA17AD4880004D5FF6 /* HomeView */,
 				AF004C1017AA9BBC002B3C8F /* WebService */,
 				AF004C0F17AA9BA7002B3C8F /* Delegate */,
@@ -235,6 +256,7 @@
 		AF08F2A617A9B5C800DBF02A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF4E50FB17AF54C700802784 /* ruler.png */,
 				AF4E50C417AF1A7900802784 /* logo.png */,
 				AF4E509A17AEC65400802784 /* msg.png */,
 				AFB7773A17AAE97F009D5A65 /* power.png */,
@@ -301,6 +323,21 @@
 			name = MessageView;
 			sourceTree = "<group>";
 		};
+		AF4E50C617AF38E100802784 /* RateView */ = {
+			isa = PBXGroup;
+			children = (
+				AF4E50EC17AF3A5C00802784 /* AMRatingControl.h */,
+				AF4E50ED17AF3A5C00802784 /* AMRatingControl.m */,
+				AF4E50F217AF3AF000802784 /* RatingViewController.h */,
+				AF4E50F317AF3AF000802784 /* RatingViewController.m */,
+				AF4E50F417AF3AF000802784 /* RatingViewController.xib */,
+				AF4E50FD17AF5BCE00802784 /* CustomCell.h */,
+				AF4E50FE17AF5BCE00802784 /* CustomCell.m */,
+				AF4E510017AF5C3500802784 /* CustomCell.xib */,
+			);
+			name = RateView;
+			sourceTree = "<group>";
+		};
 		AFD494BA17AD4880004D5FF6 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,7 +348,7 @@
 			name = HomeView;
 			sourceTree = "<group>";
 		};
-		AFD494BB17AD488D004D5FF6 /* Notification */ = {
+		AFD494BB17AD488D004D5FF6 /* NotificationsView */ = {
 			isa = PBXGroup;
 			children = (
 				AFD4953017AD4C5A004D5FF6 /* DetailViewController.h */,
@@ -324,7 +361,7 @@
 				AFD4953717AD4C5A004D5FF6 /* NotificationsDataController.m */,
 				AFD494B817AD4873004D5FF6 /* NotificationStoryBoard.storyboard */,
 			);
-			name = Notification;
+			name = NotificationsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,6 +450,9 @@
 				AF4E509917AEC17200802784 /* MessageStoryBoard.storyboard in Resources */,
 				AF4E509B17AEC65400802784 /* msg.png in Resources */,
 				AF4E50C517AF1A7900802784 /* logo.png in Resources */,
+				AF4E50F617AF3AF000802784 /* RatingViewController.xib in Resources */,
+				AF4E50FC17AF54C700802784 /* ruler.png in Resources */,
+				AF4E510117AF5C3500802784 /* CustomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF4E50F817AF3DB800802784 /* AMRatingControl.m in Sources */,
 				AF08F2AC17A9B5C800DBF02A /* main.m in Sources */,
 				AF08F2B017A9B5C800DBF02A /* AppDelegate.m in Sources */,
 				AF08F2B917A9B5C800DBF02A /* ViewController.m in Sources */,
@@ -457,6 +498,8 @@
 				AFD4953E17AD4C5A004D5FF6 /* NSString+WebService.m in Sources */,
 				AFD4954717AD50FE004D5FF6 /* iOSRequest.m in Sources */,
 				AF4E509717AEBB4C00802784 /* MsgMasterViewController.m in Sources */,
+				AF4E50F517AF3AF000802784 /* RatingViewController.m in Sources */,
+				AF4E50FF17AF5BCE00802784 /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF08F2D117A9B5C900DBF02A /* MapViewsTests.m in Sources */,
+				AF4E50EE17AF3A5C00802784 /* AMRatingControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

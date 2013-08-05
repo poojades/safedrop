@@ -13,6 +13,9 @@
 
 #import "NSString+WebService.h"
 
+#import "RatingViewController.h"
+
+
 @interface ViewController ()
 
 @end
@@ -138,6 +141,7 @@ GMSPolygon *polyRegion;
                     GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds
                                                              withPadding:300.0f];
                     [_mapView animateWithCameraUpdate:update];
+                    [self showDistance];
 
                 }
                 @catch (NSException *exception) {
@@ -357,7 +361,6 @@ GMSPolygon *polyRegion;
             [self showZipRegion];
             if (status==InProgress){
                 [self getOtherLocationFromServer];
-                [self showDistance];
             }
         }
     }];
@@ -392,19 +395,20 @@ GMSPolygon *polyRegion;
 
 }
 
+
 - (void) getOtherLocationFromServer{
-        NSString *basePath = kgetOtherUserInfoURL;
+    NSString *basePath = kgetOtherUserInfoURL;
     
-        NSString* requestId= [GlobalSettings objectAtIndex:0];
-        NSString *fullPath = [basePath stringByAppendingFormat:@"/%@/%@",kRequesterUsername,requestId];
-        
-        NSLog(@"%@",fullPath);
+    NSString* requestId= [GlobalSettings objectAtIndex:0];
+    NSString *fullPath = [basePath stringByAppendingFormat:@"/%@/%@",kRequesterUsername,requestId];
+    
+    NSLog(@"%@",fullPath);
     
     
     [iOSRequest requestRESTGET:fullPath onCompletion:^(NSString *result, NSError *error){
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error || [result isEqualToString:@""]) {
-                    NSLog(@"---------------------> %@",error);
+                NSLog(@"---------------------> %@",error);
             } else {
                 NSDictionary *otherLocation = [result JSON];
                 NSLog(@"---------------------> %@",otherLocation);
@@ -418,13 +422,51 @@ GMSPolygon *polyRegion;
                 }
                 
                 OtherMarker.position = CLLocationCoordinate2DMake(LocationAtual.coordinate.latitude, LocationAtual.coordinate.longitude);
-                  OtherMarker.infoWindowAnchor = CGPointMake(0, 0);
+                OtherMarker.infoWindowAnchor = CGPointMake(0, 0);
                 OtherMarker.title = @"Other Person's Location";
-            OtherMarker.map = _mapView;
+                OtherMarker.map = _mapView;
                 [self getDirections];
             }
         });}];
-            
+    
+}
+
+- (void) getEContact{
+        NSString *basePath = kGetUserInfoURL;
+        NSString *fullPath = [basePath stringByAppendingFormat:@"/%@",kRequesterUsername];
+        
+        NSLog(@"%@",fullPath);
+    
+    
+    
+    NSError        *error = nil;
+    NSURLResponse  *response = nil;
+    
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:fullPath]
+                                                  cachePolicy:NSURLCacheStorageAllowedInMemoryOnly
+                                              timeoutInterval:10];
+    
+    
+    NSData *data =  [NSURLConnection sendSynchronousRequest: request returningResponse: &response error: &error];
+    
+    NSString* stringReply = (NSString *)[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    if (!error) {
+        NSLog(@"SUCCESS : %@", stringReply );
+        @try {
+            NSDictionary *userInfo = [stringReply JSON];
+
+            NSString *econtact = [userInfo objectForKey:@"econtact"];
+            [GlobalSettings insertObject:econtact atIndex:2];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Exception : %@", exception);
+            [GlobalSettings insertObject:@"911" atIndex:2];
+        }
+    } else {
+       [GlobalSettings insertObject:@"911" atIndex:2];
+    }
 }
 
 
@@ -484,6 +526,7 @@ GMSPolygon *polyRegion;
     polyRoute=nil;
     polyRegion.map=nil;
     polyRegion=nil;
+    locationManager=nil;
     if (status!=InProgress){
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"NotificationStoryBoard" bundle:nil];
         UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"MasterViewController"];
@@ -497,6 +540,78 @@ GMSPolygon *polyRegion;
         [self presentViewController:vc animated:YES completion:NULL];
     }
     
+}
+
+- (IBAction)closeSafeDrop:(id)sender {
+    
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Close SafeDrop!"
+                                                      message:@"Have you reached your destination?"
+                                                     delegate:self
+                                            cancelButtonTitle:@"Not Yet"
+                                            otherButtonTitles:nil];
+    [message addButtonWithTitle:@"Reached"];
+    [message addButtonWithTitle:@"Emergency"];
+    [message show];
+}
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SelfDrop" message:@"Unknown Error" delegate:self cancelButtonTitle:@"OK"otherButtonTitles: nil];
+    
+	switch (result) {
+		case MessageComposeResultCancelled:
+			NSLog(@"Cancelled");
+			break;
+		case MessageComposeResultFailed:
+			[alert show];
+			break;
+		case MessageComposeResultSent:
+			break;
+		default:
+			break;
+	}
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if([title isEqualToString:@"Reached"])
+    {
+        /*
+        MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+        if([MFMessageComposeViewController canSendText])
+        {
+            controller.body = @"";
+            controller.recipients = [NSArray arrayWithObjects:@"4126239247", nil];
+            controller.messageComposeDelegate = self;
+            [self presentModalViewController:controller animated:YES];
+        }
+         */
+        [_mapView clear];
+        _mapView=nil;
+        SelfMarker=nil;
+        OtherMarker=nil;
+        polyRoute.map=nil;
+        polyRoute=nil;
+        polyRegion.map=nil;
+        polyRegion=nil;
+        locationManager=nil;
+        RatingViewController *viewController=[[RatingViewController alloc]initWithNibName:@"RatingViewController" bundle:nil];
+        
+        [self presentViewController:viewController animated:YES completion:nil];
+
+        
+        NSLog(@"Reached was selected.");
+    }
+    else if([title isEqualToString:@"Emergency"])
+    {
+        [self getEContact];
+        NSLog(@"Emergency was selected.");
+        NSString *phoneNumber = [GlobalSettings objectAtIndex:2];
+        NSString *telString = [NSString stringWithFormat:@"tel:%@,%@", phoneNumber, @""];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telString]];
+    }
 }
 
 

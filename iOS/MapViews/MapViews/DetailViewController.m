@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import "Notification.h"
 
+
 @interface DetailViewController ()
 - (void)configureView;
 @end
@@ -69,6 +70,7 @@
 
 
 
+
 - (IBAction)accept:(id)sender {
 
     //if user is requester
@@ -98,6 +100,7 @@
                 }
             });
         }];
+        
 
     }
     else{

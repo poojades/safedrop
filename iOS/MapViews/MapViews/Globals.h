@@ -28,6 +28,7 @@ RequestStatus status;
 
 #define kRequesterUsername @"sankhasp1@cmu.edu"
 
+
 #define kGetNotificationURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getNotifications/";
 
 #define kSetUserInfoURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/setUserInfo"
@@ -45,4 +46,6 @@ RequestStatus status;
 #define kgetLastRequestByUserURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getLastRequestByUser"
 
 #define kgetOtherUserInfoURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getOtherUserInfo"
+
+
 #endif
