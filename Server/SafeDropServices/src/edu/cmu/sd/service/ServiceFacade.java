@@ -27,22 +27,28 @@ import javax.ws.rs.core.UriInfo;
 import org.apache.log4j.Logger;
 
 import edu.cmu.sd.dao.NotificationsDao;
+import edu.cmu.sd.dao.RatingsDao;
 import edu.cmu.sd.dao.RequestDao;
 import edu.cmu.sd.dao.UsersDao;
 import edu.cmu.sd.dto.Notifications;
 import edu.cmu.sd.dto.NotificationsPk;
+import edu.cmu.sd.dto.Ratings;
+import edu.cmu.sd.dto.RatingsPk;
 import edu.cmu.sd.dto.RequestPk;
 import edu.cmu.sd.dto.Users;
 import edu.cmu.sd.dto.UsersPk;
 import edu.cmu.sd.exceptions.NotificationsDaoException;
+import edu.cmu.sd.exceptions.RatingsDaoException;
 import edu.cmu.sd.exceptions.RequestDaoException;
 import edu.cmu.sd.exceptions.SafeDropException;
 import edu.cmu.sd.exceptions.UsersDaoException;
 import edu.cmu.sd.factory.NotificationsDaoFactory;
+import edu.cmu.sd.factory.RatingsDaoFactory;
 import edu.cmu.sd.factory.RequestDaoFactory;
 import edu.cmu.sd.factory.UsersDaoFactory;
 import edu.cmu.sd.intf.IMessageManager;
 import edu.cmu.sd.intf.INotificationManager;
+import edu.cmu.sd.intf.IRatingsManager;
 import edu.cmu.sd.intf.IRequestManager;
 import edu.cmu.sd.intf.IUserManager;
 import edu.cmu.sd.utils.SDConstants;
@@ -52,7 +58,7 @@ import edu.cmu.sd.utils.SDConstants;
  * The Class ServiceFacade.
  */
 @Path("/service")
-public class ServiceFacade implements IRequestManager, IUserManager, INotificationManager, IMessageManager{
+public class ServiceFacade implements IRequestManager, IUserManager, INotificationManager, IMessageManager, IRatingsManager{
 
 	/** The Constant logger. */
 	protected static final Logger logger = Logger.getLogger( ServiceFacade.class );
@@ -705,5 +711,85 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		} catch (RequestDaoException | NotificationsDaoException e) {
 			throw new SafeDropException("Failed to get other user status");
 		}
+	}
+
+	@Override
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getRatings/{volunteerEmail}")
+	public Ratings[] getRatings(@PathParam ("volunteerEmail")  String volunteerEmail) throws SafeDropException {
+		
+		UsersDao userDao = UsersDaoFactory.create();
+		try {
+			Users user = userDao.findByPrimaryKey(volunteerEmail);
+			if (user==null || !user.getStatus().equalsIgnoreCase(SDConstants.ACTIVE_STATUS)){
+				throw new SafeDropException("Volunteer should be available & active for the volunteer to accept Requester");
+			}
+		} catch (UsersDaoException e) {
+			throw new SafeDropException("Failed to validate requester or volunteer");
+		}
+		
+		
+		RatingsDao dao = RatingsDaoFactory.create();
+		Ratings[] returnarray =null;
+		try {
+			returnarray =  dao.findByUsers2(volunteerEmail);
+		} catch (RatingsDaoException e) {
+			throw new SafeDropException("Failed to fetch ratings for volunteer");
+		}
+		return returnarray;
+	}
+
+	@Override
+	@POST
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Path("/addRating")
+	public String addRating(@FormParam("requestId") int requestId, @FormParam("requesterEmail") String requesterEmail,
+			@FormParam("volunteerEmail") String volunteerEmail, @FormParam("text") String text, @FormParam("value") float value)
+			throws SafeDropException {
+		
+		RequestDao daor = RequestDaoFactory.create();
+		edu.cmu.sd.dto.Request request = null;
+		try {
+			request = daor.findByPrimaryKey(requestId);
+			if (request==null || !request.getStatus().equalsIgnoreCase(SDConstants.REQ_INPROG_STATUS)){
+				throw new SafeDropException("Request should be available & status should be in PROGRESS to add a rating");
+			}
+		} catch (RequestDaoException e) {
+			throw new SafeDropException("Failed to validate request");
+		}
+		
+		
+		UsersDao userDao = UsersDaoFactory.create();
+		try {
+			Users user = userDao.findByPrimaryKey(volunteerEmail);
+			if (user==null || !user.getStatus().equalsIgnoreCase(SDConstants.ACTIVE_STATUS)){
+				throw new SafeDropException("Volunteer should be available & active for fetching rating");
+			}
+			user = userDao.findByPrimaryKey(requesterEmail);
+			if (user==null || !user.getStatus().equalsIgnoreCase(SDConstants.ACTIVE_STATUS)){
+				throw new SafeDropException("Requester should be available & active for fetching rating");
+			}
+		} catch (UsersDaoException e) {
+			throw new SafeDropException("Failed to validate requester or volunteer");
+		}
+		
+		
+		RatingsDao dao = RatingsDaoFactory.create();
+		Ratings dto = new Ratings();
+		RatingsPk pk =null;
+		try {
+			dto.setCreated(new Date());
+			dto.setRequester(requesterEmail);
+			dto.setVolunteer(volunteerEmail);
+			dto.setRequestid(requestId);
+			dto.setText(text);
+			dto.setValue(value);
+			pk =  dao.insert(dto);
+		} catch (RatingsDaoException e) {
+			throw new SafeDropException("Failed to fetch ratings for volunteer");
+		}
+		return pk.toString();
 	}
 }
