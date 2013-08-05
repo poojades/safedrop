@@ -734,15 +734,17 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		Ratings[] returnarray =null;
 		try {
 			returnarray =  dao.findByUsers2(volunteerEmail);
+			
 			if (returnarray!=null || returnarray.length==1){
+				Ratings rating = returnarray[0];
 				Ratings ratings = new Ratings();
 				ratings.setId(0);
-				ratings.setRequester("No available ratings.");
-				ratings.setText("This user has not yet been rated");
+				ratings.setRequester("SafeDrop");
+				ratings.setText("This user has no more ratings");
 				ratings.setValue(0.0f);
 				ratings.setVolunteer(volunteerEmail);
 				returnarray = new Ratings[2];
-				returnarray[0]=returnarray[0];
+				returnarray[0]=rating;
 				returnarray[1]=ratings;
 			}
 		} catch (RatingsDaoException e) {
