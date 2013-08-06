@@ -378,7 +378,7 @@ GMSPolygon *polyRegion;
             SelfMarker.icon = [UIImage imageNamed:@"startMarker"];
             SelfMarker.map = _mapView;
             zipCode = [placemark performSelector:NSSelectorFromString(@"postalCode")];
-            if (status==NotCreated || status==Done || status==New){
+            if (status==NotCreated || status==Done || status==New || status==Pending){
                 CLLocationCoordinate2D target =
                 CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
                 _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:kGMSMaxZoomLevel - 8];

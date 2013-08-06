@@ -87,6 +87,27 @@
         }
     }];
 }
+
++(void)refreshMessages:(NSString *)userEmail andLastRefreshId:(NSString *)lastRefreshId onCompletion:(RequestDictionaryCompletionHandler)complete{
+    //userEmail = [userEmail URLEncode];
+    
+    NSString *basePath = kgetMessagesURL;
+    NSString *fullPath = [basePath stringByAppendingFormat:@"/%@/%@",userEmail,lastRefreshId];
+    
+    NSLog(@"%@",fullPath);
+    [iOSRequest requestRESTGET:fullPath onCompletion:^(NSString *result, NSError *error){
+        if (error || [result isEqualToString:@""]) {
+            if (complete) complete(nil);
+        } else {
+            
+            NSLog(@"%@",result);
+            
+            NSDictionary *user = [result JSON];
+            NSLog(@"%@",user);
+            if (complete) complete(user);
+        }
+    }];
+}
 +(void) getLastRequestByUser:(NSString *)userEmail{
     GlobalSettings = [[NSMutableArray alloc] init];
     

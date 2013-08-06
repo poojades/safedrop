@@ -11,6 +11,8 @@
 #import "UIBubbleTableViewDataSource.h"
 #import "NSBubbleData.h"
 #import "ViewController.h"
+#import "iOSRequest.h"
+#import "NSString+WebService.h"
 
 @interface MessageViewController (){
     IBOutlet UIBubbleTableView *bubbleTable;
@@ -39,19 +41,93 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)refreshDataTable
+{
+    [iOSRequest refreshMessages:kRequesterUsername andLastRefreshId:@"0" onCompletion:^(NSDictionary *data){
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            bubbleData = [[NSMutableArray alloc] init];
+            NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"Hey, halloween is soon" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
+            heyBubble.avatar = nil;
+            
+            NSBubbleData *photoBubble = [NSBubbleData dataWithImage:[UIImage imageNamed:@"halloween.jpg"] date:[NSDate dateWithTimeIntervalSinceNow:-290] type:BubbleTypeSomeoneElse];
+            photoBubble.avatar = nil;
+            NSBubbleData *replyBubble = [NSBubbleData dataWithText:@"Wow.. Really cool picture out there. iPhone 5 has really nice camera, yeah?" date:[NSDate dateWithTimeIntervalSinceNow:-5] type:BubbleTypeMine];
+            replyBubble.avatar = nil;
+            
+            NSLog(@"%@", data);
+            NSArray* notifcations = [data objectForKey:@"notifications"];
+            bubbleData=[[NSMutableArray alloc] init];
+            @try {
+                
+                for (NSDictionary *dict in notifcations) {
+                    
+                    NSString *id = [dict objectForKey:@"id"];                    
+                    
+                    NSString *requestId = [dict objectForKey:@"requestid"];
+                    
+                    NSString *text = [dict objectForKey:@"text"];
+                    
+                    NSString *receiver = [dict objectForKey:@"receiver"];
+                    
+                    NSString *sender = [dict objectForKey:@"sender"];
+                           NSDate *created = [dict objectForKey:@"created"];
+                    if ([sender isEqualToString:kRequesterUsername]){
+                        NSBubbleData *replyBubble = [NSBubbleData dataWithText:text date:created type:BubbleTypeMine];
+                        replyBubble.avatar = nil;
+                        [bubbleData addObject:replyBubble];
+                    }
+                    else{
+                        NSBubbleData *replyBubble = [NSBubbleData dataWithText:text date:created type:BubbleTypeSomeoneElse];
+                        replyBubble.avatar = nil;
+                        [bubbleData addObject:replyBubble];
+                    }
+             
+                    NSString *type = [dict objectForKey:@"type"];
+                    
+                }
+                
+            }
+            @catch (NSException *exception) {
+                NSDictionary *dict = notifcations;
+                NSString *requestId = [dict objectForKey:@"requestid"];
+                
+                NSString *text = [dict objectForKey:@"text"];
+                
+                NSString *receiver = [dict objectForKey:@"receiver"];
+                
+                NSString *sender = [dict objectForKey:@"sender"];
+                NSDate *created = [dict objectForKey:@"created"];
+                NSString *type = [dict objectForKey:@"type"];
+                if ([sender isEqualToString:kRequesterUsername]){
+                    NSBubbleData *replyBubble = [NSBubbleData dataWithText:text date:created type:BubbleTypeMine];
+                    replyBubble.avatar = nil;
+                    [bubbleData addObject:replyBubble];
+                }
+                else{
+                    NSBubbleData *replyBubble = [NSBubbleData dataWithText:text date:created type:BubbleTypeSomeoneElse];
+                    replyBubble.avatar = nil;
+                    [bubbleData addObject:replyBubble];
+                }
+                
+            }
+                       @finally{
+                           [bubbleData addObject:nil];
+                           [bubbleTable reloadData];
+
+                       }
+        });
+    }];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self refreshDataTable];
     
-    NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"Hey, halloween is soon" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
-    heyBubble.avatar = nil;
-    
-    NSBubbleData *photoBubble = [NSBubbleData dataWithImage:[UIImage imageNamed:@"halloween.jpg"] date:[NSDate dateWithTimeIntervalSinceNow:-290] type:BubbleTypeSomeoneElse];
-    photoBubble.avatar = nil;
-    NSBubbleData *replyBubble = [NSBubbleData dataWithText:@"Wow.. Really cool picture out there. iPhone 5 has really nice camera, yeah?" date:[NSDate dateWithTimeIntervalSinceNow:-5] type:BubbleTypeMine];
-    replyBubble.avatar = nil;
-    
-    bubbleData = [[NSMutableArray alloc] initWithObjects:heyBubble, photoBubble, replyBubble, nil];
+
     bubbleTable.bubbleDataSource = self;
     
     // The line below sets the snap interval in seconds. This defines how the bubbles will be grouped in time.
