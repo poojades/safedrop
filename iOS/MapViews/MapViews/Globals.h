@@ -55,4 +55,7 @@ RequestStatus status;
 
 #define kgetMessagesURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/getMessages"
 
+#define ksendMessageURL @"http://128.2.204.85:6080/SafeDropServices/rest/service/sendMessage"
+
+
 #endif
