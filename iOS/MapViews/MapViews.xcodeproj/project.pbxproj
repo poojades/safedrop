@@ -41,6 +41,7 @@
 		AF08F2F317A9B7DE00DBF02A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2F217A9B7DE00DBF02A /* OpenGLES.framework */; };
 		AF08F2F517A9B7E500DBF02A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2F417A9B7E500DBF02A /* QuartzCore.framework */; };
 		AF08F2F717A9B7EF00DBF02A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF08F2F617A9B7EF00DBF02A /* SystemConfiguration.framework */; };
+		AF4D74DE17B0CC86007251B2 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4D74DD17B0CC85007251B2 /* image.png */; };
 		AF4E509B17AEC65400802784 /* msg.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E509A17AEC65400802784 /* msg.png */; };
 		AF4E50C517AF1A7900802784 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AF4E50C417AF1A7900802784 /* logo.png */; };
 		AF4E50EE17AF3A5C00802784 /* AMRatingControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4E50ED17AF3A5C00802784 /* AMRatingControl.m */; };
@@ -147,6 +148,7 @@
 		AF08F2F217A9B7DE00DBF02A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		AF08F2F417A9B7E500DBF02A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AF08F2F617A9B7EF00DBF02A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AF4D74DD17B0CC85007251B2 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		AF4E509A17AEC65400802784 /* msg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg.png; sourceTree = "<group>"; };
 		AF4E50C417AF1A7900802784 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		AF4E50EC17AF3A5C00802784 /* AMRatingControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRatingControl.h; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 		AF08F2A617A9B5C800DBF02A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF4D74DD17B0CC85007251B2 /* image.png */,
 				AF4E514917B04FB400802784 /* bubbleMine.png */,
 				AF4E514A17B04FB400802784 /* bubbleMine@2x.png */,
 				AF4E514B17B04FB400802784 /* bubbleSomeone.png */,
@@ -554,6 +557,7 @@
 				AF4E515A17B04FB400802784 /* typingMine@2x.png in Resources */,
 				AF4E515B17B04FB400802784 /* typingSomeone.png in Resources */,
 				AF4E515C17B04FB400802784 /* typingSomeone@2x.png in Resources */,
+				AF4D74DE17B0CC86007251B2 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
