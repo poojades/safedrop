@@ -44,8 +44,8 @@
 
 -(void)refreshDataTable
 {
+
     [iOSRequest refreshMessages:[GlobalSettings objectAtIndex:0] andLastRefreshId:@"0" onCompletion:^(NSDictionary *data){
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             bubbleData = [[NSMutableArray alloc] init];
             NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"Hey, halloween is soon" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
