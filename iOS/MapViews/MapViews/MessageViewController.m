@@ -44,7 +44,11 @@
 
 -(void)refreshDataTable
 {
+<<<<<<< HEAD
     [iOSRequest refreshMessages:[GlobalSettings objectAtIndex:0] andLastRefreshId:@"0" onCompletion:^(NSDictionary *data){
+=======
+    [iOSRequest refreshMessages:kRequesterUsername andLastRefreshId:@"0" onCompletion:^(NSDictionary *data){
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
         
         dispatch_async(dispatch_get_main_queue(), ^{
             bubbleData = [[NSMutableArray alloc] init];
@@ -113,7 +117,13 @@
                 
             }
                        @finally{
+<<<<<<< HEAD
                            [bubbleTable reloadData];
+=======
+                           [bubbleData addObject:nil];
+                           [bubbleTable reloadData];
+
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
                        }
         });
     }];
