@@ -44,8 +44,17 @@
 
 -(void)refreshDataTable
 {
+<<<<<<< HEAD
 
     [iOSRequest refreshMessages:[GlobalSettings objectAtIndex:0] andLastRefreshId:@"0" onCompletion:^(NSDictionary *data){
+=======
+<<<<<<< HEAD
+    [iOSRequest refreshMessages:[GlobalSettings objectAtIndex:0] andLastRefreshId:@"0" onCompletion:^(NSDictionary *data){
+=======
+    [iOSRequest refreshMessages:kRequesterUsername andLastRefreshId:@"0" onCompletion:^(NSDictionary *data){
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
+        
+>>>>>>> 8037ee92d92513f9e0087f06bb8f50570b2d5a29
         dispatch_async(dispatch_get_main_queue(), ^{
             bubbleData = [[NSMutableArray alloc] init];
             NSBubbleData *heyBubble = [NSBubbleData dataWithText:@"Hey, halloween is soon" date:[NSDate dateWithTimeIntervalSinceNow:-300] type:BubbleTypeSomeoneElse];
@@ -113,7 +122,17 @@
                 
             }
                        @finally{
+<<<<<<< HEAD
                            [bubbleTable reloadData];
+=======
+<<<<<<< HEAD
+                           [bubbleTable reloadData];
+=======
+                           [bubbleData addObject:nil];
+                           [bubbleTable reloadData];
+
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
+>>>>>>> 8037ee92d92513f9e0087f06bb8f50570b2d5a29
                        }
         });
     }];

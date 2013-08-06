@@ -47,12 +47,29 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/MessageViewController.m"
+<<<<<<< HEAD
          timestampString = "397449313.978067"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "146"
          endingLineNumber = "146"
          landmarkName = "-refreshDataTable"
+=======
+<<<<<<< HEAD
+         timestampString = "397447675.840277"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "123"
+         endingLineNumber = "123"
+=======
+         timestampString = "397447018.919813"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
+         landmarkName = "-viewDidLoad"
+>>>>>>> 8037ee92d92513f9e0087f06bb8f50570b2d5a29
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -60,12 +77,29 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/MessageViewController.m"
+<<<<<<< HEAD
          timestampString = "397449313.978067"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "154"
          endingLineNumber = "154"
          landmarkName = "-refreshDataTable"
+=======
+<<<<<<< HEAD
+         timestampString = "397447675.840277"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "156"
+         endingLineNumber = "156"
+=======
+         timestampString = "397447018.919813"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "158"
+         endingLineNumber = "158"
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
+         landmarkName = "-shouldAutorotateToInterfaceOrientation:"
+>>>>>>> 8037ee92d92513f9e0087f06bb8f50570b2d5a29
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -73,12 +107,50 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/MessageViewController.m"
+<<<<<<< HEAD
          timestampString = "397449313.978067"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "159"
          endingLineNumber = "159"
          landmarkName = "-refreshDataTable"
+=======
+<<<<<<< HEAD
+         timestampString = "397447675.840277"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "164"
+         endingLineNumber = "164"
+=======
+         timestampString = "397447018.919813"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "166"
+         endingLineNumber = "166"
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
+         landmarkName = "-rowsForBubbleTable:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MapViews/MessageViewController.m"
+<<<<<<< HEAD
+         timestampString = "397447675.840277"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
+=======
+         timestampString = "397447018.919813"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "171"
+         endingLineNumber = "171"
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
+         landmarkName = "-bubbleTableView:dataForRow:"
+>>>>>>> 8037ee92d92513f9e0087f06bb8f50570b2d5a29
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -112,12 +184,29 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/MessageViewController.m"
+<<<<<<< HEAD
          timestampString = "397449313.978067"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "119"
          endingLineNumber = "119"
          landmarkName = "-refreshDataTable"
+=======
+<<<<<<< HEAD
+         timestampString = "397447675.840277"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "129"
+         endingLineNumber = "129"
+=======
+         timestampString = "397447018.919813"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "131"
+         endingLineNumber = "131"
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
+         landmarkName = "-viewDidLoad"
+>>>>>>> 8037ee92d92513f9e0087f06bb8f50570b2d5a29
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -125,12 +214,29 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/MessageViewController.m"
+<<<<<<< HEAD
          timestampString = "397449313.978067"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "158"
          endingLineNumber = "158"
          landmarkName = "-refreshDataTable"
+=======
+<<<<<<< HEAD
+         timestampString = "397447675.840277"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "168"
+         endingLineNumber = "168"
+=======
+         timestampString = "397447018.919813"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "170"
+         endingLineNumber = "170"
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
+         landmarkName = "-bubbleTableView:dataForRow:"
+>>>>>>> 8037ee92d92513f9e0087f06bb8f50570b2d5a29
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -138,12 +244,29 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MapViews/MessageViewController.m"
+<<<<<<< HEAD
          timestampString = "397449313.978067"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "160"
          endingLineNumber = "160"
          landmarkName = "-refreshDataTable"
+=======
+<<<<<<< HEAD
+         timestampString = "397447675.840277"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "170"
+         endingLineNumber = "170"
+=======
+         timestampString = "397447018.919813"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "172"
+         endingLineNumber = "172"
+>>>>>>> 169e84116cdeb9922c0f763ff69c3bd389901ff3
+         landmarkName = "-bubbleTableView:dataForRow:"
+>>>>>>> 8037ee92d92513f9e0087f06bb8f50570b2d5a29
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
