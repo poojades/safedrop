@@ -187,6 +187,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		Notifications messages = new Notifications();
 		messages.setCreated(new Date());
 		messages.setSender(from);
+		messages.setRequestid(requestId);
 		messages.setReceiver(to);
 		messages.setText(message);
 		messages.setType(SDConstants.TYPE_MESSAGE);
