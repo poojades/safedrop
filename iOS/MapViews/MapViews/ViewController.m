@@ -346,13 +346,13 @@ GMSPolygon *polyRegion;
     if (status==Cancel){
         status=New;
         //flush the reqestId
-        [GlobalSettings insertObject:@"0" atIndex:0];
+        [GlobalSettings insertObject:@"0" atIndex:kRequestId];
         
     }
     if (status==Done){
         status=New;
         //flush the reqestId
-        [GlobalSettings insertObject:@"0" atIndex:0];
+        [GlobalSettings insertObject:@"0" atIndex:kRequestId];
         
     }
         [self getRequestUpdates];
@@ -378,7 +378,7 @@ GMSPolygon *polyRegion;
             SelfMarker.icon = [UIImage imageNamed:@"startMarker"];
             SelfMarker.map = _mapView;
             zipCode = [placemark performSelector:NSSelectorFromString(@"postalCode")];
-            if (status==NotCreated || status==Done || status==New || status==Pending){
+            if (status!=InProgress){
                 CLLocationCoordinate2D target =
                 CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
                 _mapView.camera = [GMSCameraPosition cameraWithTarget:target zoom:kGMSMaxZoomLevel - 8];
@@ -425,7 +425,7 @@ GMSPolygon *polyRegion;
 - (void) getOtherLocationFromServer{
     NSString *basePath = kgetOtherUserInfoURL;
     
-    NSString* requestId= [GlobalSettings objectAtIndex:0];
+    NSString* requestId= [GlobalSettings objectAtIndex:kRequestId];
     NSString *fullPath = [basePath stringByAppendingFormat:@"/%@/%@",kRequesterUsername,requestId];
     
     NSLog(@"%@",fullPath);
@@ -443,7 +443,7 @@ GMSPolygon *polyRegion;
                 NSString *otherUserName = [otherLocation objectForKey:@"email"];
                 
 
-                [GlobalSettings insertObject:otherUserName atIndex:2];
+                [GlobalSettings insertObject:otherUserName atIndex:kOtherUserId];
                 
                 CLLocation *LocationAtual = [[CLLocation alloc] initWithLatitude:[lat floatValue] longitude:[longitude floatValue]];
                 if (nil == OtherMarker){
@@ -487,14 +487,14 @@ GMSPolygon *polyRegion;
             NSDictionary *userInfo = [stringReply JSON];
 
             NSString *econtact = [userInfo objectForKey:@"econtact"];
-            [GlobalSettings insertObject:econtact atIndex:3];
+            [GlobalSettings insertObject:econtact atIndex:kEmergency];
         }
         @catch (NSException *exception) {
             NSLog(@"Exception : %@", exception);
-            [GlobalSettings insertObject:@"911" atIndex:3];
+            [GlobalSettings insertObject:@"911" atIndex:kEmergency];
         }
     } else {
-       [GlobalSettings insertObject:@"911" atIndex:3];
+       [GlobalSettings insertObject:@"911" atIndex:kEmergency];
     }
 }
 
@@ -509,7 +509,7 @@ GMSPolygon *polyRegion;
             if (!error) {
                 NSLog(@"SUCCESS : %@", result);
                 @try {
-                    [GlobalSettings replaceObjectAtIndex:0 withObject:result];
+                    [GlobalSettings replaceObjectAtIndex:kRequestId withObject:result];
                     NSLog(@"%@",GlobalSettings);
                     status=New;
                     [self getRequestUpdates];
@@ -638,7 +638,7 @@ GMSPolygon *polyRegion;
     {
         [self getEContact];
         NSLog(@"Emergency was selected.");
-        NSString *phoneNumber = [GlobalSettings objectAtIndex:3];
+        NSString *phoneNumber = [GlobalSettings objectAtIndex:kEmergency];
         NSString *telString = [NSString stringWithFormat:@"tel:%@,%@", phoneNumber, @""];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telString]];
     }
@@ -668,7 +668,7 @@ GMSPolygon *polyRegion;
     NSLog(@"getRequestUpdates called");
     NSString* requestId;
     @try {
-        requestId= [GlobalSettings objectAtIndex:0];
+        requestId= [GlobalSettings objectAtIndex:kRequestId];
         if ([requestId isEqualToString:@"0"]) {
             status=NotCreated;
             [cancelRequestButton setHidden:TRUE];
@@ -692,6 +692,7 @@ GMSPolygon *polyRegion;
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Asking nearby volunteers...]";
                          safeDropIcon.hidden=TRUE;
+                        OtherMarker.map=nil;
                     }
                     else if ([result isEqualToString:@"P"]){
                         
@@ -701,6 +702,7 @@ GMSPolygon *polyRegion;
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Waiting for confirmation...]";
                          safeDropIcon.hidden=TRUE;
+                        OtherMarker.map=nil;
                     }
                     else if ([result isEqualToString:@"A"]){
                         status=Accepted;
@@ -709,6 +711,7 @@ GMSPolygon *polyRegion;
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Check Notifications...]";
                         safeDropIcon.hidden=TRUE;
+                         OtherMarker.map=nil;
                     }
                     else if ([result isEqualToString:@"I"]){
                         
@@ -728,32 +731,33 @@ GMSPolygon *polyRegion;
                     else if ([result isEqualToString:@"D"]){
                         
                         status=Done;
-                        [cancelRequestButton setHidden:FALSE];
+                        [cancelRequestButton setHidden:TRUE];
                         [inButtonButtonPanel setTitle:@"Request Done" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Request Completed...]";
                         safeDropIcon.hidden=TRUE;
+                         OtherMarker.map=nil;
 
                     }
                     else if ([result isEqualToString:@"R"]){
                         
                         status=Archived;
-                        [cancelRequestButton setHidden:FALSE];
+                        [cancelRequestButton setHidden:TRUE];
                         [inButtonButtonPanel setTitle:@"Request Archived" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Request has been archived...]";
                         safeDropIcon.hidden=TRUE;
-
+ OtherMarker.map=nil;
                     }
                     else if ([result isEqualToString:@"C"]){
                         
                         status=Cancel;
-                        [cancelRequestButton setHidden:FALSE];
+                        [cancelRequestButton setHidden:TRUE];
                         [inButtonButtonPanel setTitle:@"Request Cancelled" forState:UIControlStateNormal];
                         [inButtonButtonPanel setEnabled:FALSE];
                         inLabelButtonPanel.text=@"[Initimating volunteers...]";
                         safeDropIcon.hidden=TRUE;
-
+ OtherMarker.map=nil;
                     }
                     else{
                         status=NotCreated;
@@ -763,7 +767,7 @@ GMSPolygon *polyRegion;
                         [inButtonButtonPanel setEnabled:TRUE];
                         inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
                          safeDropIcon.hidden=TRUE;
-                        
+                         OtherMarker.map=nil;
                     }
                     
                 } else {
@@ -773,6 +777,7 @@ GMSPolygon *polyRegion;
                     [inButtonButtonPanel setEnabled:TRUE];
                     inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
                      safeDropIcon.hidden=TRUE;
+                     OtherMarker.map=nil;
                 }
             });
         }];
@@ -785,6 +790,7 @@ GMSPolygon *polyRegion;
         [inButtonButtonPanel setTitle:@"Pickup Request" forState:UIControlStateNormal];
         [inButtonButtonPanel setEnabled:TRUE];
         inLabelButtonPanel.text=@"[Create a SafeDrop Request...]";
+         OtherMarker.map=nil;
     }
     
     

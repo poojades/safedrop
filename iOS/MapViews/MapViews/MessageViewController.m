@@ -49,7 +49,7 @@ NSTimer *timer;
 -(void)refreshDataTable
 {
 
-    [iOSRequest refreshMessages:[GlobalSettings objectAtIndex:0] andLastRefreshId:@"0" onCompletion:^(NSDictionary *data){
+    [iOSRequest refreshMessages:[GlobalSettings objectAtIndex:kRequestId] andLastRefreshId:@"0" onCompletion:^(NSDictionary *data){
         dispatch_async(dispatch_get_main_queue(), ^{
 
             int i=0;
@@ -193,11 +193,11 @@ NSTimer *timer;
     NSString *address = ksendMessageURL;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:kRequesterUsername forKey:@"from"];
-    [params setValue:[GlobalSettings objectAtIndex:3] forKey:@"to"];
+    [params setValue:[GlobalSettings objectAtIndex:kOtherUserId] forKey:@"to"];
     
     [params setValue:textField.text forKey:@"message"];
     
-    [params setValue:[GlobalSettings objectAtIndex:0] forKey:@"requestId"];
+    [params setValue:[GlobalSettings objectAtIndex:kRequestId] forKey:@"requestId"];
     
     
     [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
@@ -222,6 +222,7 @@ NSTimer *timer;
    }
 
 - (IBAction)goBacktoSafeDrop:(id)sender {
+    [timer invalidate];
     ViewController *viewController=[[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
     [self presentViewController:viewController animated:YES completion:nil];
 }

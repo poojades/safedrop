@@ -11,7 +11,11 @@
 
 NSMutableArray * GlobalSettings;
 
-//position 0 -> requestId
+#define kRequestId 0
+#define kLastRefreshId 1
+#define kOtherUserId 2
+#define kEmergency 3
+
 
 typedef enum  {
     NotCreated,

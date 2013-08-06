@@ -115,7 +115,7 @@ return [self.dataController countOfList];
     
     
     
-        NSString *lastRefreshID = [GlobalSettings objectAtIndex:1];
+        NSString *lastRefreshID = [GlobalSettings objectAtIndex:kLastRefreshId];
     [iOSRequest refreshNotifications:kRequesterUsername andLastRefreshId:lastRefreshID onCompletion:^(NSDictionary *data){
 
                dispatch_async(dispatch_get_main_queue(), ^{
@@ -137,7 +137,7 @@ return [self.dataController countOfList];
                            
                            if ([id integerValue]>[lastRefreshID integerValue])
                            {
-                                   [GlobalSettings insertObject:id atIndex:1];
+                                   [GlobalSettings insertObject:id atIndex:kLastRefreshId];
                            }
                         
                            
@@ -168,7 +168,7 @@ return [self.dataController countOfList];
                        NSString *id =[dict objectForKey:@"id"];
                            if ([id integerValue]>[lastRefreshID integerValue])
                            {
-                               [GlobalSettings insertObject:id atIndex:1];
+                               [GlobalSettings insertObject:id atIndex:kLastRefreshId];
                                
                            }
                            

@@ -44,7 +44,7 @@
 
         NSString *basePath = kgetRatingsURL;
     
-        NSString *requesterAccepted = [GlobalSettings objectAtIndex:2];
+        NSString *requesterAccepted = [GlobalSettings objectAtIndex:kOtherUserId];
 //    NSString *requesterAccepted = @"poojadesai@cmu.edu";
         NSString *fullPath = [basePath stringByAppendingFormat:@"/%@",requesterAccepted];
         
@@ -204,12 +204,12 @@
     NSString *address = kaddRatingsURL;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     
-    [params setValue:[GlobalSettings objectAtIndex:0] forKey:@"requestId"];
+    [params setValue:[GlobalSettings objectAtIndex:kRequestId] forKey:@"requestId"];
     
     
     [params setValue:kRequesterUsername forKey:@"requesterEmail"];
     
-    [params setValue:[GlobalSettings objectAtIndex:3] forKey:@"volunteerEmail"];
+    [params setValue:[GlobalSettings objectAtIndex:kOtherUserId] forKey:@"volunteerEmail"];
     
     
     [params setValue:ratingCommentsText.text  forKey:@"text"];
@@ -232,7 +232,7 @@
     address=kcloseRequestURL;
     
     params = [[NSMutableDictionary alloc] init];
-    [params setValue:[GlobalSettings objectAtIndex:0] forKey:@"requestId"];
+    [params setValue:[GlobalSettings objectAtIndex:kRequestId] forKey:@"requestId"];
 
     
     [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){

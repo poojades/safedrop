@@ -132,18 +132,18 @@
     if (!error) {
         NSLog(@"SUCCESS : %@", stringReply );
         @try {
-            [GlobalSettings insertObject:stringReply atIndex:0];
-            [GlobalSettings insertObject:@"0" atIndex:1];
+            [GlobalSettings insertObject:stringReply atIndex:kRequestId];
+            [GlobalSettings insertObject:@"0" atIndex:kLastRefreshId];
             NSLog(@"%@",GlobalSettings);
         }
         @catch (NSException *exception) {
             NSLog(@"Exception : %@", exception);
-            [GlobalSettings insertObject:@"0" atIndex:0];
-            [GlobalSettings insertObject:@"0" atIndex:1];
+            [GlobalSettings insertObject:@"0" atIndex:kRequestId];
+            [GlobalSettings insertObject:@"0" atIndex:kLastRefreshId];
         }
     } else {
-        [GlobalSettings insertObject:@"0" atIndex:0];
-        [GlobalSettings insertObject:@"0" atIndex:1];
+        [GlobalSettings insertObject:@"0" atIndex:kRequestId];
+        [GlobalSettings insertObject:@"0" atIndex:kLastRefreshId];
     }
     
 }

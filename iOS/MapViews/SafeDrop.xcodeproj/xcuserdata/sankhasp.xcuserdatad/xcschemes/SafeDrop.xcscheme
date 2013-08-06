@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AF08F29B17A9B5C800DBF02A"
-               BuildableName = "MapViews.app"
-               BlueprintName = "MapViews"
-               ReferencedContainer = "container:MapViews.xcodeproj">
+               BuildableName = "SafeDrop.app"
+               BlueprintName = "SafeDrop"
+               ReferencedContainer = "container:SafeDrop.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AF08F2C117A9B5C800DBF02A"
-               BuildableName = "MapViewsTests.octest"
-               BlueprintName = "MapViewsTests"
-               ReferencedContainer = "container:MapViews.xcodeproj">
+               BuildableName = "SafeDropTests.octest"
+               BlueprintName = "SafeDropTests"
+               ReferencedContainer = "container:SafeDrop.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF08F29B17A9B5C800DBF02A"
-            BuildableName = "MapViews.app"
-            BlueprintName = "MapViews"
-            ReferencedContainer = "container:MapViews.xcodeproj">
+            BuildableName = "SafeDrop.app"
+            BlueprintName = "SafeDrop"
+            ReferencedContainer = "container:SafeDrop.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF08F29B17A9B5C800DBF02A"
-            BuildableName = "MapViews.app"
-            BlueprintName = "MapViews"
-            ReferencedContainer = "container:MapViews.xcodeproj">
+            BuildableName = "SafeDrop.app"
+            BlueprintName = "SafeDrop"
+            ReferencedContainer = "container:SafeDrop.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF08F29B17A9B5C800DBF02A"
-            BuildableName = "MapViews.app"
-            BlueprintName = "MapViews"
-            ReferencedContainer = "container:MapViews.xcodeproj">
+            BuildableName = "SafeDrop.app"
+            BlueprintName = "SafeDrop"
+            ReferencedContainer = "container:SafeDrop.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

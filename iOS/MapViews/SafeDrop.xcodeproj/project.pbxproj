@@ -17,7 +17,6 @@
 		AF08F2AA17A9B5C800DBF02A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AF08F2A817A9B5C800DBF02A /* InfoPlist.strings */; };
 		AF08F2AC17A9B5C800DBF02A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF08F2AB17A9B5C800DBF02A /* main.m */; };
 		AF08F2B017A9B5C800DBF02A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF08F2AF17A9B5C800DBF02A /* AppDelegate.m */; };
-		AF08F2B217A9B5C800DBF02A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AF08F2B117A9B5C800DBF02A /* Default.png */; };
 		AF08F2B417A9B5C800DBF02A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF08F2B317A9B5C800DBF02A /* Default@2x.png */; };
 		AF08F2B617A9B5C800DBF02A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF08F2B517A9B5C800DBF02A /* Default-568h@2x.png */; };
 		AF08F2B917A9B5C800DBF02A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF08F2B817A9B5C800DBF02A /* ViewController.m */; };
@@ -112,14 +111,14 @@
 		AF004BEA17A9DF0B002B3C8F /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		AF004BEC17A9E025002B3C8F /* user_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_highlight.png; sourceTree = "<group>"; };
 		AF004BEE17AA7368002B3C8F /* startMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startMarker.png; sourceTree = "<group>"; };
-		AF08F29C17A9B5C800DBF02A /* MapViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapViews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF08F29C17A9B5C800DBF02A /* SafeDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF08F29F17A9B5C800DBF02A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AF08F2A117A9B5C800DBF02A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AF08F2A317A9B5C800DBF02A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AF08F2A717A9B5C800DBF02A /* MapViews-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MapViews-Info.plist"; sourceTree = "<group>"; };
+		AF08F2A717A9B5C800DBF02A /* SafeDrop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SafeDrop-Info.plist"; sourceTree = "<group>"; };
 		AF08F2A917A9B5C800DBF02A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AF08F2AB17A9B5C800DBF02A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AF08F2AD17A9B5C800DBF02A /* MapViews-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MapViews-Prefix.pch"; sourceTree = "<group>"; };
+		AF08F2AD17A9B5C800DBF02A /* SafeDrop-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeDrop-Prefix.pch"; sourceTree = "<group>"; };
 		AF08F2AE17A9B5C800DBF02A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AF08F2AF17A9B5C800DBF02A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AF08F2B117A9B5C800DBF02A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -128,9 +127,9 @@
 		AF08F2B717A9B5C800DBF02A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		AF08F2B817A9B5C800DBF02A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AF08F2BB17A9B5C800DBF02A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		AF08F2C217A9B5C800DBF02A /* MapViewsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapViewsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF08F2C217A9B5C800DBF02A /* SafeDropTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeDropTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF08F2C317A9B5C800DBF02A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		AF08F2CB17A9B5C800DBF02A /* MapViewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MapViewsTests-Info.plist"; sourceTree = "<group>"; };
+		AF08F2CB17A9B5C800DBF02A /* SafeDropTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SafeDropTests-Info.plist"; sourceTree = "<group>"; };
 		AF08F2CD17A9B5C800DBF02A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AF08F2CF17A9B5C900DBF02A /* MapViewsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewsTests.h; sourceTree = "<group>"; };
 		AF08F2D017A9B5C900DBF02A /* MapViewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewsTests.m; sourceTree = "<group>"; };
@@ -281,8 +280,8 @@
 		AF08F29D17A9B5C800DBF02A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AF08F29C17A9B5C800DBF02A /* MapViews.app */,
-				AF08F2C217A9B5C800DBF02A /* MapViewsTests.octest */,
+				AF08F29C17A9B5C800DBF02A /* SafeDrop.app */,
+				AF08F2C217A9B5C800DBF02A /* SafeDropTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -341,10 +340,10 @@
 				AF004BEC17A9E025002B3C8F /* user_highlight.png */,
 				AF004BEA17A9DF0B002B3C8F /* user.png */,
 				AF004BE617A9CC25002B3C8F /* settings.png */,
-				AF08F2A717A9B5C800DBF02A /* MapViews-Info.plist */,
+				AF08F2A717A9B5C800DBF02A /* SafeDrop-Info.plist */,
 				AF08F2A817A9B5C800DBF02A /* InfoPlist.strings */,
 				AF08F2AB17A9B5C800DBF02A /* main.m */,
-				AF08F2AD17A9B5C800DBF02A /* MapViews-Prefix.pch */,
+				AF08F2AD17A9B5C800DBF02A /* SafeDrop-Prefix.pch */,
 				AF08F2B117A9B5C800DBF02A /* Default.png */,
 				AF08F2B317A9B5C800DBF02A /* Default@2x.png */,
 				AF08F2B517A9B5C800DBF02A /* Default-568h@2x.png */,
@@ -365,7 +364,7 @@
 		AF08F2CA17A9B5C800DBF02A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AF08F2CB17A9B5C800DBF02A /* MapViewsTests-Info.plist */,
+				AF08F2CB17A9B5C800DBF02A /* SafeDropTests-Info.plist */,
 				AF08F2CC17A9B5C800DBF02A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -457,9 +456,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AF08F29B17A9B5C800DBF02A /* MapViews */ = {
+		AF08F29B17A9B5C800DBF02A /* SafeDrop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF08F2D417A9B5C900DBF02A /* Build configuration list for PBXNativeTarget "MapViews" */;
+			buildConfigurationList = AF08F2D417A9B5C900DBF02A /* Build configuration list for PBXNativeTarget "SafeDrop" */;
 			buildPhases = (
 				AF08F29817A9B5C800DBF02A /* Sources */,
 				AF08F29917A9B5C800DBF02A /* Frameworks */,
@@ -469,14 +468,14 @@
 			);
 			dependencies = (
 			);
-			name = MapViews;
+			name = SafeDrop;
 			productName = MapViews;
-			productReference = AF08F29C17A9B5C800DBF02A /* MapViews.app */;
+			productReference = AF08F29C17A9B5C800DBF02A /* SafeDrop.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AF08F2C117A9B5C800DBF02A /* MapViewsTests */ = {
+		AF08F2C117A9B5C800DBF02A /* SafeDropTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF08F2D717A9B5C900DBF02A /* Build configuration list for PBXNativeTarget "MapViewsTests" */;
+			buildConfigurationList = AF08F2D717A9B5C900DBF02A /* Build configuration list for PBXNativeTarget "SafeDropTests" */;
 			buildPhases = (
 				AF08F2BD17A9B5C800DBF02A /* Sources */,
 				AF08F2BE17A9B5C800DBF02A /* Frameworks */,
@@ -488,9 +487,9 @@
 			dependencies = (
 				AF08F2C817A9B5C800DBF02A /* PBXTargetDependency */,
 			);
-			name = MapViewsTests;
+			name = SafeDropTests;
 			productName = MapViewsTests;
-			productReference = AF08F2C217A9B5C800DBF02A /* MapViewsTests.octest */;
+			productReference = AF08F2C217A9B5C800DBF02A /* SafeDropTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -502,7 +501,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Self;
 			};
-			buildConfigurationList = AF08F29717A9B5C800DBF02A /* Build configuration list for PBXProject "MapViews" */;
+			buildConfigurationList = AF08F29717A9B5C800DBF02A /* Build configuration list for PBXProject "SafeDrop" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -514,8 +513,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AF08F29B17A9B5C800DBF02A /* MapViews */,
-				AF08F2C117A9B5C800DBF02A /* MapViewsTests */,
+				AF08F29B17A9B5C800DBF02A /* SafeDrop */,
+				AF08F2C117A9B5C800DBF02A /* SafeDropTests */,
 			);
 		};
 /* End PBXProject section */
@@ -526,7 +525,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF08F2AA17A9B5C800DBF02A /* InfoPlist.strings in Resources */,
-				AF08F2B217A9B5C800DBF02A /* Default.png in Resources */,
 				AF08F2B417A9B5C800DBF02A /* Default@2x.png in Resources */,
 				AF08F2B617A9B5C800DBF02A /* Default-568h@2x.png in Resources */,
 				AF08F2BC17A9B5C800DBF02A /* ViewController.xib in Resources */,
@@ -641,7 +639,7 @@
 /* Begin PBXTargetDependency section */
 		AF08F2C817A9B5C800DBF02A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AF08F29B17A9B5C800DBF02A /* MapViews */;
+			target = AF08F29B17A9B5C800DBF02A /* SafeDrop */;
 			targetProxy = AF08F2C717A9B5C800DBF02A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -741,10 +739,10 @@
 					"\"$(SRCROOT)/MapViews/NotificationView\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MapViews/MapViews-Prefix.pch";
-				INFOPLIST_FILE = "MapViews/MapViews-Info.plist";
+				GCC_PREFIX_HEADER = "MapViews/SafeDrop-Prefix.pch";
+				INFOPLIST_FILE = "MapViews/SafeDrop-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SafeDrop;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -760,10 +758,10 @@
 					"\"$(SRCROOT)/MapViews/NotificationView\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MapViews/MapViews-Prefix.pch";
-				INFOPLIST_FILE = "MapViews/MapViews-Info.plist";
+				GCC_PREFIX_HEADER = "MapViews/SafeDrop-Prefix.pch";
+				INFOPLIST_FILE = "MapViews/SafeDrop-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SafeDrop;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -778,8 +776,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MapViews/MapViews-Prefix.pch";
-				INFOPLIST_FILE = "MapViewsTests/MapViewsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "MapViewsTests/SafeDropTests-Info.plist";
+				PRODUCT_NAME = SafeDropTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -795,8 +793,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MapViews/MapViews-Prefix.pch";
-				INFOPLIST_FILE = "MapViewsTests/MapViewsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "MapViewsTests/SafeDropTests-Info.plist";
+				PRODUCT_NAME = SafeDropTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -805,7 +803,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AF08F29717A9B5C800DBF02A /* Build configuration list for PBXProject "MapViews" */ = {
+		AF08F29717A9B5C800DBF02A /* Build configuration list for PBXProject "SafeDrop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AF08F2D217A9B5C900DBF02A /* Debug */,
@@ -814,7 +812,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF08F2D417A9B5C900DBF02A /* Build configuration list for PBXNativeTarget "MapViews" */ = {
+		AF08F2D417A9B5C900DBF02A /* Build configuration list for PBXNativeTarget "SafeDrop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AF08F2D517A9B5C900DBF02A /* Debug */,
@@ -823,7 +821,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF08F2D717A9B5C900DBF02A /* Build configuration list for PBXNativeTarget "MapViewsTests" */ = {
+		AF08F2D717A9B5C900DBF02A /* Build configuration list for PBXNativeTarget "SafeDropTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AF08F2D817A9B5C900DBF02A /* Debug */,

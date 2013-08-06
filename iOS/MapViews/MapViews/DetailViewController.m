@@ -11,6 +11,8 @@
 #import "NSString+WebService.h"
 #import "CustomCell.h"
 
+#import "ViewController.h"
+
 @interface DetailViewController ()
 - (void)configureView;
 @end
@@ -38,7 +40,10 @@
     static NSString *myIdentifier = @"CustomCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
-    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myIdentifier];
+    }
     
     @try {
         NSLog(@"%@",[self.tableData objectForKey:@"ratings"]);
@@ -95,6 +100,79 @@
     
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if([title isEqualToString:@"OK"])
+    {
+        //if user is requester
+        NSString* requestId = [GlobalSettings objectAtIndex:kRequestId];
+        
+        if (![requestId isEqualToString:@"0"]) {
+            NSString *address = kacceptVolunteerURL;
+            NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+            [params setValue:self.notification.sender forKey:@"volunteerEmail"];
+            [params setValue:requestId forKey:@"requestId"];
+            
+            [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (!error) {
+                        NSLog(@"SUCCESS : %@", result);
+                        @try {
+                            status=InProgress;
+                            [GlobalSettings insertObject:@"0" atIndex:kLastRefreshId];
+                            ViewController *viewController=[[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+                            
+                            [self presentViewController:viewController animated:YES completion:nil];
+                        }
+                        @catch (NSException *exception) {
+                            NSLog(@"Exception : %@", exception);
+                            //show alert
+                        }
+                    } else {
+                        //show alert
+                        NSLog(@"ERROR: %@",error);
+                    }
+                });
+            }];
+            
+            
+        }
+        else{
+            NSString *address = kacceptRequesterURL;
+            NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+            requestId = self.notification.requestId;
+            [params setValue:kRequesterUsername forKey:@"volunteerEmail"];
+            [params setValue:requestId forKey:@"requestId"];
+            
+            [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (!error) {
+                        NSLog(@"SUCCESS : %@", result);
+                        @try {
+                            status=Accepted;
+                            [GlobalSettings insertObject:self.notification.requestId  atIndex:kRequestId];
+                            [GlobalSettings insertObject:@"0" atIndex:kLastRefreshId];
+                            ViewController *viewController=[[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+                            
+                            [self presentViewController:viewController animated:YES completion:nil];
+                        }
+                        @catch (NSException *exception) {
+                            NSLog(@"Exception : %@", exception);
+                            //show alert
+                        }
+                    } else {
+                        //show alert
+                        NSLog(@"ERROR: %@",error);
+                    }
+                });
+            }];
+        }
+
+    }
+}
+
+
 
 - (void)configureView
 {
@@ -127,8 +205,9 @@
     
     NSString *basePath = kgetRatingsURL;
     
-    NSString *requesterAccepted = [GlobalSettings objectAtIndex:2];
-    //    NSString *requesterAccepted = @"poojadesai@cmu.edu";
+
+    
+    NSString *requesterAccepted = _notification.sender;    //    NSString *requesterAccepted = @"poojadesai@cmu.edu";
     NSString *fullPath = [basePath stringByAppendingFormat:@"/%@",requesterAccepted];
     
     NSLog(@"%@",fullPath);
@@ -184,69 +263,26 @@
 }
 
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Number of rows is the number of time zones in the region for the specified section.
+    return [tableData count];
+}
+
+
+
 
 
 
 - (IBAction)accept:(id)sender {
-
-    //if user is requester
-    NSString* requestId = [GlobalSettings objectAtIndex:0];
     
-    if (![requestId isEqualToString:@"0"]) {
-        NSString *address = kacceptVolunteerURL;
-        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        [params setValue:self.notification.sender forKey:@"volunteerEmail"];
-        [params setValue:requestId forKey:@"requestId"];
-        
-        [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (!error) {
-                    NSLog(@"SUCCESS : %@", result);
-                    @try {
-                        status=InProgress;
-                        [GlobalSettings insertObject:@"0" atIndex:1];
-                    }
-                    @catch (NSException *exception) {
-                        NSLog(@"Exception : %@", exception);
-                        //show alert
-                    }
-                } else {
-                    //show alert
-                    NSLog(@"ERROR: %@",error);
-                }
-            });
-        }];
-        
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure?"
+                                                    message:@"You would be initating a SafeDrop with this Volunteer"
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 
-    }
-    else{
-        NSString *address = kacceptRequesterURL;
-        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        requestId = self.notification.requestId;
-        [params setValue:kRequesterUsername forKey:@"volunteerEmail"];
-        [params setValue:requestId forKey:@"requestId"];
-        
-        [iOSRequest requestRESTPOST:address withParams:params onCompletion:^(NSString *result, NSError *error){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (!error) {
-                    NSLog(@"SUCCESS : %@", result);
-                    @try {
-                        status=Accepted;
-                        [GlobalSettings insertObject:self.notification.requestId  atIndex:0];
-                        [GlobalSettings insertObject:@"0" atIndex:1];
-                    }
-                    @catch (NSException *exception) {
-                        NSLog(@"Exception : %@", exception);
-                        //show alert
-                    }
-                } else {
-                    //show alert
-                    NSLog(@"ERROR: %@",error);
-                }
-            });
-        }];
-    }
-    
+
     
 }
 @end
