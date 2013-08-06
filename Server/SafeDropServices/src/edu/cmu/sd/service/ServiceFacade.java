@@ -125,7 +125,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		sqlParams[1]=requestId;
 		sqlParams[2]=afterMessageId;
 		try {
-			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE = ? AND REQUESTID = ? AND ID > ? ORDER BY CREATED DESC",sqlParams));
+			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE = ? AND REQUESTID = ? AND ID > ? ORDER BY ID ASC",sqlParams));
 			if (list!=null)
 				return list;
 			else
@@ -230,7 +230,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		sqlParams[1]=email;
 		sqlParams[2]=afterMessageId;
 		try {
-			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE=? AND RECEIVER = ? AND ID>? ORDER BY CREATED DESC",sqlParams));
+			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE=? AND RECEIVER = ? AND ID>? ORDER BY ID ASC",sqlParams));
 			if (list!=null)
 				return list;
 			else
@@ -367,7 +367,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		sqlParams[2]=requestId;
 		List<Notifications> list = null;
 		try {
-			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE = ? AND RECEIVER = ? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
+			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE = ? AND RECEIVER = ? AND REQUESTID = ? ORDER BY ID ASC",sqlParams));
 			if (list==null || list.size()==0)
 			{
 				throw new SafeDropException("Failed to check if requester actually received a notification"); 
@@ -380,7 +380,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		sqlParams[0]=SDConstants.TYPE_NOTIFICATION;;
 		sqlParams[1]=requestId;
 		try {
-			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE=? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
+			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE=? AND REQUESTID = ? ORDER BY ID ASC",sqlParams));
 			if (list!=null) 
 			{
 				for(Notifications noti : list){
@@ -465,7 +465,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		sqlParams[2]=requestId;
 		List<Notifications> list = null;
 		try {
-			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE=? AND RECEIVER = ? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
+			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE=? AND RECEIVER = ? AND REQUESTID = ? ORDER BY ID ASC",sqlParams));
 			if (list==null || list.size()==0)
 			{
 				throw new SafeDropException("Failed to check if volunteer actually received a notification"); 
@@ -478,7 +478,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		sqlParams[0]=SDConstants.TYPE_NOTIFICATION;
 		sqlParams[1]=requestId;
 		try {
-			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE=? AND REQUESTID = ? ORDER BY CREATED DESC",sqlParams));
+			list = Arrays.asList(notiDao.findByDynamicWhere("TYPE=? AND REQUESTID = ? ORDER BY ID ASC",sqlParams));
 			if (list!=null) 
 			{
 				for(Notifications noti : list){
