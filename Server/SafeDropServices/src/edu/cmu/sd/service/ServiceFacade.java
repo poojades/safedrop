@@ -105,29 +105,27 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 	@Override
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/getMessages/{email}/{afterMessageId}")
-	public List<Notifications> getMessages(@PathParam("email") String email, @PathParam("afterMessageId")  int afterMessageId) throws SafeDropException {
-		if ((null==email) || (email.trim().length()==0))
-			throw new SafeDropException("Email cannot be null or of length zero");
+	@Path("/getMessages/{requestId}/{afterMessageId}")
+	public List<Notifications> getMessages(@PathParam("requestId") int requestId, @PathParam("afterMessageId")  int afterMessageId) throws SafeDropException {
 		
-		
-		UsersDao userDao = UsersDaoFactory.create();
+		RequestDao daor = RequestDaoFactory.create();
+		edu.cmu.sd.dto.Request request = null;
 		try {
-			Users user = userDao.findByPrimaryKey(email);
-			if (user==null || !user.getStatus().equalsIgnoreCase(SDConstants.ACTIVE_STATUS)){
-				throw new SafeDropException("Requester should be available & active to create a SafeDrop request");
+			request = daor.findByPrimaryKey(requestId);
+			if (request==null || !request.getStatus().equalsIgnoreCase(SDConstants.REQ_INPROG_STATUS)){
+				throw new SafeDropException("Request should be available & status should be in PROGRESS to get mesages");
 			}
-		} catch (UsersDaoException e) {
-			throw new SafeDropException("Failed to validate requester");
+		} catch (RequestDaoException e) {
+			throw new SafeDropException("Failed to validate request");
 		}
 
 		NotificationsDao dao = NotificationsDaoFactory.create();
 		Object[] sqlParams = new Object[3];
 		sqlParams[0]=SDConstants.TYPE_MESSAGE;
-		sqlParams[1]=email;
+		sqlParams[1]=requestId;
 		sqlParams[2]=afterMessageId;
 		try {
-			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE = ? AND RECEIVER = ? AND ID > ? ORDER BY CREATED DESC",sqlParams));
+			List<Notifications> list = Arrays.asList(dao.findByDynamicWhere("TYPE = ? AND REQUESTID = ? AND ID > ? ORDER BY CREATED DESC",sqlParams));
 			if (list!=null)
 				return list;
 			else
@@ -145,7 +143,7 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Path("/sendMessage")
-	public String sendMessage(@FormParam("from") String from, @FormParam("to") String to, @FormParam("message") String message)
+	public String sendMessage(@FormParam("from") String from, @FormParam("to") String to, @FormParam("message") String message, @FormParam("requestId") int requestId)
 			throws SafeDropException {
 
 		if ((null==from) || (null==to) || (from.equalsIgnoreCase(to)))
@@ -158,6 +156,17 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		
 		if ((null==to) || (to.trim().length()==0))
 			throw new SafeDropException("Message To cannot be null or of length zero");
+		
+		RequestDao daor = RequestDaoFactory.create();
+		edu.cmu.sd.dto.Request request = null;
+		try {
+			request = daor.findByPrimaryKey(requestId);
+			if (request==null || !request.getStatus().equalsIgnoreCase(SDConstants.REQ_INPROG_STATUS)){
+				throw new SafeDropException("Request should be available & status should be in PROGRESS to get mesages");
+			}
+		} catch (RequestDaoException e) {
+			throw new SafeDropException("Failed to validate request");
+		}
 		
 		UsersDao userDao = UsersDaoFactory.create();
 		try {
@@ -805,4 +814,6 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 		}
 		return pk.toString();
 	}
+
+	
 }

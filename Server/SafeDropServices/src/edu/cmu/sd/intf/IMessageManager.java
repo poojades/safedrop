@@ -15,16 +15,9 @@ import edu.cmu.sd.exceptions.SafeDropException;
  * The Interface IMessageManager.
  */
 public interface IMessageManager {
+
 	
-	/**
-	 * Gets the messages.
-	 *
-	 * @param email the email
-	 * @param count the count
-	 * @return the messages
-	 * @throws SafeDropException the safe drop exception
-	 */
-	public List<Notifications> getMessages(String email, int count) throws SafeDropException;
+	public List<Notifications> getMessages(int requestId, int count) throws SafeDropException;
 	
 	/**
 	 * Send message.
@@ -35,5 +28,5 @@ public interface IMessageManager {
 	 * @return the string
 	 * @throws SafeDropException the safe drop exception
 	 */
-	public String sendMessage(String from, String to, String message) throws SafeDropException;
+	public String sendMessage(String from, String to, String message, int requestId) throws SafeDropException;
 }
