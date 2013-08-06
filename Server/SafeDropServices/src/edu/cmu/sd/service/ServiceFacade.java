@@ -701,7 +701,13 @@ public class ServiceFacade implements IRequestManager, IUserManager, INotificati
 				if (request.getRequester().equalsIgnoreCase(email)){
 					//he is the requester so fetch the volunteer's userInfo
 					NotificationsDao notidao = NotificationsDaoFactory.create();
-					Notifications[] notification = notidao.findByRequest(requestId);
+					
+					Object[] sqlParams=new Object[2];
+					sqlParams[0]=SDConstants.TYPE_NOTIFICATION;
+					sqlParams[1]=requestId;
+					Notifications[] notification = notidao.findByDynamicWhere("TYPE=? AND REQUESTID=? ", sqlParams);
+					
+					
 					if (notification==null || notification.length>1)
 						throw new SafeDropException("Failed to get other user status"); 
 					else
