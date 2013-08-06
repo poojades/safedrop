@@ -194,7 +194,8 @@ NSTimer *timer;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:kRequesterUsername forKey:@"from"];
     [params setValue:[GlobalSettings objectAtIndex:3] forKey:@"to"];
-    [params setValue:textField.text forKey:@"text"];
+    
+    [params setValue:textField.text forKey:@"message"];
     
     [params setValue:[GlobalSettings objectAtIndex:0] forKey:@"requestId"];
     
