@@ -1,5 +1,4 @@
 -> Project Structure
-The project structure is followed which has the following meaning
 
 1. Android - Contains code for the Android development
 2. iOS - Contains code for the iOS development
